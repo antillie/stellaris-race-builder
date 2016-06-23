@@ -5,13 +5,47 @@
     
     
 <style type="text/css">
-body { background-color:#ffffff; }
+body { background-color:#040904; }
+.txt{color:#40cb90; font-family:arial; font-size:14px;}
+.section_title{color:#40cb90; font-family:arial; font-size:16px; font-weight: bold;}
+.selected-option { background-color:#bbbb30; }
+.non-selected-option { background-color:#040904; }
+
+.fanatic-collectivist { background-color:#040904; }
+
 </style>
-    
+
+<script type="text/javascript">
+// Friends don't let friends write bad javascript.
+"use strict";
+
+var individuality = ["fanatic-collectivist", "collectivist", "individualist", "fanatic-individualist"];
+var spirituality = ["fanatic-spiritualist", "spiritualist", "materialist", "fanatic-materialist"];
+var militarisim = ["fanatic-pacifist", "pacifist", "militarist", "fanatic-militarist"];
+var xenophobia = ["fanatic-xenophile", "xenophile", "xenophobe", "fanatic-xenophobe"];
+
+function select_ethics(ethic){
+    var target = document.getElementById(ethic);
+    target.style.backgroundColor = "#bbbb30";
+};
+
+</script>
 <body>
 
-Hi.<br>
-<img src="images/grey-circle.png">
+
+
+<table border="1">
+    <tr><td colspan="4"><span class="section_title">Ethics:</span><br></td></tr>
+    <tr>
+        <td id="fanatic-collectivist" onclick="select_ethics('fanatic-collectivist');"><img src="images/ethics/fanatic-collectivist.png"></td>
+        <td id="collectivist" onclick="select_ethics('collectivist');"><img src="images/ethics/collectivist.png"></td>
+        <td id="individualist" onclick="select_ethics('individualist');"><img src="images/ethics/individualist.png"></td>
+        <td id="fanatic-individualist" onclick="select_ethics('fanatic-individualist');"><img src="images/ethics/fanatic-individualist.png"></td>
+    </tr>
+
+
+</table>
+
 
 </body>
 </html>
