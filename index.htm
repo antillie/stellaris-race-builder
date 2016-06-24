@@ -837,8 +837,42 @@ function toggle_governments(){
         document.getElementById("theocratic-oligarchy").style.opacity = "1.0";
         document.getElementById("theocratic-republic").style.opacity = "1.0";
     };
-    
-    return true;
+    if (individuality_pick < 0) {
+        document.getElementById("military-republic").style.opacity = "0.4";
+        document.getElementById("theocratic-republic").style.opacity = "0.4";
+        document.getElementById("direct-democracy").style.opacity = "0.4";
+        document.getElementById("moral-democracy").style.opacity = "0.4";
+        document.getElementById("indirect-democracy").style.opacity = "0.4";
+        
+    };
+    if (individuality_pick < -1) {
+        document.getElementById("military-junta").style.opacity = "0.4";
+        document.getElementById("theocratic-oligarchy").style.opacity = "0.4";
+        document.getElementById("science-directorate").style.opacity = "0.4";
+        document.getElementById("peaceful-bureaucracy").style.opacity = "0.4";
+        document.getElementById("plutocratic-oligarchy").style.opacity = "0.4";
+    };
+    if (individuality_pick > 0) {
+        document.getElementById("military-dictatorship").style.opacity = "0.4";
+        document.getElementById("divine-mandate").style.opacity = "0.4";
+        document.getElementById("despotic-hegemony").style.opacity = "0.4";
+        document.getElementById("enlightened-monarchy").style.opacity = "0.4";
+        document.getElementById("despotic-empire").style.opacity = "0.4";
+    };
+    if (individuality_pick > 1) {
+        document.getElementById("military-junta").style.opacity = "0.4";
+        document.getElementById("theocratic-oligarchy").style.opacity = "0.4";
+        document.getElementById("science-directorate").style.opacity = "0.4";
+        document.getElementById("peaceful-bureaucracy").style.opacity = "0.4";
+        document.getElementById("plutocratic-oligarchy").style.opacity = "0.4";
+        
+    };
+    if (individuality_pick == 0) {
+        document.getElementById("indirect-democracy").style.opacity = "1.0";
+        document.getElementById("plutocratic-oligarchy").style.opacity = "1.0";
+        document.getElementById("despotic-empire").style.opacity = "1.0";
+        
+    };
 };
 
 </script>
@@ -929,9 +963,9 @@ function toggle_governments(){
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Neutral</span></td>
-        <td align="center"><img src="images/governments/despotic-empire.png" alt="Despotic Empire"></td>
-        <td align="center"><img src="images/governments/plutocratic-oligarchy.png" alt="Plutocratic Oligarchy"></td>
-        <td align="center"><img src="images/governments/indirect-democracy.png" alt="Indirect Democracy"></td>
+        <td align="center" id="despotic-empire" style="opacity: 1.0;"><img src="images/governments/despotic-empire.png" alt="Despotic Empire"></td>
+        <td align="center" id="plutocratic-oligarchy" style="opacity: 1.0;"><img src="images/governments/plutocratic-oligarchy.png" alt="Plutocratic Oligarchy"></td>
+        <td align="center" id="indirect-democracy" style="opacity: 1.0;"><img src="images/governments/indirect-democracy.png" alt="Indirect Democracy"></td>
     </tr>
     </table>
 </td>
