@@ -39,6 +39,8 @@ var spirituality_pick = 0;
 var militarisim_pick = 0;
 var xenophobia_pick = 0;
 
+var government_pick = "none";
+
 var ethics_points = 3;
 var trait_points = 2;
 var max_traits = 4;
@@ -915,14 +917,19 @@ function toggle_governments() {
 };
 
 function select_government(government) {
+    var i = 0;
+    var target = document.getElementById(government);
     
-    for (i = 0; i < governments.length; i++) {
-        var target = document.getElementById(governments[i]);
-        
-        
-        
+    if (target.style.opacity == 1) {
+        for (i = 0; i < governments.length; i++) {
+            var target = document.getElementById(governments[i]);
+            target.style.backgroundColor = "#040904";
+        };
+        var target = document.getElementById(government);
+        target.style.backgroundColor = "#30bbbb";
+        government_pick = government
     };
-    return true;
+    
 };
 
 </script>
