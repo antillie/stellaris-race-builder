@@ -17,6 +17,9 @@ body { background-color:#040904; }
 .selected-option { background-color:#30bbbb; }
 .non-selected-option { background-color:#040904; }
 .vertical_line { border-right: 1px solid #aaaaaa; }
+.vertical_line_left { border-left: 1px solid #aaaaaa; }
+.top_line { border-top: 1px solid #aaaaaa; }
+.bottom_line { border-bottom: 1px solid #aaaaaa; }
 </style>
 <script type="text/javascript">
 // Friends don't let friends write bad javascript.
@@ -817,7 +820,7 @@ function clear_ethics(ethic) {
 <td width="4"></td>
 <td valign="top">
     <table border="0"> <!-- traits table -->
-    <tr><td colspan="3"><span class="section_title">Traits</span></td><td></td></tr>
+    <tr height="30"><td colspan="3" align="center" valign="top"><span class="section_title">Traits</span></td><td></td></tr>
     <tr>
         <td align="center"><img src="images/traits/weak.png"></td>
         <td align="center"><img src="images/grey-circle-small.png"></td>
@@ -843,10 +846,100 @@ function clear_ethics(ethic) {
         <td align="center"> </td>
     </tr>
     <tr>
+        <td align="center"><img src="images/traits/nonadaptive.png"></td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/adaptive.png"></td>
+        <td align="center"><img src="images/traits/extremely-adaptive.png"></td>
+    </tr>
+    <tr>
+        <td align="center"> </td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/agrarian.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center"><img src="images/traits/repugnant.png"></td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/charismatic.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center"><img src="images/traits/solitary.png"></td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/communal.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center"> </td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/conformists.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center"> </td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/industrious.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center" class="vertical_line"> </td>
+        <td align="center" class="top_line"><img src="images/grey-circle-small.png"></td>
+        <td align="center" class="top_line"><img src="images/traits/intelligent.png"></td>
+        <td align="center" class="vertical_line_left"> </td>
+    </tr>
+    <tr>
+        <td align="center" class="vertical_line"> </td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/natural-engineers.png"></td>
+        <td align="center" class="vertical_line_left"> </td>
+    </tr>
+    <tr>
+        <td align="center" class="vertical_line"> </td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/natural-physicists.png"></td>
+        <td align="center" class="vertical_line_left"> </td>
+    </tr>
+    <tr>
+        <td align="center" class="vertical_line"> </td>
+        <td align="center" class="bottom_line"><img src="images/grey-circle-small.png"></td>
+        <td align="center" class="bottom_line"><img src="images/traits/natural-sociologists.png"></td>
+        <td align="center" class="vertical_line_left"> </td>
+    </tr>
+    <tr>
+        <td align="center"><img src="images/traits/sedentary.png"></td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/nomadic.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center"><img src="images/traits/slow-breeders.png"></td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/rapid-breeders.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center"> </td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/resilient.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center"> </td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/talented.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center"> </td>
+        <td align="center"><img src="images/grey-circle-small.png"></td>
+        <td align="center"><img src="images/traits/thrifty.png"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
         <td colspan="4"><div id="trait_points" class="txt">Traits points remaining: 2</div></td>
     </tr>
     <tr>
-        <td colspan="4"><div id="trait_picks" class="txt">Traits picks remaining: 2</div></td>
+        <td colspan="4"><div id="trait_picks" class="txt">Traits picks remaining: 4</div></td>
     </tr>
     
     
