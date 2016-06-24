@@ -31,6 +31,11 @@ var spirituality = ["fanatic-spiritualist", "spiritualist", "materialist", "fana
 var militarisim = ["fanatic-pacifist", "pacifist", "militarist", "fanatic-militarist"];
 var xenophobia = ["fanatic-xenophile", "xenophile", "xenophobe", "fanatic-xenophobe"];
 
+var individuality_pick = 0;
+var spirituality_pick = 0;
+var militarisim_pick = 0;
+var xenophobia_pick = 0;
+
 var ethics_points = 3;
 var trait_points = 2;
 var max_traits = 4;
@@ -66,6 +71,8 @@ function select_ethics(ethic) {
                         var target = document.getElementById(ethic);
                         target.style.backgroundColor = "#30bbbb";
                         display_ethics_points();
+                        individuality_pick = -2;
+                        toggle_governments();
                         return true;
                     };
                 };
@@ -83,6 +90,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    individuality_pick = -2;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -95,6 +104,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
             display_ethics_points();
+            individuality_pick = -2;
+            toggle_governments();
             return true;
         };
     };
@@ -112,6 +123,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    individuality_pick = -1;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -125,6 +138,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
         display_ethics_points();
+        individuality_pick = -1;
+        toggle_governments();
         return true;
         };
     };
@@ -142,6 +157,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    individuality_pick = 1;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -155,6 +172,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
         display_ethics_points();
+        individuality_pick = 1;
+        toggle_governments();
         return true;
         };
     };
@@ -173,6 +192,8 @@ function select_ethics(ethic) {
                         var target = document.getElementById(ethic);
                         target.style.backgroundColor = "#30bbbb";
                         display_ethics_points();
+                        individuality_pick = 2;
+                        toggle_governments();
                         return true;
                     };
                 };
@@ -190,6 +211,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    individuality_pick = 2;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -202,6 +225,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
             display_ethics_points();
+            individuality_pick = 2;
+            toggle_governments();
             return true;
         };
     };
@@ -220,6 +245,8 @@ function select_ethics(ethic) {
                         var target = document.getElementById(ethic);
                         target.style.backgroundColor = "#30bbbb";
                         display_ethics_points();
+                        spirituality_pick = -2;
+                        toggle_governments();
                         return true;
                     };
                 };
@@ -237,6 +264,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    spirituality_pick = -2;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -249,6 +278,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
             display_ethics_points();
+            spirituality_pick = -2;
+            toggle_governments();
             return true;
         };
     };
@@ -266,6 +297,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    spirituality_pick = -1;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -279,6 +312,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
         display_ethics_points();
+        spirituality_pick = -1;
+        toggle_governments();
         return true;
         };
     };
@@ -296,6 +331,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    spirituality_pick = 1;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -309,6 +346,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
         display_ethics_points();
+        spirituality_pick = 1;
+        toggle_governments();
         return true;
         };
     };
@@ -327,6 +366,8 @@ function select_ethics(ethic) {
                         var target = document.getElementById(ethic);
                         target.style.backgroundColor = "#30bbbb";
                         display_ethics_points();
+                        spirituality_pick = 2;
+                        toggle_governments();
                         return true;
                     };
                 };
@@ -344,6 +385,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    spirituality_pick = 2;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -356,6 +399,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
             display_ethics_points();
+            spirituality_pick = 2;
+            toggle_governments();
             return true;
         };
     };
@@ -374,6 +419,8 @@ function select_ethics(ethic) {
                         var target = document.getElementById(ethic);
                         target.style.backgroundColor = "#30bbbb";
                         display_ethics_points();
+                        militarisim_pick = -2;
+                        toggle_governments();
                         return true;
                     };
                 };
@@ -391,6 +438,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    militarisim_pick = -2;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -403,6 +452,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
             display_ethics_points();
+            militarisim_pick = -2;
+            toggle_governments();
             return true;
         };
     };
@@ -420,6 +471,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    militarisim_pick = -1;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -433,6 +486,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
         display_ethics_points();
+        militarisim_pick = -1;
+        toggle_governments();
         return true;
         };
     };
@@ -450,6 +505,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    militarisim_pick = 1;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -463,6 +520,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
         display_ethics_points();
+        militarisim_pick = 1;
+        toggle_governments();
         return true;
         };
     };
@@ -481,6 +540,8 @@ function select_ethics(ethic) {
                         var target = document.getElementById(ethic);
                         target.style.backgroundColor = "#30bbbb";
                         display_ethics_points();
+                        militarisim_pick = 2;
+                        toggle_governments();
                         return true;
                     };
                 };
@@ -498,6 +559,8 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    militarisim_pick = 2;
+                    toggle_governments();
                     return true;
                 };
             };
@@ -510,6 +573,8 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
             display_ethics_points();
+            militarisim_pick = 2;
+            toggle_governments();
             return true;
         };
     };
@@ -528,6 +593,7 @@ function select_ethics(ethic) {
                         var target = document.getElementById(ethic);
                         target.style.backgroundColor = "#30bbbb";
                         display_ethics_points();
+                        xenophobia_pick = -2;
                         return true;
                     };
                 };
@@ -545,6 +611,7 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    xenophobia_pick = -2;
                     return true;
                 };
             };
@@ -557,6 +624,7 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
             display_ethics_points();
+            xenophobia_pick = -2;
             return true;
         };
     };
@@ -574,6 +642,7 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    xenophobia_pick = -1;
                     return true;
                 };
             };
@@ -587,6 +656,7 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
         display_ethics_points();
+        xenophobia_pick = -1;
         return true;
         };
     };
@@ -604,6 +674,7 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    xenophobia_pick = 1;
                     return true;
                 };
             };
@@ -617,9 +688,11 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
         display_ethics_points();
+        xenophobia_pick = 1;
         return true;
         };
     };
+
     if (ethic == "fanatic-xenophobe") {
         for (i = 0; i < xenophobia.length; i++) {
             var target = document.getElementById(xenophobia[i]);
@@ -634,6 +707,7 @@ function select_ethics(ethic) {
                         var target = document.getElementById(ethic);
                         target.style.backgroundColor = "#30bbbb";
                         display_ethics_points();
+                        xenophobia_pick = 2;
                         return true;
                     };
                 };
@@ -651,6 +725,7 @@ function select_ethics(ethic) {
                     var target = document.getElementById(ethic);
                     target.style.backgroundColor = "#30bbbb";
                     display_ethics_points();
+                    xenophobia_pick = 2;
                     return true;
                 };
             };
@@ -663,6 +738,7 @@ function select_ethics(ethic) {
             var target = document.getElementById(ethic);
             target.style.backgroundColor = "#30bbbb";
             display_ethics_points();
+            xenophobia_pick = 2;
             return true;
         };
     };
@@ -680,8 +756,9 @@ function refund_ethics_points(ethic) {
 };
 
 function clear_ethics(ethic) {
+    var i = 0;
     if (ethic == "individuality") {
-        var i = 0;
+        individuality_pick = 0;
         for (i = 0; i < individuality.length; i++) {
             var target = document.getElementById(individuality[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -691,7 +768,7 @@ function clear_ethics(ethic) {
         };
     };
     if (ethic == "spirituality") {
-        var i = 0;
+        spirituality_pick = 0;
         for (i = 0; i < spirituality.length; i++) {
             var target = document.getElementById(spirituality[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -701,7 +778,7 @@ function clear_ethics(ethic) {
         };
     };
     if (ethic == "militarisim") {
-        var i = 0;
+        militarisim_pick = 0;
         for (i = 0; i < militarisim.length; i++) {
             var target = document.getElementById(militarisim[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -711,7 +788,7 @@ function clear_ethics(ethic) {
         };
     };
     if (ethic == "xenophobia") {
-        var i = 0;
+        var xenophobia_pick = 0;
         for (i = 0; i < xenophobia.length; i++) {
             var target = document.getElementById(xenophobia[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -720,6 +797,48 @@ function clear_ethics(ethic) {
             target.style.backgroundColor = "#040904";
         };
     };
+    toggle_governments();
+};
+
+function toggle_governments(){
+    if (militarisim_pick > 0) {
+        document.getElementById("military-dictatorship").style.opacity = "1.0";
+        document.getElementById("military-junta").style.opacity = "1.0";
+        document.getElementById("military-republic").style.opacity = "1.0";
+    };
+    if (militarisim_pick == 0) {
+        document.getElementById("military-dictatorship").style.opacity = "0.4";
+        document.getElementById("military-junta").style.opacity = "0.4";
+        document.getElementById("military-republic").style.opacity = "0.4";
+        document.getElementById("enlightened-monarchy").style.opacity = "0.4";
+        document.getElementById("peaceful-bureaucracy").style.opacity = "0.4";
+        document.getElementById("moral-democracy").style.opacity = "0.4";
+    };
+    if (militarisim_pick < 0) {
+        document.getElementById("enlightened-monarchy").style.opacity = "1.0";
+        document.getElementById("peaceful-bureaucracy").style.opacity = "1.0";
+        document.getElementById("moral-democracy").style.opacity = "1.0";
+    };
+    if (spirituality_pick > 0) {
+        document.getElementById("despotic-hegemony").style.opacity = "1.0";
+        document.getElementById("science-directorate").style.opacity = "1.0";
+        document.getElementById("direct-democracy").style.opacity = "1.0";
+    };
+    if (spirituality_pick == 0) {
+        document.getElementById("divine-mandate").style.opacity = "0.4";
+        document.getElementById("theocratic-oligarchy").style.opacity = "0.4";
+        document.getElementById("theocratic-republic").style.opacity = "0.4";
+        document.getElementById("despotic-hegemony").style.opacity = "0.4";
+        document.getElementById("science-directorate").style.opacity = "0.4";
+        document.getElementById("direct-democracy").style.opacity = "0.4";
+    };
+    if (spirituality_pick < 0) {
+        document.getElementById("divine-mandate").style.opacity = "1.0";
+        document.getElementById("theocratic-oligarchy").style.opacity = "1.0";
+        document.getElementById("theocratic-republic").style.opacity = "1.0";
+    };
+    
+    return true;
 };
 
 </script>
@@ -786,27 +905,27 @@ function clear_ethics(ethic) {
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Militaristic</span></td>
-        <td align="center"><img src="images/governments/military-dictatorship.png" alt="Military Dictatorship"></td>
-        <td align="center"><img src="images/governments/military-junta.png" alt="Military Junta"></td>
-        <td align="center"><img src="images/governments/military-republic.png" alt="Military Republic"></td>
+        <td align="center" id="military-dictatorship" style="opacity: 0.4;"><img src="images/governments/military-dictatorship.png" alt="Military Dictatorship"></td>
+        <td align="center" id="military-junta" style="opacity: 0.4;"><img src="images/governments/military-junta.png" alt="Military Junta"></td>
+        <td align="center" id="military-republic" style="opacity: 0.4;"><img src="images/governments/military-republic.png" alt="Military Republic"></td>
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Spiritualistic</span></td>
-        <td align="center"><img src="images/governments/divine-mandate.png" alt="Divine Mandate"></td>
-        <td align="center"><img src="images/governments/theocratic-oligarchy.png" alt="Theocratic Oligarchy"></td>
-        <td align="center"><img src="images/governments/theocratic-republic.png"  alt="Theocratic Republic"></td>
+        <td align="center" id="divine-mandate" style="opacity: 0.4;"><img src="images/governments/divine-mandate.png" alt="Divine Mandate"></td>
+        <td align="center" id="theocratic-oligarchy" style="opacity: 0.4;"><img src="images/governments/theocratic-oligarchy.png" alt="Theocratic Oligarchy"></td>
+        <td align="center" id="theocratic-republic" style="opacity: 0.4;"><img src="images/governments/theocratic-republic.png"  alt="Theocratic Republic"></td>
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Materialistic</span></td>
-        <td align="center"><img src="images/governments/despotic-hegemony.png" alt="Despotic Hegemony"></td>
-        <td align="center"><img src="images/governments/science-directorate.png" alt="science Directorate"></td>
-        <td align="center"><img src="images/governments/direct-democracy.png" alt="direct Democracy"></td>
+        <td align="center" id="despotic-hegemony" style="opacity: 0.4;"><img src="images/governments/despotic-hegemony.png" alt="Despotic Hegemony"></td>
+        <td align="center" id="science-directorate" style="opacity: 0.4;"><img src="images/governments/science-directorate.png" alt="science Directorate"></td>
+        <td align="center" id="direct-democracy" style="opacity: 0.4;"><img src="images/governments/direct-democracy.png" alt="Direct Democracy"></td>
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Pacifistic</span></td>
-        <td align="center"><img src="images/governments/enlightened-monarchy.png" alt="Enlightened Monarchy"></td>
-        <td align="center"><img src="images/governments/peaceful-bureaucracy.png" alt="Peaceful Bureaucracy"></td>
-        <td align="center"><img src="images/governments/moral-democracy.png" alt="moral Democracy"></td>
+        <td align="center" id="enlightened-monarchy" style="opacity: 0.4;"><img src="images/governments/enlightened-monarchy.png" alt="Enlightened Monarchy"></td>
+        <td align="center" id="peaceful-bureaucracy" style="opacity: 0.4;"><img src="images/governments/peaceful-bureaucracy.png" alt="Peaceful Bureaucracy"></td>
+        <td align="center" id="moral-democracy" style="opacity: 0.4;"><img src="images/governments/moral-democracy.png" alt="moral Democracy"></td>
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Neutral</span></td>
