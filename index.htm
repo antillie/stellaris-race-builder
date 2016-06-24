@@ -10,7 +10,7 @@
 <meta name="License" content="GNU Affero General Public License - https://www.gnu.org/licenses/agpl-3.0.en.html">
 <title>Stellaris Race Builder</title>
 <style type="text/css">
-body { background-color:#040904; }
+body {background-color:#040904;}
 .txt{color:#40cb90; font-family:arial; font-size:14px;}
 .section_title{color:#40cb90; font-family:arial; font-size:16px; font-weight: bold;}
 .sub_title{color:#40cb90; font-family:arial; font-size:16px;}
@@ -18,9 +18,11 @@ body { background-color:#040904; }
 .non-selected-option {background-color:#040904;}
 .vertical_line {border-right: 1px solid #aaaaaa;}
 .vertical_line_left {border-left: 1px solid #aaaaaa;}
+.divider {background-color:#aaaaaa;}
 .top_line {border-top: 1px solid #aaaaaa;}
 .bottom_line {border-bottom: 1px solid #aaaaaa;}
 .bar {color:#aaaaaa; font-family:arial; font-size:16px; font-weight: bold;}
+.button {background-color: #040904; color: #40cb90; border-radius: 8px; font-family:arial; font-size:14px;}
 </style>
 <script type="text/javascript">
 // Friends don't let friends write bad javascript.
@@ -801,6 +803,13 @@ function clear_ethics(ethic) {
     toggle_governments();
 };
 
+function clear_all_ethics() {
+    clear_ethics('individuality');
+    clear_ethics('spirituality');
+    clear_ethics('militarisim');
+    clear_ethics('xenophobia');
+};
+
 function toggle_governments() {
     if (militarisim_pick > 0) {
         document.getElementById("military-dictatorship").style.opacity = "1.0";
@@ -920,99 +929,8 @@ function select_government(government) {
 </head>
 <body>
 
-<table border="0">
+<table border="0" cellspacing="0">
 <tr>
-<td valign="top">
-    <table border="0"> <!-- ethics table -->
-        <tr><td colspan="5" align="center" valign="top" height="30"><span class="section_title">Ethics</span></td></tr>
-        <tr><td colspan="2" align="center"><span class="sub_title">Collectivisim</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Individuality</span></td></tr>
-        <tr>
-            <td align="center" id="fanatic-collectivist" onclick="select_ethics('fanatic-collectivist');"><img src="images/ethics/fanatic-collectivist.png" alt="Fanatic Collectivist"></td>
-            <td align="center" id="collectivist" onclick="select_ethics('collectivist');"><img src="images/ethics/collectivist.png" alt="Collectivist"></td>
-            <td align="center" id="individuality-neutral" onclick="clear_ethics('individuality');"><img src="images/grey-circle.png" alt="Neutral"></td>
-            <td align="center" id="individualist" onclick="select_ethics('individualist');"><img src="images/ethics/individualist.png" alt="Individualist"></td>
-            <td align="center" id="fanatic-individualist" onclick="select_ethics('fanatic-individualist');"><img src="images/ethics/fanatic-individualist.png" alt="Fanatic Individualist"></td>
-        </tr>
-        <tr><td colspan="5" height="20"> </td></tr>
-        <tr><td colspan="2" align="center"><span class="sub_title">Spirituality</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Materialism</span></td></tr>
-        <tr>
-            <td align="center" id="fanatic-spiritualist" onclick="select_ethics('fanatic-spiritualist');"><img src="images/ethics/fanatic-spiritualist.png" alt="Fanatic Spiritualist"></td>
-            <td align="center" id="spiritualist" onclick="select_ethics('spiritualist');"><img src="images/ethics/spiritualist.png" alt="Spiritualist"></td>
-            <td align="center" id="spirituality-neutral" onclick="clear_ethics('spirituality');"> <img src="images/grey-circle.png" alt="Neutral"></td>
-            <td align="center" id="materialist" onclick="select_ethics('materialist');"><img src="images/ethics/materialist.png" alt="Materialist"></td>
-            <td align="center" id="fanatic-materialist" onclick="select_ethics('fanatic-materialist');"><img src="images/ethics/fanatic-materialist.png" alt="Fanatic Materialist"></td>
-        </tr>
-        <tr><td colspan="5" height="20"> </td></tr>
-        <tr><td colspan="2" align="center"><span class="sub_title">Pacifism</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Militarisim</span></td></tr>
-        <tr>
-            <td align="center" id="fanatic-pacifist" onclick="select_ethics('fanatic-pacifist');"><img src="images/ethics/fanatic-pacifist.png" alt="Fanatic Pacifist"></td>
-            <td align="center" id="pacifist" onclick="select_ethics('pacifist');"><img src="images/ethics/pacifist.png"  alt="Pacifist"></td>
-            <td align="center" id="militarisim-neutral" onclick="clear_ethics('militarisim');"> <img src="images/grey-circle.png" alt="Neutral"></td>
-            <td align="center" id="militarist" onclick="select_ethics('militarist');"><img src="images/ethics/militarist.png" alt="Militarist"></td>
-            <td align="center" id="fanatic-militarist" onclick="select_ethics('fanatic-militarist');"><img src="images/ethics/fanatic-militarist.png" alt="Fanatic Militarist"></td>
-        </tr>
-        <tr><td colspan="5" height="20"> </td></tr>
-        <tr><td colspan="2" align="center"><span class="sub_title">Xenophilia</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Xenophobia</span></td></tr>
-        <tr>
-            <td align="center" id="fanatic-xenophile" onclick="select_ethics('fanatic-xenophile');"><img src="images/ethics/fanatic-xenophile.png" alt="Fanatic Xenophile"></td>
-            <td align="center" id="xenophile" onclick="select_ethics('xenophile');"><img src="images/ethics/xenophile.png" alt="Xenophile"></td>
-            <td align="center" id="xenophobia-neutral" onclick="clear_ethics('xenophobia');"> <img src="images/grey-circle.png" alt="Neutral"></td>
-            <td align="center" id="xenophobe" onclick="select_ethics('xenophobe');"><img src="images/ethics/xenophobe.png" alt="Xenophobe"></td>
-            <td align="center" id="fanatic-xenophobe" onclick="select_ethics('fanatic-xenophobe');"><img src="images/ethics/fanatic-xenophobe.png"  alt="Fanatic Xenophobe"></td>
-        </tr>
-        <tr>
-            <td colspan="5" height="40" align="center"><div id="ethics_points" class="txt">Ethics points remaining: 3</div></td>
-        </tr>
-    
-    </table>
-</td>
-<td width="4"></td>
-<td width="0" class="vertical_line"></td>
-<td width="4"></td>
-<td valign="top">
-    <table border="0"> <!-- government table -->
-    <tr><td height="30"> </td><td colspan="3" align="center" valign="top"><span class="section_title">Government</span></td></tr>
-    <tr>
-        <td height="30"> </td>
-        <td valign="top"><span class="sub_title"> Autocracy </span></td>
-        <td valign="top"><span class="bar"> | </span><span class="sub_title">Oligarchy</span><span class="bar"> | </span></td>
-        <td valign="top"><span class="sub_title"> Democracy </span></td>
-    </tr>
-    <tr>
-        <td align="center"><span class="sub_title">Militaristic</span></td>
-        <td align="center" id="military-dictatorship" style="opacity: 0.4;" onclick="select_government('military-dictatorship');"><img src="images/governments/military-dictatorship.png" alt="Military Dictatorship"></td>
-        <td align="center" id="military-junta" style="opacity: 0.4;" onclick="select_government('military-junta');"><img src="images/governments/military-junta.png" alt="Military Junta"></td>
-        <td align="center" id="military-republic" style="opacity: 0.4;" onclick="select_government('military-republic');"><img src="images/governments/military-republic.png" alt="Military Republic"></td>
-    </tr>
-    <tr>
-        <td align="center"><span class="sub_title">Spiritualistic</span></td>
-        <td align="center" id="divine-mandate" style="opacity: 0.4;"><img src="images/governments/divine-mandate.png" alt="Divine Mandate"></td>
-        <td align="center" id="theocratic-oligarchy" style="opacity: 0.4;"><img src="images/governments/theocratic-oligarchy.png" alt="Theocratic Oligarchy"></td>
-        <td align="center" id="theocratic-republic" style="opacity: 0.4;"><img src="images/governments/theocratic-republic.png"  alt="Theocratic Republic"></td>
-    </tr>
-    <tr>
-        <td align="center"><span class="sub_title">Materialistic</span></td>
-        <td align="center" id="despotic-hegemony" style="opacity: 0.4;"><img src="images/governments/despotic-hegemony.png" alt="Despotic Hegemony"></td>
-        <td align="center" id="science-directorate" style="opacity: 0.4;"><img src="images/governments/science-directorate.png" alt="science Directorate"></td>
-        <td align="center" id="direct-democracy" style="opacity: 0.4;"><img src="images/governments/direct-democracy.png" alt="Direct Democracy"></td>
-    </tr>
-    <tr>
-        <td align="center"><span class="sub_title">Pacifistic</span></td>
-        <td align="center" id="enlightened-monarchy" style="opacity: 0.4;"><img src="images/governments/enlightened-monarchy.png" alt="Enlightened Monarchy"></td>
-        <td align="center" id="peaceful-bureaucracy" style="opacity: 0.4;"><img src="images/governments/peaceful-bureaucracy.png" alt="Peaceful Bureaucracy"></td>
-        <td align="center" id="moral-democracy" style="opacity: 0.4;"><img src="images/governments/moral-democracy.png" alt="moral Democracy"></td>
-    </tr>
-    <tr>
-        <td align="center"><span class="sub_title">Neutral</span></td>
-        <td align="center" id="despotic-empire" style="opacity: 1.0;"><img src="images/governments/despotic-empire.png" alt="Despotic Empire"></td>
-        <td align="center" id="plutocratic-oligarchy" style="opacity: 1.0;"><img src="images/governments/plutocratic-oligarchy.png" alt="Plutocratic Oligarchy"></td>
-        <td align="center" id="indirect-democracy" style="opacity: 1.0;"><img src="images/governments/indirect-democracy.png" alt="Indirect Democracy"></td>
-    </tr>
-    </table>
-</td>
-<td width="4"></td>
-<td width="0" class="vertical_line"></td>
-<td width="4"></td>
 <td valign="top">
     <table border="0"> <!-- traits table -->
     <tr><td colspan="3" align="center" valign="top" height="30"><span class="section_title">Traits</span></td><td></td></tr>
@@ -1142,11 +1060,153 @@ function select_government(government) {
     
     </table>
 </td>
-
+<td width="4"></td>
+<td width="0" class="divider"></td>
+<td width="4"></td>
+<td valign="top">
+    <table border="0"> <!-- ethics table -->
+        <tr><td colspan="5" align="center" valign="top" height="30"><span class="section_title">Ethics</span></td></tr>
+        <tr><td colspan="2" align="center"><span class="sub_title">Collectivisim</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Individuality</span></td></tr>
+        <tr>
+            <td align="center" id="fanatic-collectivist" onclick="select_ethics('fanatic-collectivist');"><img src="images/ethics/fanatic-collectivist.png" alt="Fanatic Collectivist"></td>
+            <td align="center" id="collectivist" onclick="select_ethics('collectivist');"><img src="images/ethics/collectivist.png" alt="Collectivist"></td>
+            <td align="center" id="individuality-neutral" onclick="clear_ethics('individuality');"><img src="images/grey-circle.png" alt="Neutral"></td>
+            <td align="center" id="individualist" onclick="select_ethics('individualist');"><img src="images/ethics/individualist.png" alt="Individualist"></td>
+            <td align="center" id="fanatic-individualist" onclick="select_ethics('fanatic-individualist');"><img src="images/ethics/fanatic-individualist.png" alt="Fanatic Individualist"></td>
+        </tr>
+        <tr><td colspan="5" height="20"> </td></tr>
+        <tr><td colspan="2" align="center"><span class="sub_title">Spirituality</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Materialism</span></td></tr>
+        <tr>
+            <td align="center" id="fanatic-spiritualist" onclick="select_ethics('fanatic-spiritualist');"><img src="images/ethics/fanatic-spiritualist.png" alt="Fanatic Spiritualist"></td>
+            <td align="center" id="spiritualist" onclick="select_ethics('spiritualist');"><img src="images/ethics/spiritualist.png" alt="Spiritualist"></td>
+            <td align="center" id="spirituality-neutral" onclick="clear_ethics('spirituality');"> <img src="images/grey-circle.png" alt="Neutral"></td>
+            <td align="center" id="materialist" onclick="select_ethics('materialist');"><img src="images/ethics/materialist.png" alt="Materialist"></td>
+            <td align="center" id="fanatic-materialist" onclick="select_ethics('fanatic-materialist');"><img src="images/ethics/fanatic-materialist.png" alt="Fanatic Materialist"></td>
+        </tr>
+        <tr><td colspan="5" height="20"> </td></tr>
+        <tr><td colspan="2" align="center"><span class="sub_title">Pacifism</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Militarisim</span></td></tr>
+        <tr>
+            <td align="center" id="fanatic-pacifist" onclick="select_ethics('fanatic-pacifist');"><img src="images/ethics/fanatic-pacifist.png" alt="Fanatic Pacifist"></td>
+            <td align="center" id="pacifist" onclick="select_ethics('pacifist');"><img src="images/ethics/pacifist.png"  alt="Pacifist"></td>
+            <td align="center" id="militarisim-neutral" onclick="clear_ethics('militarisim');"> <img src="images/grey-circle.png" alt="Neutral"></td>
+            <td align="center" id="militarist" onclick="select_ethics('militarist');"><img src="images/ethics/militarist.png" alt="Militarist"></td>
+            <td align="center" id="fanatic-militarist" onclick="select_ethics('fanatic-militarist');"><img src="images/ethics/fanatic-militarist.png" alt="Fanatic Militarist"></td>
+        </tr>
+        <tr><td colspan="5" height="20"> </td></tr>
+        <tr><td colspan="2" align="center"><span class="sub_title">Xenophilia</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Xenophobia</span></td></tr>
+        <tr>
+            <td align="center" id="fanatic-xenophile" onclick="select_ethics('fanatic-xenophile');"><img src="images/ethics/fanatic-xenophile.png" alt="Fanatic Xenophile"></td>
+            <td align="center" id="xenophile" onclick="select_ethics('xenophile');"><img src="images/ethics/xenophile.png" alt="Xenophile"></td>
+            <td align="center" id="xenophobia-neutral" onclick="clear_ethics('xenophobia');"> <img src="images/grey-circle.png" alt="Neutral"></td>
+            <td align="center" id="xenophobe" onclick="select_ethics('xenophobe');"><img src="images/ethics/xenophobe.png" alt="Xenophobe"></td>
+            <td align="center" id="fanatic-xenophobe" onclick="select_ethics('fanatic-xenophobe');"><img src="images/ethics/fanatic-xenophobe.png"  alt="Fanatic Xenophobe"></td>
+        </tr>
+        <tr>
+            <td colspan="5" height="40" align="center"><div id="ethics_points" class="txt">Ethics points remaining: 3</div></td>
+        </tr>
+        <tr><td colspan="5" align="center"><button class="button" type="button"onclick="clear_all_ethics();">Clear Ethics Selections</button></td></tr>
+    </table>
+</td>
+<td width="4"></td>
+<td width="0" class="divider"></td>
+<td width="4"></td>
+<td valign="top">
+    <table border="0"> <!-- government table -->
+    <tr><td height="30"> </td><td colspan="3" align="center" valign="top"><span class="section_title">Government</span></td></tr>
+    <tr>
+        <td height="30"> </td>
+        <td valign="top"><span class="sub_title"> Autocracy </span></td>
+        <td valign="top"><span class="bar"> | </span><span class="sub_title">Oligarchy</span><span class="bar"> | </span></td>
+        <td valign="top"><span class="sub_title"> Democracy </span></td>
+    </tr>
+    <tr>
+        <td align="center"><span class="sub_title">Militaristic</span></td>
+        <td align="center" id="military-dictatorship" style="opacity: 0.4;" onclick="select_government('military-dictatorship');"><img src="images/governments/military-dictatorship.png" alt="Military Dictatorship"></td>
+        <td align="center" id="military-junta" style="opacity: 0.4;" onclick="select_government('military-junta');"><img src="images/governments/military-junta.png" alt="Military Junta"></td>
+        <td align="center" id="military-republic" style="opacity: 0.4;" onclick="select_government('military-republic');"><img src="images/governments/military-republic.png" alt="Military Republic"></td>
+    </tr>
+    <tr>
+        <td align="center"><span class="sub_title">Spiritualistic</span></td>
+        <td align="center" id="divine-mandate" style="opacity: 0.4;"><img src="images/governments/divine-mandate.png" alt="Divine Mandate"></td>
+        <td align="center" id="theocratic-oligarchy" style="opacity: 0.4;"><img src="images/governments/theocratic-oligarchy.png" alt="Theocratic Oligarchy"></td>
+        <td align="center" id="theocratic-republic" style="opacity: 0.4;"><img src="images/governments/theocratic-republic.png"  alt="Theocratic Republic"></td>
+    </tr>
+    <tr>
+        <td align="center"><span class="sub_title">Materialistic</span></td>
+        <td align="center" id="despotic-hegemony" style="opacity: 0.4;"><img src="images/governments/despotic-hegemony.png" alt="Despotic Hegemony"></td>
+        <td align="center" id="science-directorate" style="opacity: 0.4;"><img src="images/governments/science-directorate.png" alt="science Directorate"></td>
+        <td align="center" id="direct-democracy" style="opacity: 0.4;"><img src="images/governments/direct-democracy.png" alt="Direct Democracy"></td>
+    </tr>
+    <tr>
+        <td align="center"><span class="sub_title">Pacifistic</span></td>
+        <td align="center" id="enlightened-monarchy" style="opacity: 0.4;"><img src="images/governments/enlightened-monarchy.png" alt="Enlightened Monarchy"></td>
+        <td align="center" id="peaceful-bureaucracy" style="opacity: 0.4;"><img src="images/governments/peaceful-bureaucracy.png" alt="Peaceful Bureaucracy"></td>
+        <td align="center" id="moral-democracy" style="opacity: 0.4;"><img src="images/governments/moral-democracy.png" alt="moral Democracy"></td>
+    </tr>
+    <tr>
+        <td align="center"><span class="sub_title">Neutral</span></td>
+        <td align="center" id="despotic-empire" style="opacity: 1.0;"><img src="images/governments/despotic-empire.png" alt="Despotic Empire"></td>
+        <td align="center" id="plutocratic-oligarchy" style="opacity: 1.0;"><img src="images/governments/plutocratic-oligarchy.png" alt="Plutocratic Oligarchy"></td>
+        <td align="center" id="indirect-democracy" style="opacity: 1.0;"><img src="images/governments/indirect-democracy.png" alt="Indirect Democracy"></td>
+    </tr>
+    </table>
+</td>
+<td width="4"></td>
+<td width="0" class="divider"></td>
+<td width="4"></td>
+<td rowspan="3" valign="top"> <!-- adv. government and overall bonus section container table-->
+    <table border="0">
+    <tr><td>
+        <table border="0"> <!-- adv. government section -->
+            <tr><td><span class="sub_title">Selected government leads to:</span></td></tr>
+            <tr><td>
+                <table border="0" width="100%">
+                <tr><td><div id="adv_gov_image"><img src="images/grey-circle.png" alt="None"></div></td></tr>
+                <tr><td><div id="adv_gov" class="txt">Nothing selected.</div></td></tr>
+                </table>
+        </table>
+    </td></tr>
+    <tr><td height="8"> </td></tr>
+    <tr><td height="1" class="top_line"> </td></tr>
+    <tr><td height="8"> </td></tr>
+    <tr><td>
+        <table border="0" width="100%"> <!-- overall bonus section -->
+            <tr><td align="center"><span class="sub_title">Overall Bonus Summary:</span></td></tr>
+            <tr><td><div id="bonus_summary" class="txt">Bonuses summary here.</div></td></tr>
+        </table>
+    </td></tr>
+    </table>
+</td>
+</tr>
+<tr>
+<td height="30" align="center" class="top_line"><span class="txt">Traits Bonus Summary:</span></td>
+<td></td>
+<td class="divider"></td>
+<td></td>
+<td height="30" align="center" class="top_line"><span class="txt">Ethics Bonus Summary:</span></td>
+<td></td>
+<td class="divider"></td>
+<td></td>
+<td height="30" align="center" class="top_line"><span class="txt">Government Bonus Summary:</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td height="30" align="center"><div id="trait_summary" class="txt">Bonuses here</div></td>
+<td> </td>
+<td class="divider"></td>
+<td> </td>
+<td height="30" align="center"><div id="ethics_summary" class="txt">Bonuses here</div></td>
+<td> </td>
+<td class="divider"></td>
+<td></td>
+<td height="30" align="center"><div id="government_summary" class="txt">Bonuses here</div></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </table>
-
-
 </body>
 </html>
 
