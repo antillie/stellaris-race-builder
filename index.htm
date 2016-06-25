@@ -20,9 +20,10 @@ body {background-color:#040904;}
 .vertical_line_left {border-left: 1px solid #aaaaaa;}
 .divider {background-color:#aaaaaa;}
 .top_line {border-top: 1px solid #aaaaaa;}
+.top_and_bottom_line {border-top: 1px solid #aaaaaa; border-bottom: 1px solid #aaaaaa;}
 .bottom_line {border-bottom: 1px solid #aaaaaa;}
 .bar {color:#aaaaaa; font-family:arial; font-size:16px; font-weight: bold;}
-.button {background-color: #040904; color: #40cb90; border-radius: 8px; font-family:arial; font-size:14px;}
+.button {background-color: #040904; color: #40cb90; border-radius: 6px; font-family:arial; font-size:14px;}
 .green_txt {color: #50ee50; font-family:arial; font-size:14px;}
 </style>
 <script type="text/javascript">
@@ -62,7 +63,7 @@ function display_ethics_points() {
 
 function select_ethics(ethic) {
     var i = 0;
-    
+
     if (ethic == "fanatic-collectivist") {
         for (i = 0; i < individuality.length; i++) {
             var target = document.getElementById(individuality[i]);
@@ -758,7 +759,7 @@ function refund_ethics_points(ethic) {
         ethics_points = ethics_points + 1;
     };
     document.getElementById("ethics_points").innerHTML = "Ethics points remaining: " + ethics_points
-    
+
 };
 
 function clear_ethics(ethic) {
@@ -920,12 +921,12 @@ function toggle_governments() {
         var target = document.getElementById(governments[i]);
         if (target.style.backgroundColor == "rgb(48, 187, 187)") {
             government_pick = governments[i];
-            adv_government();
+            government_bonuses();
             return;
         }
         else {
             government_pick = "none";
-            adv_government();
+            government_bonuses();
         };
     };
 };
@@ -933,7 +934,7 @@ function toggle_governments() {
 function select_government(government) {
     var i = 0;
     var target = document.getElementById(government);
-    
+
     if (target.style.opacity == 1) {
         for (i = 0; i < governments.length; i++) {
             var target = document.getElementById(governments[i]);
@@ -942,33 +943,65 @@ function select_government(government) {
         var target = document.getElementById(government);
         target.style.backgroundColor = "#30bbbb";
         government_pick = government;
-        adv_government();
+        government_bonuses();
     };
 };
 
-function adv_government() {
+function government_bonuses() {
     if (government_pick == "none") {
         document.getElementById("adv_gov_image").innerHTML = "<img src='images/grey-circle.png' alt='None'>";
         document.getElementById("adv_gov").innerHTML = "Nothing selected.";
+        document.getElementById("government_summary").innerHTML = "Nothing selected.";
     }
     else {
         document.getElementById("adv_gov_image").innerHTML = "<img src='images/governments/advanced/" + government_pick + "-adv.png" + "' alt='None'>";
-        
+
         if(government_pick == "military-dictatorship") {
             document.getElementById("adv_gov").innerHTML = "Martial Empire<br><br><span class='green_txt'>+20%</span> Naval Capacity<br><span class='green_txt'>-10%</span> Ship Build Cost<br><span class='green_txt'>+25%</span> Rivalry Influence Gain";
         };
         if(government_pick == "military-junta") {
-            document.getElementById("adv_gov").innerHTML = "Ordered Stratocracy<br><br><span class='green_txt'>-10%</span> Ship Upkeep<br><span class='green_txt'>+2</span> Admiral starting levels<br><span class='green_txt'>-50%</span> Ship Upgrade Cost";
+            document.getElementById("adv_gov").innerHTML = "Ordered Stratocracy<br><br><span class='green_txt'>-10%</span> Ship Upkeep<br><span class='green_txt'>+2</span> Admiral Starting Levels<br><span class='green_txt'>-50%</span> Ship Upgrade Cost";
         };
         if(government_pick == "military-republic") {
-            document.getElementById("adv_gov").innerHTML = "Martial Demarchy<br><br><span class='green_txt'> -40%</span> Army Upkeep<br><span class='green_txt'>+20%</span> Army Damage<br><span class='green_txt'>-30%</span> Military Station Build Cost<br><span class='green_txt'>+20%</span> Military Station Damage";
+            document.getElementById("adv_gov").innerHTML = "Martial Demarchy<br><br><span class='green_txt'>-40%</span> Army Upkeep<br><span class='green_txt'>+20%</span> Army Damage<br><span class='green_txt'>-30%</span> Military Station Build Cost<br><span class='green_txt'>+20%</span> Military Station Damage";
         };
-        
-        
+        if(government_pick == "divine-mandate") {
+            document.getElementById("adv_gov").innerHTML = "Transcendent Empire<br><br><span class='green_txt'>-15%</span> Edict Influence Cost<br><span class='green_txt'>+15%</span> Edict Duration<br><span class='green_txt'>-10%</span> Ethics Divergence";
+        };
+        if(government_pick == "theocratic-oligarchy") {
+            document.getElementById("adv_gov").innerHTML = "Transcendent Oligarchy<br><br><span class='green_txt'>+40</span> Years Leader Lifespan<br><span class='green_txt'>-30%</span> Resettlement Cost";
+        };
+        if(government_pick == "theocratic-republic") {
+            document.getElementById("adv_gov").innerHTML = "Transcendent Republic<br><br><span class='green_txt'>+10%</span> Happiness<br><span class='green_txt'>-20%</span> Food Requirement";
+        };
+        if(government_pick == "despotic-hegemony") {
+            document.getElementById("adv_gov").innerHTML = "Neural Network Administration<br><br><span class='green_txt'>+10%</span> Research Speed<br><span class='green_txt'>-25%</span> Research Station Cost";
+        };
+        if(government_pick == "science-directorate") {
+            document.getElementById("adv_gov").innerHTML = "Illuminated Technocracy<br><br><span class='green_txt'>+2</span> Research Alternatives<br><span class='green_txt'>+2</span> Empire Leader Capacity";
+        };
+        if(government_pick == "direct-democracy") {
+            document.getElementById("adv_gov").innerHTML = "Subconscious Consensus<br><br><span class='green_txt'>+10%</span> Happiness<br><span class='green_txt'>+30%</span> Leader Experience Gain";
+        };
+        if(government_pick == "enlightened-monarchy") {
+            document.getElementById("adv_gov").innerHTML = "Irenic Monarchy<br><br><span class='green_txt'>-30%</span> Edict Influence Cost<br><span class='green_txt'>+30%</span> Edict Duration<br><span class='green_txt'>+4</span> Core Planets";
+        };
+        if(government_pick == "peaceful-bureaucracy") {
+            document.getElementById("adv_gov").innerHTML = "Irenic Protectorate<br><br><span class='green_txt'>+10</span> Core Planets";
+        };
+        if(government_pick == "moral-democracy") {
+            document.getElementById("adv_gov").innerHTML = "Irenic Democracy<br><br><span class='green_txt'>+2</span> Leader Pool Size<br><span class='green_txt'>+2</span> Empire Leader Capacity<br><span class='green_txt'>+4</span> Core Planets";
+        };
+        if(government_pick == "despotic-empire") {
+            document.getElementById("adv_gov").innerHTML = "Star Empire<br><br><span class='green_txt'>-30%</span> Building Cost<br><span class='green_txt'>+20%</span> Slave Mineral Output<br><span class='green_txt'>+20%</span> Slave Food Output";
+        };
+        if(government_pick == "plutocratic-oligarchy") {
+            document.getElementById("adv_gov").innerHTML = "Mega Corporation<br><br><span class='green_txt'>+10%</span> Energy Credits<br><span class='green_txt'>+10%</span> Minerals<br><span class='green_txt'>-50%</span> Mining Station Build Cost";
+        };
+        if(government_pick == "indirect-democracy") {
+            document.getElementById("adv_gov").innerHTML = "Democratic Utopia<br><br><span class='green_txt'>+2</span> Leader Starting Levels<br><span class='green_txt'>-30%</span> Leader Recruitment Cost";
+        };
     };
-    
-    
-    
 };
 </script>
 </head>
@@ -1094,15 +1127,14 @@ function adv_government() {
         <td align="center"> </td>
     </tr>
     <tr>
-        <td colspan="4"><div id="trait_points" class="txt">Traits points remaining: 2</div></td>
+        <td colspan="4" height="25" align="center"><div id="trait_points" class="sub_title">Traits points remaining: 2</div></td>
     </tr>
     <tr>
-        <td colspan="4"><div id="trait_picks" class="txt">Traits picks remaining: 4</div></td>
+        <td colspan="4" height="25" align="center"><div id="trait_picks" class="sub_title">Traits picks remaining: 4</div></td>
     </tr>
-    
-    
-    
-    
+    <tr>
+    <td colspan="4" height="30" align="center"><button class="button" type="button"onclick="return true;">Clear Traits Selections</button></td>
+    </tr>
     </table>
 </td>
 <td width="4"></td>
@@ -1147,7 +1179,7 @@ function adv_government() {
             <td align="center" id="fanatic-xenophobe" onclick="select_ethics('fanatic-xenophobe');"><img src="images/ethics/fanatic-xenophobe.png"  alt="Fanatic Xenophobe"></td>
         </tr>
         <tr>
-            <td colspan="5" height="40" align="center"><div id="ethics_points" class="txt">Ethics points remaining: 3</div></td>
+            <td colspan="5" height="40" align="center"><div id="ethics_points" class="sub_title">Ethics points remaining: 3</div></td>
         </tr>
         <tr><td colspan="5" align="center"><button class="button" type="button"onclick="clear_all_ethics();">Clear Ethics Selections</button></td></tr>
     </table>
@@ -1199,14 +1231,14 @@ function adv_government() {
 <td width="4"></td>
 <td width="0" class="divider"></td>
 <td width="4"></td>
-<td rowspan="3" valign="top">
+<td rowspan="4" valign="top">
     <table border="0"> <!-- adv. government and overall bonus section container table-->
     <tr><td>
-        <table border="0"> <!-- adv. government section -->
-            <tr><td><span class="sub_title">Selected government leads to:</span></td></tr>
-            <tr><td>
+        <table border="0" height="190" cellpadding="0" cellspacing="0"> <!-- adv. government section -->
+            <tr><td valign="top" height="25"><span class="sub_title">Selected government leads to:</span></td></tr>
+            <tr><td valign="top">
                 <table border="0" width="100%">
-                <tr><td><div id="adv_gov_image"><img src="images/grey-circle.png" alt="None"></div></td></tr>
+                <tr><td align="center"><div id="adv_gov_image"><img src="images/grey-circle.png" alt="None"></div></td></tr>
                 <tr><td><div id="adv_gov" class="txt">Nothing selected.</div></td></tr>
                 </table>
         </table>
@@ -1217,41 +1249,42 @@ function adv_government() {
     <tr><td>
         <table border="0" width="100%"> <!-- overall bonus section -->
             <tr><td align="center"><span class="sub_title">Overall Bonus Summary:</span></td></tr>
-            <tr><td><div id="bonus_summary" class="txt">Bonuses summary here.</div></td></tr>
+            <tr><td><div id="bonus_summary" class="txt"> </div></td></tr>
         </table>
     </td></tr>
     </table>
 </td>
 </tr>
 <tr> <!-- bonus summary titles -->
-    <td height="30" align="center" class="top_line"><span class="txt">Traits Bonus Summary:</span></td>
-    <td></td>
-    <td class="divider"></td>
-    <td></td>
-    <td height="30" align="center" class="top_line"><span class="txt">Ethics Bonus Summary:</span></td>
-    <td></td>
-    <td class="divider"></td>
-    <td></td>
-    <td height="30" align="center" class="top_line"><span class="txt">Government Bonus Summary:</span></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td height="30" align="center" class="top_and_bottom_line"><span class="sub_title">Traits Bonus Summary:</span></td>
+    <td width="4"></td>
+    <td width="0" class="divider"></td>
+    <td width="4"></td>
+    <td height="30" align="center" class="top_and_bottom_line"><span class="sub_title">Ethics Bonus Summary:</span></td>
+    <td width="4"></td>
+    <td width="0" class="divider"></td>
+    <td width="4"></td>
+    <td height="30" align="center" class="top_and_bottom_line"><span class="sub_title">Government Bonus Summary:</span></td>
+    <td width="4"></td>
+    <td width="0" class="divider"></td>
+    <td width="4"></td>
 </tr>
+<tr><td height="3" colspan="12"></td></tr>
 <tr> <!-- bonus summaries -->
-    <td height="30" align="center"><div id="trait_summary" class="txt">Bonuses here</div></td>
-    <td> </td>
-    <td class="divider"></td>
-    <td> </td>
-    <td height="30" align="center"><div id="ethics_summary" class="txt">Bonuses here</div></td>
-    <td> </td>
-    <td class="divider"></td>
-    <td></td>
-    <td height="30" align="center"><div id="government_summary" class="txt">Bonuses here</div></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><div id="trait_summary" class="txt">Nothing selected.</div></td>
+    <td width="4"></td>
+    <td width="0" class="divider"></td>
+    <td width="4"></td>
+    <td><div id="ethics_summary" class="txt">Nothing selected.</div></td>
+    <td width="4"></td>
+    <td width="0" class="divider"></td>
+    <td width="4"></td>
+    <td><div id="government_summary" class="txt">Nothing selected.</div></td>
+    <td width="4"></td>
+    <td width="0" class="divider"></td>
+    <td width="4"></td>
 </tr>
-<tr> <!-- HTML/CSS validator images -->
+<tr> <!-- HTML/CSS validator images and Stellaris version info -->
     <td colspan="12"></td>
     <td align="right">
         <table border="0">
