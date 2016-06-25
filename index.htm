@@ -907,6 +907,58 @@ function refund_ethics_points(ethic) {
 };
 
 function clear_ethics(ethic) {
+    var i = 0;
+    if (ethic == "individuality") {
+        individuality_pick = 0;
+        for (i = 0; i < individuality.length; i++) {
+            var target = document.getElementById(individuality[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                refund_ethics_points(individuality[i]);
+            };
+            target.style.backgroundColor = "#040904";
+        };
+    };
+    if (ethic == "spirituality") {
+        spirituality_pick = 0;
+        for (i = 0; i < spirituality.length; i++) {
+            var target = document.getElementById(spirituality[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                refund_ethics_points(individuality[i]);
+            };
+            target.style.backgroundColor = "#040904";
+        };
+    };
+    if (ethic == "militarisim") {
+        militarisim_pick = 0;
+        for (i = 0; i < militarisim.length; i++) {
+            var target = document.getElementById(militarisim[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                refund_ethics_points(individuality[i]);
+            };
+            target.style.backgroundColor = "#040904";
+        };
+    };
+    if (ethic == "xenophobia") {
+        xenophobia_pick = 0;
+        for (i = 0; i < xenophobia.length; i++) {
+            var target = document.getElementById(xenophobia[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                refund_ethics_points(individuality[i]);
+            };
+            target.style.backgroundColor = "#040904";
+        };
+    };
+    toggle_governments();
+    display_ethics();
+};
+
+function clear_all_ethics() {
+    clear_ethics('individuality');
+    clear_ethics('spirituality');
+    clear_ethics('militarisim');
+    clear_ethics('xenophobia');
+};
+
 function toggle_governments() {
     if (militarisim_pick > 0) {
         document.getElementById("military-dictatorship").style.opacity = "1.0";
@@ -1038,58 +1090,6 @@ function select_government(government) {
         government_pick = government;
         government_bonuses();
     };
-};
-
-    var i = 0;
-    if (ethic == "individuality") {
-        individuality_pick = 0;
-        for (i = 0; i < individuality.length; i++) {
-            var target = document.getElementById(individuality[i]);
-            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-                refund_ethics_points(individuality[i]);
-            };
-            target.style.backgroundColor = "#040904";
-        };
-    };
-    if (ethic == "spirituality") {
-        spirituality_pick = 0;
-        for (i = 0; i < spirituality.length; i++) {
-            var target = document.getElementById(spirituality[i]);
-            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-                refund_ethics_points(individuality[i]);
-            };
-            target.style.backgroundColor = "#040904";
-        };
-    };
-    if (ethic == "militarisim") {
-        militarisim_pick = 0;
-        for (i = 0; i < militarisim.length; i++) {
-            var target = document.getElementById(militarisim[i]);
-            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-                refund_ethics_points(individuality[i]);
-            };
-            target.style.backgroundColor = "#040904";
-        };
-    };
-    if (ethic == "xenophobia") {
-        xenophobia_pick = 0;
-        for (i = 0; i < xenophobia.length; i++) {
-            var target = document.getElementById(xenophobia[i]);
-            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-                refund_ethics_points(individuality[i]);
-            };
-            target.style.backgroundColor = "#040904";
-        };
-    };
-    toggle_governments();
-    display_ethics();
-};
-
-function clear_all_ethics() {
-    clear_ethics('individuality');
-    clear_ethics('spirituality');
-    clear_ethics('militarisim');
-    clear_ethics('xenophobia');
 };
 
 function government_bonuses() {
