@@ -23,6 +23,7 @@ body {background-color:#040904;}
 .bottom_line {border-bottom: 1px solid #aaaaaa;}
 .bar {color:#aaaaaa; font-family:arial; font-size:16px; font-weight: bold;}
 .button {background-color: #040904; color: #40cb90; border-radius: 8px; font-family:arial; font-size:14px;}
+.green_txt {color: #50ee50; font-family:arial; font-size:14px;}
 </style>
 <script type="text/javascript">
 // Friends don't let friends write bad javascript.
@@ -918,13 +919,15 @@ function toggle_governments() {
     for (i = 0; i < governments.length; i++) {
         var target = document.getElementById(governments[i]);
         if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-            government_pick = target.id;
+            government_pick = governments[i];
+            adv_government();
+            return;
         }
         else {
             government_pick = "none";
+            adv_government();
         };
     };
-    adv_government();
 };
 
 function select_government(government) {
@@ -944,12 +947,24 @@ function select_government(government) {
 };
 
 function adv_government() {
-    if(government_pick == "none") {
+    if (government_pick == "none") {
         document.getElementById("adv_gov_image").innerHTML = "<img src='images/grey-circle.png' alt='None'>";
         document.getElementById("adv_gov").innerHTML = "Nothing selected.";
     }
     else {
         document.getElementById("adv_gov_image").innerHTML = "<img src='images/governments/advanced/" + government_pick + "-adv.png" + "' alt='None'>";
+        
+        if(government_pick == "military-dictatorship") {
+            document.getElementById("adv_gov").innerHTML = "Martial Empire<br><br><span class='green_txt'>+20%</span> Naval Capacity<br><span class='green_txt'>-10%</span> Ship Build Cost<br><span class='green_txt'>+25%</span> Rivalry Influence Gain";
+        };
+        if(government_pick == "military-junta") {
+            document.getElementById("adv_gov").innerHTML = "Ordered Stratocracy<br><br><span class='green_txt'>-10%</span> Ship Upkeep<br><span class='green_txt'>+2</span> Admiral starting levels<br><span class='green_txt'>-50%</span> Ship Upgrade Cost";
+        };
+        if(government_pick == "military-republic") {
+            document.getElementById("adv_gov").innerHTML = "Martial Demarchy<br><br><span class='green_txt'> -40%</span> Army Upkeep<br><span class='green_txt'>+20%</span> Army Damage<br><span class='green_txt'>-30%</span> Military Station Build Cost<br><span class='green_txt'>+20%</span> Military Station Damage";
+        };
+        
+        
     };
     
     
@@ -1240,6 +1255,7 @@ function adv_government() {
     <td colspan="12"></td>
     <td align="right">
         <table border="0">
+            <tr><td colspan="2" height="30" valign="top"><span class="txt">Updated for Stellaris v1.2</span></td></tr>
             <tr>
                 <td><a href="http://validator.w3.org/check?uri=https://antillie.github.io/stellaris-race-builder/"><img src="images/valid-html401.png" alt="Valid HTML 4.01"></a></td>
                 <td><a href="https://jigsaw.w3.org/css-validator/check/referer"><img src="images/valid-css.gif" alt="Valid CSS 3"></a></td>
