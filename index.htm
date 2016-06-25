@@ -1234,6 +1234,33 @@ function display_ethics() {
     display_bonus_summary();
 };
 
+function find_duplicates(arr) {
+    var len=arr.length,
+    out=[],
+    counts={};
+
+    for (var i=0;i<len;i++) {
+        var item = arr[i];
+        counts[item] = counts[item] >= 1 ? counts[item] + 1 : 1;
+    };
+
+    for (var item in counts) {
+        if(counts[item] > 1)
+            out.push(item);
+    };
+    return out;
+};
+
+function strip_html(html) {
+   var tmp = document.createElement("DIV");
+   tmp.innerHTML = html;
+   return tmp.textContent || tmp.innerText || "";
+};
+
+function replace_all(search, replacement, target) {
+    return target.split(search).join(replacement);
+};
+
 function display_bonus_summary() {
 
     if (government_summary == "Nothing selected." && ethics_summary != "") {
@@ -1247,6 +1274,12 @@ function display_bonus_summary() {
     }
     else {
         document.getElementById("bonus_summary").innerHTML = government_summary + ethics_summary;
+        var total_summary = government_summary + ethics_summary;
+        total_summary = replace_all("<br>", "|", total_summary);
+        total_summary = replace_all("||", "|", total_summary);
+        total_summary = strip_html(total_summary);
+        var split_summary = total_summary.split("|");
+        alert(find_duplicates(split_summary));
     };
 };
 
