@@ -914,6 +914,17 @@ function toggle_governments() {
         document.getElementById("plutocratic-oligarchy").style.opacity = "1.0";
         document.getElementById("despotic-empire").style.opacity = "1.0";
     };
+    var i = 0;
+    for (i = 0; i < governments.length; i++) {
+        var target = document.getElementById(governments[i]);
+        if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+            government_pick = target.id;
+        }
+        else {
+            government_pick = "none";
+        };
+    };
+    adv_government();
 };
 
 function select_government(government) {
@@ -927,11 +938,23 @@ function select_government(government) {
         };
         var target = document.getElementById(government);
         target.style.backgroundColor = "#30bbbb";
-        government_pick = government
+        government_pick = government;
+        adv_government();
     };
-    
 };
 
+function adv_government() {
+    if(government_pick == "none") {
+        document.getElementById("adv_gov_image").innerHTML = "<img src='images/grey-circle.png' alt='None'>";
+        document.getElementById("adv_gov").innerHTML = "Nothing selected.";
+    }
+    else {
+        document.getElementById("adv_gov_image").innerHTML = "<img src='images/governments/advanced/" + government_pick + "-adv.png" + "' alt='None'>";
+    };
+    
+    
+    
+};
 </script>
 </head>
 <body>
@@ -1134,27 +1157,27 @@ function select_government(government) {
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Spiritualistic</span></td>
-        <td align="center" id="divine-mandate" style="opacity: 0.4;"><img src="images/governments/divine-mandate.png" alt="Divine Mandate"></td>
-        <td align="center" id="theocratic-oligarchy" style="opacity: 0.4;"><img src="images/governments/theocratic-oligarchy.png" alt="Theocratic Oligarchy"></td>
-        <td align="center" id="theocratic-republic" style="opacity: 0.4;"><img src="images/governments/theocratic-republic.png"  alt="Theocratic Republic"></td>
+        <td align="center" id="divine-mandate" style="opacity: 0.4;" onclick="select_government('divine-mandate');"><img src="images/governments/divine-mandate.png" alt="Divine Mandate"></td>
+        <td align="center" id="theocratic-oligarchy" style="opacity: 0.4;" onclick="select_government('theocratic-oligarchy');"><img src="images/governments/theocratic-oligarchy.png" alt="Theocratic Oligarchy"></td>
+        <td align="center" id="theocratic-republic" style="opacity: 0.4;" onclick="select_government('theocratic-republic');"><img src="images/governments/theocratic-republic.png"  alt="Theocratic Republic"></td>
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Materialistic</span></td>
-        <td align="center" id="despotic-hegemony" style="opacity: 0.4;"><img src="images/governments/despotic-hegemony.png" alt="Despotic Hegemony"></td>
-        <td align="center" id="science-directorate" style="opacity: 0.4;"><img src="images/governments/science-directorate.png" alt="science Directorate"></td>
-        <td align="center" id="direct-democracy" style="opacity: 0.4;"><img src="images/governments/direct-democracy.png" alt="Direct Democracy"></td>
+        <td align="center" id="despotic-hegemony" style="opacity: 0.4;" onclick="select_government('despotic-hegemony');"><img src="images/governments/despotic-hegemony.png" alt="Despotic Hegemony"></td>
+        <td align="center" id="science-directorate" style="opacity: 0.4;" onclick="select_government('science-directorate');"><img src="images/governments/science-directorate.png" alt="science Directorate"></td>
+        <td align="center" id="direct-democracy" style="opacity: 0.4;" onclick="select_government('direct-democracy');"><img src="images/governments/direct-democracy.png" alt="Direct Democracy"></td>
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Pacifistic</span></td>
-        <td align="center" id="enlightened-monarchy" style="opacity: 0.4;"><img src="images/governments/enlightened-monarchy.png" alt="Enlightened Monarchy"></td>
-        <td align="center" id="peaceful-bureaucracy" style="opacity: 0.4;"><img src="images/governments/peaceful-bureaucracy.png" alt="Peaceful Bureaucracy"></td>
-        <td align="center" id="moral-democracy" style="opacity: 0.4;"><img src="images/governments/moral-democracy.png" alt="moral Democracy"></td>
+        <td align="center" id="enlightened-monarchy" style="opacity: 0.4;" onclick="select_government('enlightened-monarchy');"><img src="images/governments/enlightened-monarchy.png" alt="Enlightened Monarchy"></td>
+        <td align="center" id="peaceful-bureaucracy" style="opacity: 0.4;" onclick="select_government('peaceful-bureaucracy');"><img src="images/governments/peaceful-bureaucracy.png" alt="Peaceful Bureaucracy"></td>
+        <td align="center" id="moral-democracy" style="opacity: 0.4;" onclick="select_government('moral-democracy');"><img src="images/governments/moral-democracy.png" alt="moral Democracy"></td>
     </tr>
     <tr>
         <td align="center"><span class="sub_title">Neutral</span></td>
-        <td align="center" id="despotic-empire" style="opacity: 1.0;"><img src="images/governments/despotic-empire.png" alt="Despotic Empire"></td>
-        <td align="center" id="plutocratic-oligarchy" style="opacity: 1.0;"><img src="images/governments/plutocratic-oligarchy.png" alt="Plutocratic Oligarchy"></td>
-        <td align="center" id="indirect-democracy" style="opacity: 1.0;"><img src="images/governments/indirect-democracy.png" alt="Indirect Democracy"></td>
+        <td align="center" id="despotic-empire" style="opacity: 1.0;" onclick="select_government('despotic-empire');"><img src="images/governments/despotic-empire.png" alt="Despotic Empire"></td>
+        <td align="center" id="plutocratic-oligarchy" style="opacity: 1.0;" onclick="select_government('plutocratic-oligarchy');"><img src="images/governments/plutocratic-oligarchy.png" alt="Plutocratic Oligarchy"></td>
+        <td align="center" id="indirect-democracy" style="opacity: 1.0;" onclick="select_government('indirect-democracy');"><img src="images/governments/indirect-democracy.png" alt="Indirect Democracy"></td>
     </tr>
     </table>
 </td>
