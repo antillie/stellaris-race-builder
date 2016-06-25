@@ -84,38 +84,6 @@ var governments = [
     "peaceful-bureaucracy"
 ];
 
-var all_traits = [ // Probably don't need this array.
-    "adaptive", 
-    "agrarian", 
-    "charismatic", 
-    "communal", 
-    "conformists", 
-    "decadent", 
-    "enduring", 
-    "extremely-adaptive", 
-    "industrious", 
-    "intelligent", 
-    "natural-engineers", 
-    "natural-physicists", 
-    "natural-sociologists", 
-    "nomadic", 
-    "nonadaptive", 
-    "quick-learners", 
-    "rapid-breeders", 
-    "repugnant", 
-    "resilient", 
-    "sedentary", 
-    "slow-breeders", 
-    "slow-learners", 
-    "solitary", 
-    "strong", 
-    "talented", 
-    "thrifty", 
-    "venerable", 
-    "very-strong", 
-    "weak"
-];
-
 // Traits sub-arrays for lateral selection checking.
 var strong_traits = [
     "weak",
@@ -152,6 +120,19 @@ var nomadic_traits = [
 var breeder_traits = [
     "slow-breeders",
     "rapid-breeders"
+];
+
+var enduring_traits = [
+    "fleeting",
+    "enduring",
+    "venerable"
+];
+
+var science_traits = [
+    "intelligent",
+    "natural-engineers",
+    "natural-physicists",
+    "natural-sociologists"
 ];
 
 // Global variables for readout and function coordination purposes.
@@ -1188,7 +1169,7 @@ function government_bonuses() {
 
 function display_ethics() {
     var ethics_picks = [];
-    
+
     if (individuality_pick == -2) {
         ethics_picks.push("<span class='green_txt'>+100%<\/span> Slavery Tolerance<br><span class='green_txt'>-15%<\/span> Food Consumption<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Ministry of Benevolence<\/a><\/span><br>");
     };
@@ -1237,7 +1218,7 @@ function display_ethics() {
     if (xenophobia_pick == 2) {
         ethics_picks.push("<span class='red_txt'>+15%<\/span> Xenophobia<br><span class='green_txt'>+100%<\/span> Alien Slavery Tolerance<br><span class='green_txt'>+75%<\/span> Rivaly Influence Gain<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Monument to Purity<\/a><\/span><br>");
     };
-    
+
     if (ethics_picks.length == 0) {
         ethics_summary = "";
         document.getElementById("ethics_summary").innerHTML = "Nothing selected.";
@@ -1254,7 +1235,7 @@ function display_ethics() {
 };
 
 function display_bonus_summary() {
-    
+
     if (government_summary == "Nothing selected." && ethics_summary != "") {
         document.getElementById("bonus_summary").innerHTML = ethics_summary;
     }
@@ -1269,6 +1250,16 @@ function display_bonus_summary() {
     };
 };
 
+function select_traits(trait) {
+
+    return;
+};
+
+function clear_traits(trait) {
+
+    return;
+};
+
 </script>
 </head>
 <body>
@@ -1279,39 +1270,39 @@ function display_bonus_summary() {
     <table border="0"> <!-- traits table -->
     <tr><td colspan="3" align="center" valign="top" height="30"><span class="section_title">Traits</span></td><td></td></tr>
     <tr>
-        <td align="center"><img src="images/traits/weak.png" alt="Weak"></td>
-        <td align="center"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/strong.png" alt="Strong"></td>
-        <td align="center"><img src="images/traits/very-strong.png" alt="Very Strong"></td>
+        <td align="center" id="weak" onclick="select_traits('weak');"><img src="images/traits/weak.png" alt="Weak"></td>
+        <td align="center" onclick="clear_traits('strong');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" id="strong" onclick="select_traits('strong');"><img src="images/traits/strong.png" alt="Strong"></td>
+        <td align="center" id="very-strong" onclick="select_traits('very-strong');"><img src="images/traits/very-strong.png" alt="Very Strong"></td>
     </tr>
     <tr>
-        <td align="center"> </td>
-        <td align="center"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/enduring.png" alt="Enduring"></td>
-        <td align="center"><img src="images/traits/venerable.png" alt="Venerable"></td>
+        <td align="center" id="fleeting"><!-- future fleeting trait icon will go here --></td>
+        <td align="center" onclick="clear_traits('enduring');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" id="enduring" onclick="select_traits('enduring');"><img src="images/traits/enduring.png" alt="Enduring"></td>
+        <td align="center" id="venerable" onclick="select_traits('venerable');"><img src="images/traits/venerable.png" alt="Venerable"></td>
     </tr>
     <tr>
-        <td align="center"><img src="images/traits/decadent.png" alt="Decadent"></td>
-        <td align="center"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" id="decadent" onclick="select_traits('decadent');"><img src="images/traits/decadent.png" alt="Decadent"></td>
+        <td align="center" onclick="clear_traits('decadent');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
         <td align="center"> </td>
-        <td align="center"> </td>
-    </tr>
-    <tr>
-        <td align="center"><img src="images/traits/slow-learners.png" alt="Slow Learners"></td>
-        <td align="center"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/quick-learners.png" alt="Quick Learners"></td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center"><img src="images/traits/nonadaptive.png" alt="Nonadaptive"></td>
-        <td align="center"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/adaptive.png" alt="Adaptive"></td>
-        <td align="center"><img src="images/traits/extremely-adaptive.png" alt="Extremely Adaptive"></td>
+        <td align="center" id="slow-learners" onclick="select_traits('slow-learners');"><img src="images/traits/slow-learners.png" alt="Slow Learners"></td>
+        <td align="center" onclick="clear_traits('learner');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" id="quick-learners" onclick="select_traits('quick-learners');"><img src="images/traits/quick-learners.png" alt="Quick Learners"></td>
+        <td align="center"> </td>
+    </tr>
+    <tr>
+        <td align="center" id="nonadaptive" onclick="select_traits('nonadaptive');"><img src="images/traits/nonadaptive.png" alt="Nonadaptive"></td>
+        <td align="center" onclick="clear_traits('adaptive');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" id="adaptive" onclick="select_traits('adaptive');"><img src="images/traits/adaptive.png" alt="Adaptive"></td>
+        <td align="center" id="extremely-adaptive" onclick="select_traits('extremely-adaptive');"><img src="images/traits/extremely-adaptive.png" alt="Extremely Adaptive"></td>
     </tr>
     <tr>
         <td align="center"> </td>
-        <td align="center"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/agrarian.png" alt="Agrarian"></td>
+        <td align="center" onclick="clear_traits('agrarian');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" id="agrarian" onclick="select_traits('agrarian');"><img src="images/traits/agrarian.png" alt="Agrarian"></td>
         <td align="center"> </td>
     </tr>
     <tr>
