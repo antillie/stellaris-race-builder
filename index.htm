@@ -31,12 +31,124 @@ body {background-color:#040904;}
 // Friends don't let friends write bad javascript.
 "use strict";
 
-var individuality = ["fanatic-collectivist", "collectivist", "individualist", "fanatic-individualist"];
-var spirituality = ["fanatic-spiritualist", "spiritualist", "materialist", "fanatic-materialist"];
-var militarisim = ["fanatic-pacifist", "pacifist", "militarist", "fanatic-militarist"];
-var xenophobia = ["fanatic-xenophile", "xenophile", "xenophobe", "fanatic-xenophobe"];
-var governments = ["indirect-democracy", "plutocratic-oligarchy", "despotic-empire", "military-dictatorship",  "science-directorate", "despotic-hegemony", "military-junta", "theocratic-oligarchy", "direct-democracy", "military-republic", "theocratic-republic", "divine-mandate", "moral-democracy", "enlightened-monarchy", "peaceful-bureaucracy"];
+// Arrays of the various racial traits/ethics/governments.
+var individuality = [
+    "fanatic-collectivist",
+    "collectivist",
+    "individualist",
+    "fanatic-individualist"
+];
 
+var spirituality = [
+    "fanatic-spiritualist",
+    "spiritualist",
+    "materialist",
+    "fanatic-materialist"
+];
+
+var militarisim = [
+    "fanatic-pacifist",
+    "pacifist",
+    "militarist",
+    "fanatic-militarist"
+];
+
+var xenophobia = [
+    "fanatic-xenophile",
+    "xenophile",
+    "xenophobe",
+    "fanatic-xenophobe"
+];
+
+var governments = [
+    "indirect-democracy",
+    "plutocratic-oligarchy",
+    "despotic-empire",
+    "military-dictatorship",
+    "science-directorate",
+    "despotic-hegemony",
+    "military-junta",
+    "theocratic-oligarchy",
+    "direct-democracy",
+    "military-republic",
+    "theocratic-republic",
+    "divine-mandate",
+    "moral-democracy",
+    "enlightened-monarchy",
+    "peaceful-bureaucracy"
+];
+
+var all_traits = [
+    "adaptive", 
+    "agrarian", 
+    "charismatic", 
+    "communal", 
+    "conformists", 
+    "decadent", 
+    "enduring", 
+    "extremely-adaptive", 
+    "industrious", 
+    "intelligent", 
+    "natural-engineers", 
+    "natural-physicists", 
+    "natural-sociologists", 
+    "nomadic", 
+    "nonadaptive", 
+    "quick-learners", 
+    "rapid-breeders", 
+    "repugnant", 
+    "resilient", 
+    "sedentary", 
+    "slow-breeders", 
+    "slow-learners", 
+    "solitary", 
+    "strong", 
+    "talented", 
+    "thrifty", 
+    "venerable", 
+    "very-strong", 
+    "weak"
+];
+
+// Traits sub-arrays for lateral selection checking.
+var strong_traits = [
+    "weak",
+    "strong",
+    "very-strong"
+];
+
+var learner_traits = [
+    "slow-learners",
+    "quick-learners"
+];
+
+var adaptive_traits = [
+    "nonadaptive",
+    "adaptive",
+    "extremely-adaptive"
+];
+
+var charismatic_traits = [
+    "repugnant",
+    "charismatic"
+];
+
+var communal_traits = [
+    "repugnant",
+    "communal"
+];
+
+var nomadic_traits = [
+    "sedentary",
+    "nomadic"
+];
+
+var breeder_traits = [
+    "slow-breeders",
+    "rapid-breeders"
+];
+
+// Global variables for readout and function coordination purposes.
 var individuality_pick = 0;
 var spirituality_pick = 0;
 var militarisim_pick = 0;
