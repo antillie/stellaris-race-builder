@@ -43,7 +43,8 @@ var militarisim_pick = 0;
 var xenophobia_pick = 0;
 
 var government_pick = "none";
-var ethics_picks = [];
+var ethics_summary = "Nothing selected.";
+var government_summary = "Nothing selected.";
 
 var ethics_points = 3;
 var trait_points = 2;
@@ -995,75 +996,78 @@ function government_bonuses() {
         document.getElementById("adv_gov_image").innerHTML = "<img src='images/grey-circle.png' alt='None'>";
         document.getElementById("adv_gov").innerHTML = "Nothing selected.";
         document.getElementById("government_summary").innerHTML = "Nothing selected.";
+        government_summary = "Nothing selected.";
     }
     else {
         document.getElementById("adv_gov_image").innerHTML = "<img src='images/governments/advanced/" + government_pick + "-adv.png" + "' alt='Advanced Government'>";
 
         if(government_pick == "military-dictatorship") {
             document.getElementById("adv_gov").innerHTML = "Martial Empire<br><br><span class='green_txt'>+20%<\/span> Naval Capacity<br><span class='green_txt'>-20%<\/span> Ship Build Cost<br><span class='green_txt'>+50%<\/span> Rivalry Influence Gain";
-            document.getElementById("government_summary").innerHTML = "Military Dictatorship<br><br><span class='green_txt'>+10%<\/span> Naval Capacity<br><span class='green_txt'>-10%<\/span> Ship Build Cost<br><span class='green_txt'>+25%<\/span> Rivalry Influence Gain";
+            government_summary = "Military Dictatorship<br><br><span class='green_txt'>+10%<\/span> Naval Capacity<br><span class='green_txt'>-10%<\/span> Ship Build Cost<br><span class='green_txt'>+25%<\/span> Rivalry Influence Gain";
         };
         if(government_pick == "military-junta") {
             document.getElementById("adv_gov").innerHTML = "Ordered Stratocracy<br><br><span class='green_txt'>-10%<\/span> Ship Upkeep<br><span class='green_txt'>+2<\/span> Admiral Starting Levels<br><span class='green_txt'>-50%<\/span> Ship Upgrade Cost";
-            document.getElementById("government_summary").innerHTML = "Military Junta<br><br><span class='green_txt'>-5%<\/span> Ship Upkeep<br><span class='green_txt'>+1<\/span> Admiral Starting Levels<br><span class='green_txt'>-25%<\/span> Ship Upgrade Cost";
+            government_summary = "Military Junta<br><br><span class='green_txt'>-5%<\/span> Ship Upkeep<br><span class='green_txt'>+1<\/span> Admiral Starting Levels<br><span class='green_txt'>-25%<\/span> Ship Upgrade Cost";
         };
         if(government_pick == "military-republic") {
             document.getElementById("adv_gov").innerHTML = "Martial Demarchy<br><br><span class='green_txt'>-40%<\/span> Army Upkeep<br><span class='green_txt'>+20%<\/span> Army Damage<br><span class='green_txt'>-30%<\/span> Military Station Build Cost<br><span class='green_txt'>+20%<\/span> Military Station Damage";
-            document.getElementById("government_summary").innerHTML = "Military Republic<br><br><span class='green_txt'>-20%<\/span> Army Upkeep<br><span class='green_txt'>+10%<\/span> Army Damage<br><span class='green_txt'>-15%<\/span> Military Station Build Cost<br><span class='green_txt'>+10%<\/span> Military Station Damage";
+            government_summary = "Military Republic<br><br><span class='green_txt'>-20%<\/span> Army Upkeep<br><span class='green_txt'>+10%<\/span> Army Damage<br><span class='green_txt'>-15%<\/span> Military Station Build Cost<br><span class='green_txt'>+10%<\/span> Military Station Damage";
         };
         if(government_pick == "divine-mandate") {
             document.getElementById("adv_gov").innerHTML = "Transcendent Empire<br><br><span class='green_txt'>-30%<\/span> Edict Influence Cost<br><span class='green_txt'>+30%<\/span> Edict Duration<br><span class='green_txt'>-20%<\/span> Ethics Divergence";
-            document.getElementById("government_summary").innerHTML = "Divine Mandate<br><br><span class='green_txt'>-15%<\/span> Edict Influence Cost<br><span class='green_txt'>+15%<\/span> Edict Duration<br><span class='green_txt'>-10%<\/span> Ethics Divergence";
+            government_summary = "Divine Mandate<br><br><span class='green_txt'>-15%<\/span> Edict Influence Cost<br><span class='green_txt'>+15%<\/span> Edict Duration<br><span class='green_txt'>-10%<\/span> Ethics Divergence";
         };
         if(government_pick == "theocratic-oligarchy") {
             document.getElementById("adv_gov").innerHTML = "Transcendent Oligarchy<br><br><span class='green_txt'>+40<\/span> Years Leader Lifespan<br><span class='green_txt'>-30%<\/span> Resettlement Cost";
-            document.getElementById("government_summary").innerHTML = "Theocratic Oligarchy<br><br><span class='green_txt'>+20<\/span> Years Leader Lifespan<br><span class='green_txt'>-15%<\/span> Resettlement Cost";
+            government_summary = "Theocratic Oligarchy<br><br><span class='green_txt'>+20<\/span> Years Leader Lifespan<br><span class='green_txt'>-15%<\/span> Resettlement Cost";
         };
         if(government_pick == "theocratic-republic") {
             document.getElementById("adv_gov").innerHTML = "Transcendent Republic<br><br><span class='green_txt'>+10%<\/span> Happiness<br><span class='green_txt'>-20%<\/span> Food Requirement";
-            document.getElementById("government_summary").innerHTML = "Theocratic Republic<br><br><span class='green_txt'>+5%<\/span> Happiness<br><span class='green_txt'>-10%<\/span> Food Requirement";
+            government_summary = "Theocratic Republic<br><br><span class='green_txt'>+5%<\/span> Happiness<br><span class='green_txt'>-10%<\/span> Food Requirement";
         };
         if(government_pick == "despotic-hegemony") {
             document.getElementById("adv_gov").innerHTML = "Neural Network Administration<br><br><span class='green_txt'>+10%<\/span> Research Speed<br><span class='green_txt'>-50%<\/span> Research Station Cost";
-            document.getElementById("government_summary").innerHTML = "Despotic Hegemony<br><br><span class='green_txt'>+5%<\/span> Research Speed<br><span class='green_txt'>-25%<\/span> Research Station Cost";
+            government_summary = "Despotic Hegemony<br><br><span class='green_txt'>+5%<\/span> Research Speed<br><span class='green_txt'>-25%<\/span> Research Station Cost";
         };
         if(government_pick == "science-directorate") {
             document.getElementById("adv_gov").innerHTML = "Illuminated Technocracy<br><br><span class='green_txt'>+2<\/span> Research Alternatives<br><span class='green_txt'>+2<\/span> Empire Leader Capacity";
-            document.getElementById("government_summary").innerHTML = "Science Directorate<br><br><span class='green_txt'>+1<\/span> Research Alternatives<br><span class='green_txt'>+1<\/span> Empire Leader Capacity";
+            government_summary = "Science Directorate<br><br><span class='green_txt'>+1<\/span> Research Alternatives<br><span class='green_txt'>+1<\/span> Empire Leader Capacity";
         };
         if(government_pick == "direct-democracy") {
             document.getElementById("adv_gov").innerHTML = "Subconscious Consensus<br><br><span class='green_txt'>+10%<\/span> Happiness<br><span class='green_txt'>+30%<\/span> Leader Experience Gain";
-            document.getElementById("government_summary").innerHTML = "Direct Democracy<br><br><span class='green_txt'>+5%<\/span> Happiness<br><span class='green_txt'>+15%<\/span> Leader Experience Gain";
+            government_summary = "Direct Democracy<br><br><span class='green_txt'>+5%<\/span> Happiness<br><span class='green_txt'>+15%<\/span> Leader Experience Gain";
         };
         if(government_pick == "enlightened-monarchy") {
             document.getElementById("adv_gov").innerHTML = "Irenic Monarchy<br><br><span class='green_txt'>-30%<\/span> Edict Influence Cost<br><span class='green_txt'>+30%<\/span> Edict Duration<br><span class='green_txt'>+4<\/span> Core Planets";
-            document.getElementById("government_summary").innerHTML = "Enlightened Monarchy<br><br><span class='green_txt'>-15%<\/span> Edict Influence Cost<br><span class='green_txt'>+15%<\/span> Edict Duration<br><span class='green_txt'>+2<\/span> Core Planets";
+            government_summary = "Enlightened Monarchy<br><br><span class='green_txt'>-15%<\/span> Edict Influence Cost<br><span class='green_txt'>+15%<\/span> Edict Duration<br><span class='green_txt'>+2<\/span> Core Planets";
         };
         if(government_pick == "peaceful-bureaucracy") {
             document.getElementById("adv_gov").innerHTML = "Irenic Protectorate<br><br><span class='green_txt'>+10<\/span> Core Planets";
-            document.getElementById("government_summary").innerHTML = "Peaceful Bureaucracy<br><br><span class='green_txt'>+5<\/span> Core Planets";
+            government_summary = "Peaceful Bureaucracy<br><br><span class='green_txt'>+5<\/span> Core Planets";
         };
         if(government_pick == "moral-democracy") {
             document.getElementById("adv_gov").innerHTML = "Irenic Democracy<br><br><span class='green_txt'>+2<\/span> Leader Pool Size<br><span class='green_txt'>+2<\/span> Empire Leader Capacity<br><span class='green_txt'>+4<\/span> Core Planets";
-            document.getElementById("government_summary").innerHTML = "Moral Democracy<br><br><span class='green_txt'>+1<\/span> Leader Pool Size<br><span class='green_txt'>+1<\/span> Empire Leader Capacity<br><span class='green_txt'>+2<\/span> Core Planets";
+            government_summary = "Moral Democracy<br><br><span class='green_txt'>+1<\/span> Leader Pool Size<br><span class='green_txt'>+1<\/span> Empire Leader Capacity<br><span class='green_txt'>+2<\/span> Core Planets";
         };
         if(government_pick == "despotic-empire") {
             document.getElementById("adv_gov").innerHTML = "Star Empire<br><br><span class='green_txt'>-30%<\/span> Building Cost<br><span class='green_txt'>+20%<\/span> Slave Mineral Output<br><span class='green_txt'>+20%<\/span> Slave Food Output";
-            document.getElementById("government_summary").innerHTML = "Despotic Empire<br><br><span class='green_txt'>-15%<\/span> Building Cost<br><span class='green_txt'>+10%<\/span> Slave Mineral Output<br><span class='green_txt'>+10%<\/span> Slave Food Output";
+            government_summary = "Despotic Empire<br><br><span class='green_txt'>-15%<\/span> Building Cost<br><span class='green_txt'>+10%<\/span> Slave Mineral Output<br><span class='green_txt'>+10%<\/span> Slave Food Output";
         };
         if(government_pick == "plutocratic-oligarchy") {
             document.getElementById("adv_gov").innerHTML = "Mega Corporation<br><br><span class='green_txt'>+10%<\/span> Energy Credits<br><span class='green_txt'>+10%<\/span> Minerals<br><span class='green_txt'>-50%<\/span> Mining Station Build Cost";
-            document.getElementById("government_summary").innerHTML = "Plutocratic Oligarchy<br><br><span class='green_txt'>+5%<\/span> Energy Credits<br><span class='green_txt'>+5%<\/span> Minerals<br><span class='green_txt'>-25%<\/span> Mining Station Build Cost";
+            government_summary = "Plutocratic Oligarchy<br><br><span class='green_txt'>+5%<\/span> Energy Credits<br><span class='green_txt'>+5%<\/span> Minerals<br><span class='green_txt'>-25%<\/span> Mining Station Build Cost";
         };
         if(government_pick == "indirect-democracy") {
             document.getElementById("adv_gov").innerHTML = "Democratic Utopia<br><br><span class='green_txt'>+2<\/span> Leader Starting Levels<br><span class='green_txt'>-30%<\/span> Leader Recruitment Cost";
-            document.getElementById("government_summary").innerHTML = "Indirect Democracy<br><br><span class='green_txt'>+1<\/span> Leader Starting Levels<br><span class='green_txt'>-15%<\/span> Leader Recruitment Cost";
+            government_summary = "Indirect Democracy<br><br><span class='green_txt'>+1<\/span> Leader Starting Levels<br><span class='green_txt'>-15%<\/span> Leader Recruitment Cost";
         };
+        document.getElementById("government_summary").innerHTML = government_summary;
     };
+    display_bonus_summary();
 };
 
 function display_ethics() {
-    ethics_picks = [];
+    var ethics_picks = [];
     
     if (individuality_pick == -2) {
         ethics_picks.push("<span class='green_txt'>+100%<\/span> Slavery Tolerance<br><span class='green_txt'>-15%<\/span> Food Consumption<br>Unlocks building: <span class='green_txt'>Ministry of Benevolence<\/span><br>");
@@ -1115,15 +1119,33 @@ function display_ethics() {
     };
     
     if (ethics_picks.length == 0) {
+        ethics_summary = "";
         document.getElementById("ethics_summary").innerHTML = "Nothing selected.";
     }
     else {
         var i = 0;
-        var ethics_summary = "";
+        ethics_summary = "";
         for (i = 0; i < ethics_picks.length; i++) {
             ethics_summary = ethics_summary + ethics_picks[i];
             document.getElementById("ethics_summary").innerHTML = ethics_summary;
         };
+    };
+    display_bonus_summary();
+};
+
+function display_bonus_summary() {
+    
+    if (government_summary == "Nothing selected." && ethics_summary != "") {
+        document.getElementById("bonus_summary").innerHTML = ethics_summary;
+    }
+    else if (government_summary != "Nothing selected." && ethics_summary == "") {
+        document.getElementById("bonus_summary").innerHTML = government_summary;
+    }
+    else if (government_summary == "Nothing selected." && ethics_summary == "") {
+        document.getElementById("bonus_summary").innerHTML = "Nothing selected.";
+    }
+    else {
+        document.getElementById("bonus_summary").innerHTML = government_summary + ethics_summary;
     };
 };
 
@@ -1264,7 +1286,7 @@ function display_ethics() {
 <td width="4"></td>
 <td width="0" class="divider"></td>
 <td width="4"></td>
-<td valign="top">
+<td width="300" valign="top" align="center">
     <table border="0"> <!-- ethics table -->
         <tr><td colspan="5" align="center" valign="top" height="30"><span class="section_title">Ethics</span></td></tr>
         <tr><td colspan="2" align="center"><span class="sub_title">Collectivisim</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Individuality</span></td></tr>
@@ -1356,7 +1378,7 @@ function display_ethics() {
 <td width="0" class="divider"></td>
 <td width="4"></td>
 <td rowspan="4" valign="top">
-    <table border="0"> <!-- adv. government and overall bonus section container table-->
+    <table border="0" width="420"> <!-- adv. government and overall bonus section container table-->
     <tr><td>
         <table border="0" cellpadding="0" cellspacing="0"> <!-- adv. government section -->
             <tr><td valign="top" height="25"><span class="sub_title">Selected government leads to:</span></td></tr>
