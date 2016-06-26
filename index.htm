@@ -135,6 +135,11 @@ var science_traits = [
     "natural-sociologists"
 ];
 
+var conformist_traits = [
+    "deviants",
+    "conformists"
+];
+
 // Global variables for readout and function coordination purposes.
 var individuality_pick = 0;
 var spirituality_pick = 0;
@@ -1277,6 +1282,7 @@ function display_bonus_summary() {
         document.getElementById("bonus_summary").innerHTML = "Nothing selected.";
     }
     else {
+        // Logic to dynamically detect bonuses stacked on the same attribute and add them together.
         var total_summary = government_summary + ethics_summary;
         var processed_summary = replace_all("<br>", "|", total_summary);
         var processed_summary2 = replace_all("||", "|", processed_summary);
@@ -1392,7 +1398,7 @@ function clear_traits(trait) {
         <td align="center" id="very-strong" onclick="select_traits('very-strong');"><img src="images/traits/very-strong.png" alt="Very Strong"></td>
     </tr>
     <tr>
-        <td align="center" id="fleeting"><!-- future fleeting trait icon will go here --></td>
+        <td align="center" id="fleeting" onclick="select_traits('fleeting');"><img src="images/traits/fleeting.png" alt="Fleeting"></td>
         <td align="center" onclick="clear_traits('enduring');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
         <td align="center" id="enduring" onclick="select_traits('enduring');"><img src="images/traits/enduring.png" alt="Enduring"></td>
         <td align="center" id="venerable" onclick="select_traits('venerable');"><img src="images/traits/venerable.png" alt="Venerable"></td>
@@ -1422,81 +1428,81 @@ function clear_traits(trait) {
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center"><img src="images/traits/repugnant.png" alt="Repugnant"></td>
+        <td align="center" id="repugnant" onclick="select_traits('repugnant');"><img src="images/traits/repugnant.png" alt="Repugnant"></td>
         <td align="center" onclick="clear_traits('charismatic');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/charismatic.png" alt="Charismatic"></td>
+        <td align="center" id="charismatic" onclick="select_traits('charismatic');"><img src="images/traits/charismatic.png" alt="Charismatic"></td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center"><img src="images/traits/solitary.png" alt="Solitary"></td>
+        <td align="center" id="solitary" onclick="select_traits('solitary');"><img src="images/traits/solitary.png" alt="Solitary"></td>
         <td align="center" onclick="clear_traits('communal');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/communal.png" alt="Communal"></td>
+        <td align="center" id="communal" onclick="select_traits('communal');"><img src="images/traits/communal.png" alt="Communal"></td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center"> </td>
+        <td align="center" id="deviants" onclick="select_traits('deviants');"><img src="images/traits/deviants.png" alt="Deviants"></td>
         <td align="center" onclick="clear_traits('conformists');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/conformists.png" alt="Conformists"></td>
+        <td align="center" id="conformists" onclick="select_traits('conformists');"><img src="images/traits/conformists.png" alt="Conformists"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center" onclick="clear_traits('industrious');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/industrious.png" alt="Industrious"></td>
+        <td align="center" id="industrious" onclick="select_traits('industrious');"><img src="images/traits/industrious.png" alt="Industrious"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
         <td align="center" class="top_line" onclick="clear_traits('intelligent');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" class="top_line"><img src="images/traits/intelligent.png" alt="Intelligent"></td>
+        <td align="center" class="top_line" id="intelligent" onclick="select_traits('intelligent');"><img src="images/traits/intelligent.png" alt="Intelligent"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
         <td align="center" onclick="clear_traits('natural-engineers');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/natural-engineers.png" alt="Natural Engineers"></td>
+        <td align="center" id="natural-engineers" onclick="select_traits('natural-engineers');"><img src="images/traits/natural-engineers.png" alt="Natural Engineers"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
         <td align="center" onclick="clear_traits('natural-physicists');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/natural-physicists.png" alt="Natural Physicists"></td>
+        <td align="center" id="natural-physicists" onclick="select_traits('natural-physicists');"><img src="images/traits/natural-physicists.png" alt="Natural Physicists"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
         <td align="center" class="bottom_line" onclick="clear_traits('natural-sociologists');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" class="bottom_line"><img src="images/traits/natural-sociologists.png" alt="Natural Sociologists"></td>
+        <td align="center" class="bottom_line" id="natural-sociologists" onclick="select_traits('natural-sociologists');"><img src="images/traits/natural-sociologists.png" alt="Natural Sociologists"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
-        <td align="center"><img src="images/traits/sedentary.png" alt="Sedentary"></td>
+        <td align="center" id="sedentary" onclick="select_traits('sedentary');"><img src="images/traits/sedentary.png" alt="Sedentary"></td>
         <td align="center" onclick="clear_traits('nomadic');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/nomadic.png" alt="Nomadic"></td>
+        <td align="center" id="nomadic" onclick="select_traits('nomadic');"><img src="images/traits/nomadic.png" alt="Nomadic"></td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center"><img src="images/traits/slow-breeders.png" alt="Slow Breeders"></td>
+        <td align="center" id="slow-breeders" onclick="select_traits('slow-breeders');"><img src="images/traits/slow-breeders.png" alt="Slow Breeders"></td>
         <td align="center" onclick="clear_traits('breeder');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/rapid-breeders.png" alt="Rapid Breeders"></td>
+        <td align="center" id="rapid-breeders" onclick="select_traits('rapid-breeders');"><img src="images/traits/rapid-breeders.png" alt="Rapid Breeders"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center" onclick="clear_traits('resilient');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/resilient.png" alt="Resilient"></td>
+        <td align="center" id="resilient" onclick="select_traits('resilient');"><img src="images/traits/resilient.png" alt="Resilient"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center" onclick="clear_traits('talented');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/talented.png" alt="Talented"></td>
+        <td align="center" id="talented" onclick="select_traits('talented');"><img src="images/traits/talented.png" alt="Talented"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center" onclick="clear_traits('thrifty');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"><img src="images/traits/thrifty.png" alt="Thrifty"></td>
+        <td align="center" id="thrifty" onclick="select_traits('thrifty');"><img src="images/traits/thrifty.png" alt="Thrifty"></td>
         <td align="center"> </td>
     </tr>
     <tr>
