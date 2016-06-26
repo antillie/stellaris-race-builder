@@ -1238,13 +1238,13 @@ function display_ethics() {
     display_bonus_summary();
 };
 
-function find_duplicates(arr) {
-    var len=arr.length,
+function find_duplicates(array) {
+    var len=array.length,
     out=[],
     counts={};
 
-    for (var i=0;i<len;i++) {
-        var item = arr[i];
+    for (var i=0; i < len; i++) {
+        var item = array[i];
         counts[item] = counts[item] >= 1 ? counts[item] + 1 : 1;
     };
 
@@ -1255,9 +1255,9 @@ function find_duplicates(arr) {
     return out;
 };
 
-function strip_html(html) {
+function strip_html(markup_text) {
    var tmp = document.createElement("DIV");
-   tmp.innerHTML = html;
+   tmp.innerHTML = markup_text;
    return tmp.textContent || tmp.innerText || "";
 };
 
@@ -1277,13 +1277,92 @@ function display_bonus_summary() {
         document.getElementById("bonus_summary").innerHTML = "Nothing selected.";
     }
     else {
-        document.getElementById("bonus_summary").innerHTML = government_summary + ethics_summary;
         var total_summary = government_summary + ethics_summary;
-        total_summary = replace_all("<br>", "|", total_summary);
-        total_summary = replace_all("||", "|", total_summary);
-        total_summary = strip_html(total_summary);
-        var split_summary = total_summary.split("|");
-        alert(find_duplicates(split_summary));
+        var processed_summary = replace_all("<br>", "|", total_summary);
+        var processed_summary2 = replace_all("||", "|", processed_summary);
+        
+        processed_summary2 = replace_all("+", "", processed_summary2);
+        processed_summary2 = replace_all("-", "", processed_summary2);
+        processed_summary2 = replace_all("%", "", processed_summary2);
+        processed_summary2 = processed_summary2.replace(/[0-9]/g, "");
+        processed_summary2 = strip_html(processed_summary2);
+        
+        var summary_dupes = processed_summary2.split("|");
+        summary_dupes = find_duplicates(summary_dupes);
+        
+        if (summary_dupes.length > 0) {
+            total_summary = "";
+            var i = 0;
+            var x = 0;
+            
+            processed_summary = processed_summary.split("|");
+            
+            for (i = 0; i < summary_dupes.length; i++) {
+                var total_bonus = 0;
+                var plus_good = 0;
+                var neg_good = 0;
+                
+                for (x = 0; x < processed_summary.length; x++) {
+                    if (processed_summary[x].includes(summary_dupes[i])) {
+                        var temp = strip_html(processed_summary[x]);
+                        
+                        var percent = 0;
+                        if (temp.includes("%")) {
+                            percent = 1;
+                        };
+                        
+                        if (processed_summary[x].includes("green") && processed_summary[x].includes("+")) {
+                        plus_good = 1;
+                        };
+                        
+                        if (processed_summary[x].includes("green") && processed_summary[x].includes("-")) {
+                            neg_good = 1;
+                        };
+                        
+                        temp = replace_all("%", "", temp);
+                        temp = replace_all(" ", "", temp);
+                        temp = replace_all("+", "", temp);
+                        temp = temp.replace(/[a-z]/g, "");
+                        temp = temp.replace(/[A-Z]/g, "");
+                        total_bonus = total_bonus + Number(temp);
+                    }
+                    else {
+                        if (x == 1) {
+                            total_summary = total_summary + processed_summary[x] + "<br>"
+                            
+                        }
+                        else if (processed_summary[x] != "") {
+                            total_summary = total_summary + processed_summary[x] + "<br>"
+                        };
+                    };
+                };
+                if (plus_good == 1) {
+                    if (total_bonus > 0) {
+                        total_bonus = "<span class='green_txt'>+" + total_bonus;
+                    }
+                    else {
+                        total_bonus = "<span class='red_txt'>" + total_bonus;
+                    };
+                };
+                if (neg_good == 1) {
+                    if (total_bonus < 0) {
+                        total_bonus = "<span class='green_txt'>" + total_bonus;
+                    }
+                    else {
+                        total_bonus = "<span class='red_txt'>+" + total_bonus;
+                    };
+                };
+                if (percent == 1) {
+                    total_bonus = total_bonus + "%";
+                };
+                total_bonus = total_bonus + "<\/span>";
+                total_summary = total_summary + total_bonus + " " + summary_dupes[i] + "<br>"
+            };
+            document.getElementById("bonus_summary").innerHTML = total_summary;
+        }
+        else {
+            document.getElementById("bonus_summary").innerHTML = total_summary;
+        };
     };
 };
 
