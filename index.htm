@@ -906,7 +906,7 @@ function refund_ethics_points(ethic) {
 
 };
 
-function clear_ethics(ethic) {
+function clear_ethics(ethic, flag) {
     var i = 0;
     if (ethic == "individuality") {
         individuality_pick = 0;
@@ -948,15 +948,19 @@ function clear_ethics(ethic) {
             target.style.backgroundColor = "#040904";
         };
     };
-    toggle_governments();
-    display_ethics();
+    if (flag == 1) {
+        toggle_governments();
+        display_ethics();
+    };
 };
 
 function clear_all_ethics() {
-    clear_ethics('individuality');
-    clear_ethics('spirituality');
-    clear_ethics('militarisim');
-    clear_ethics('xenophobia');
+    clear_ethics("individuality", 0);
+    clear_ethics("spirituality", 0);
+    clear_ethics("militarisim", 0);
+    clear_ethics("xenophobia", 0);
+    toggle_governments();
+    display_ethics();
 };
 
 function toggle_governments() {
@@ -1437,7 +1441,7 @@ function clear_traits(trait) {
         <tr>
             <td align="center" id="fanatic-collectivist" onclick="select_ethics('fanatic-collectivist');"><img src="images/ethics/fanatic-collectivist.png" alt="Fanatic Collectivist"></td>
             <td align="center" id="collectivist" onclick="select_ethics('collectivist');"><img src="images/ethics/collectivist.png" alt="Collectivist"></td>
-            <td align="center" id="individuality-neutral" onclick="clear_ethics('individuality');"><img src="images/grey-circle.png" alt="Neutral"></td>
+            <td align="center" id="individuality-neutral" onclick="clear_ethics('individuality', 1);"><img src="images/grey-circle.png" alt="Neutral"></td>
             <td align="center" id="individualist" onclick="select_ethics('individualist');"><img src="images/ethics/individualist.png" alt="Individualist"></td>
             <td align="center" id="fanatic-individualist" onclick="select_ethics('fanatic-individualist');"><img src="images/ethics/fanatic-individualist.png" alt="Fanatic Individualist"></td>
         </tr>
@@ -1446,7 +1450,7 @@ function clear_traits(trait) {
         <tr>
             <td align="center" id="fanatic-spiritualist" onclick="select_ethics('fanatic-spiritualist');"><img src="images/ethics/fanatic-spiritualist.png" alt="Fanatic Spiritualist"></td>
             <td align="center" id="spiritualist" onclick="select_ethics('spiritualist');"><img src="images/ethics/spiritualist.png" alt="Spiritualist"></td>
-            <td align="center" id="spirituality-neutral" onclick="clear_ethics('spirituality');"> <img src="images/grey-circle.png" alt="Neutral"></td>
+            <td align="center" id="spirituality-neutral" onclick="clear_ethics('spirituality', 1);"> <img src="images/grey-circle.png" alt="Neutral"></td>
             <td align="center" id="materialist" onclick="select_ethics('materialist');"><img src="images/ethics/materialist.png" alt="Materialist"></td>
             <td align="center" id="fanatic-materialist" onclick="select_ethics('fanatic-materialist');"><img src="images/ethics/fanatic-materialist.png" alt="Fanatic Materialist"></td>
         </tr>
@@ -1455,7 +1459,7 @@ function clear_traits(trait) {
         <tr>
             <td align="center" id="fanatic-pacifist" onclick="select_ethics('fanatic-pacifist');"><img src="images/ethics/fanatic-pacifist.png" alt="Fanatic Pacifist"></td>
             <td align="center" id="pacifist" onclick="select_ethics('pacifist');"><img src="images/ethics/pacifist.png"  alt="Pacifist"></td>
-            <td align="center" id="militarisim-neutral" onclick="clear_ethics('militarisim');"> <img src="images/grey-circle.png" alt="Neutral"></td>
+            <td align="center" id="militarisim-neutral" onclick="clear_ethics('militarisim', 1);"> <img src="images/grey-circle.png" alt="Neutral"></td>
             <td align="center" id="militarist" onclick="select_ethics('militarist');"><img src="images/ethics/militarist.png" alt="Militarist"></td>
             <td align="center" id="fanatic-militarist" onclick="select_ethics('fanatic-militarist');"><img src="images/ethics/fanatic-militarist.png" alt="Fanatic Militarist"></td>
         </tr>
@@ -1464,7 +1468,7 @@ function clear_traits(trait) {
         <tr>
             <td align="center" id="fanatic-xenophile" onclick="select_ethics('fanatic-xenophile');"><img src="images/ethics/fanatic-xenophile.png" alt="Fanatic Xenophile"></td>
             <td align="center" id="xenophile" onclick="select_ethics('xenophile');"><img src="images/ethics/xenophile.png" alt="Xenophile"></td>
-            <td align="center" id="xenophobia-neutral" onclick="clear_ethics('xenophobia');"> <img src="images/grey-circle.png" alt="Neutral"></td>
+            <td align="center" id="xenophobia-neutral" onclick="clear_ethics('xenophobia', 1);"> <img src="images/grey-circle.png" alt="Neutral"></td>
             <td align="center" id="xenophobe" onclick="select_ethics('xenophobe');"><img src="images/ethics/xenophobe.png" alt="Xenophobe"></td>
             <td align="center" id="fanatic-xenophobe" onclick="select_ethics('fanatic-xenophobe');"><img src="images/ethics/fanatic-xenophobe.png"  alt="Fanatic Xenophobe"></td>
         </tr>
