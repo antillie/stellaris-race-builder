@@ -84,7 +84,42 @@ var governments = [
     "peaceful-bureaucracy"
 ];
 
-// Traits arrays for lateral selection checking.
+// List of traits for clearing them all at once.
+var all_traits = [
+    "adaptive",
+    "agrarian",
+    "charismatic",
+    "communal",
+    "conformists",
+    "decadent",
+    "deviants",
+    "enduring",
+    "extremely-adaptive",
+    "fleeting",
+    "industrious",
+    "intelligent",
+    "natural-engineers",
+    "natural-physicists",
+    "natural-sociologists",
+    "nomadic",
+    "nonadaptive",
+    "quick-learners",
+    "rapid-breeders",
+    "repugnant",
+    "resilient",
+    "sedentary",
+    "slow-breeders",
+    "slow-learners",
+    "solitary",
+    "strong",
+    "talented",
+    "thrifty",
+    "venerable",
+    "very-strong",
+    "weak"
+];
+
+// Traits sub-arrays for lateral selection checking.
 var strong_traits = [
     "weak",
     "strong",
@@ -151,6 +186,8 @@ var ethics_summary = "Nothing selected.";
 var government_summary = "Nothing selected.";
 var traits_summary = "Nothing selected.";
 
+var strong_pick = 0;
+
 // Max allowed point/pick values.
 var ethics_points = 3;
 var trait_points = 2;
@@ -166,8 +203,33 @@ function spend_ethics_points(x) {
     };
 };
 
+function spend_traits_points(x) {
+    if (trait_points >= x) {
+        trait_points = trait_points - x;
+        return true;
+    }
+    else {
+        return false;
+    };
+};
+
+function spend_traits_picks() {
+    if (max_traits >= 1) {
+        max_traits = max_traits - 1;
+        return true;
+    }
+    else {
+        return false;
+    };
+};
+
 function display_ethics_points() {
     document.getElementById("ethics_points").innerHTML = "Ethics points remaining: " + ethics_points
+};
+
+function display_traits_points() {
+    document.getElementById("trait_points").innerHTML = "Traits points remaining: " + trait_points;
+    document.getElementById("trait_picks").innerHTML = "Traits picks remaining: " + max_traits;
 };
 
 function select_ethics(ethic) {
@@ -1372,14 +1434,93 @@ function display_bonus_summary() {
     };
 };
 
-function select_traits(trait) {
+function display_traits() {
+    var traits_picks = [];
 
-    return;
+    if (strong_pick == -1) {
+        traits_picks.push("<span class='red_txt'>-20%<\/span> Army Damage<br>");
+    };
+    
+    if (traits_picks.length == 0) {
+        traits_summary = "";
+        document.getElementById("traits_summary").innerHTML = "Nothing selected.";
+    }
+    else {
+        var i = 0;
+        traits_summary = "";
+        for (i = 0; i < traits_picks.length; i++) {
+            traits_summary = traits_summary + traits_picks[i];
+            document.getElementById("traits_summary").innerHTML = traits_summary;
+        };
+    };
+    //display_bonus_summary();
+};
+
+function select_traits(trait) {
+    var i = 0;
+    
+    if (trait == "weak") {
+        for (i = 0; i < strong_traits.length; i++) {
+            var target = document.getElementById(strong_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (strong_traits[i].includes("strong")) {
+                    clear_traits("strong");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(-1)) {
+                            for (i = 0; i < strong_traits.length; i++) {
+                                var target = document.getElementById(individuality[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        strong_pick = -1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(-1)) {
+                for (i = 0; i < strong_traits.length; i++) {
+                    var target = document.getElementById(individuality[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+            };
+            var target = document.getElementById(trait);
+            target.style.backgroundColor = "#30bbbb";
+            display_traits_points();
+            strong_pick = -1;
+            display_traits();
+            return true;
+        };
+    };
+};
+
+function refund_trait_points(trait) {
+    if (trait == "weak") {
+        trait_points = trait_points - 1;
+        max_traits = max_traits + 1;
+    };
+    display_traits_points();
 };
 
 function clear_traits(trait) {
-
-    return;
+    var i = 0;
+    
+    if (trait == "strong" || trait == "all") {
+        strong_pick = 0;
+        for (i = 0; i < strong_traits.length; i++) {
+            var target = document.getElementById(strong_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                refund_trait_points(strong_traits[i]);
+            };
+            target.style.backgroundColor = "#040904";
+        };
+    };
+    display_traits();
 };
 
 </script>
@@ -1659,7 +1800,7 @@ function clear_traits(trait) {
 </tr>
 <tr><td height="3" colspan="12"></td></tr>
 <tr> <!-- bonus summaries -->
-    <td height="210" valign="top"><div id="trait_summary" class="txt">Nothing selected.</div></td>
+    <td height="210" valign="top"><div id="traits_summary" class="txt">Nothing selected.</div></td>
     <td height="210" width="4"></td>
     <td height="210" width="0" class="divider"></td>
     <td height="210" width="4"></td>
