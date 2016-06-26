@@ -84,7 +84,7 @@ var governments = [
     "peaceful-bureaucracy"
 ];
 
-// List of traits for clearing them all at once.
+// List of trait groups for clearing them all at once.
 var all_traits = [
     "adaptive",
     "agrarian",
@@ -1440,7 +1440,12 @@ function display_traits() {
     if (strong_pick == -1) {
         traits_picks.push("<span class='red_txt'>-20%<\/span> Army Damage<br>");
     };
-    
+    if (strong_pick == 1) {
+        traits_picks.push("<span class='green_txt'>+20%<\/span> Army Damage<br><span class='green_txt'>+5%<\/span> Minerals<br>");
+    };
+    if (strong_pick == 2) {
+        traits_picks.push("<span class='green_txt'>+40%<\/span> Army Damage<br><span class='green_txt'>+10%<\/span> Minerals<br>");
+    };
     if (traits_picks.length == 0) {
         traits_summary = "";
         document.getElementById("traits_summary").innerHTML = "Nothing selected.";
@@ -1453,7 +1458,7 @@ function display_traits() {
             document.getElementById("traits_summary").innerHTML = traits_summary;
         };
     };
-    //display_bonus_summary();
+    //display_bonus_summary(); // Add back in once display_bonus_summary() has been updated to include trait bounses.
 };
 
 function select_traits(trait) {
@@ -1468,7 +1473,7 @@ function select_traits(trait) {
                     if (spend_traits_picks()) {
                         if (spend_traits_points(-1)) {
                             for (i = 0; i < strong_traits.length; i++) {
-                                var target = document.getElementById(individuality[i]);
+                                var target = document.getElementById(strong_traits[i]);
                                 target.style.backgroundColor = "#040904";
                             };
                         };
@@ -1485,16 +1490,77 @@ function select_traits(trait) {
         if (spend_traits_picks()) {
             if (spend_traits_points(-1)) {
                 for (i = 0; i < strong_traits.length; i++) {
-                    var target = document.getElementById(individuality[i]);
+                    var target = document.getElementById(strong_traits[i]);
                     target.style.backgroundColor = "#040904";
                 };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                strong_pick = -1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
             };
-            var target = document.getElementById(trait);
-            target.style.backgroundColor = "#30bbbb";
-            display_traits_points();
-            strong_pick = -1;
-            display_traits();
-            return true;
+        };
+    };
+    if (trait == "strong") {
+        for (i = 0; i < strong_traits.length; i++) {
+            var target = document.getElementById(strong_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (strong_traits[i].includes("very")) {
+                    clear_traits("strong");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < strong_traits.length; i++) {
+                                var target = document.getElementById(strong_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        strong_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                }
+                else if (strong_traits[i].includes("weak") && trait_points >= 2) {
+                    clear_traits("strong");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < strong_traits.length; i++) {
+                                var target = document.getElementById(strong_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        strong_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(1)) {
+                for (i = 0; i < strong_traits.length; i++) {
+                    var target = document.getElementById(strong_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                strong_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
         };
     };
 };
@@ -1502,8 +1568,14 @@ function select_traits(trait) {
 function refund_trait_points(trait) {
     if (trait == "weak") {
         trait_points = trait_points - 1;
-        max_traits = max_traits + 1;
     };
+    if (trait == "strong") {
+        trait_points = trait_points + 1;
+    };
+    if (trait == "very-strong") {
+        trait_points = trait_points + 4;
+    };
+    max_traits = max_traits + 1;
     display_traits_points();
 };
 
