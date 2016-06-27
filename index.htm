@@ -1291,7 +1291,7 @@ function display_ethics() {
     };
 
     if (ethics_picks.length == 0) {
-        ethics_summary = "";
+        ethics_summary = "Nothing selected.";
         document.getElementById("ethics_summary").innerHTML = "Nothing selected.";
     }
     else {
@@ -1334,103 +1334,148 @@ function replace_all(search, replacement, target) {
 
 function display_bonus_summary() {
 
-    if (government_summary == "Nothing selected." && ethics_summary != "") {
+    if (government_summary == "Nothing selected." && ethics_summary != "Nothing selected." && traits_summary == "Nothing selected.") {
         document.getElementById("bonus_summary").innerHTML = ethics_summary;
     }
-    else if (government_summary != "Nothing selected." && ethics_summary == "") {
+    else if (government_summary != "Nothing selected." && ethics_summary == "Nothing selected." && traits_summary == "Nothing selected.") {
         document.getElementById("bonus_summary").innerHTML = government_summary;
     }
-    else if (government_summary == "Nothing selected." && ethics_summary == "") {
+    else if (government_summary == "Nothing selected." && ethics_summary == "Nothing selected." && traits_summary != "Nothing selected.") {
+        document.getElementById("bonus_summary").innerHTML = traits_summary;
+    }
+    else if (government_summary == "Nothing selected." && ethics_summary == "Nothing selected." && traits_summary == "Nothing selected.") {
         document.getElementById("bonus_summary").innerHTML = "Nothing selected.";
     }
-    else {
-        // Logic to dynamically detect bonuses stacked on the same attribute and add them together.
+    else if (government_summary != "Nothing selected." && ethics_summary != "Nothing selected." && traits_summary == "Nothing selected.") {
         var total_summary = government_summary + ethics_summary;
-        var processed_summary = replace_all("<br>", "|", total_summary);
-        var processed_summary2 = replace_all("||", "|", processed_summary);
+        calculate_bonus_summary(total_summary);
+    }
+    else if (government_summary != "Nothing selected." && ethics_summary == "Nothing selected." && traits_summary != "Nothing selected.") {
+        var total_summary = government_summary + traits_summary;
+        calculate_bonus_summary(total_summary);
+    }
+    else if (government_summary == "Nothing selected." && ethics_summary != "Nothing selected." && traits_summary != "Nothing selected.") {
+        var total_summary = ethics_summary + traits_summary;
+        calculate_bonus_summary(total_summary);
+    }
+    else if (government_summary != "Nothing selected." && ethics_summary != "Nothing selected." && traits_summary != "Nothing selected.") {
+        var total_summary = government_summary + ethics_summary + traits_summary;
+        calculate_bonus_summary(total_summary);
+    };
+};
+
+function calculate_bonus_summary(total_summary) {
+
+    // Logic to dynamically detect bonuses stacked on the same attribute and add them together.
+    var processed_summary = replace_all("<br>", "|", total_summary);
+    var processed_summary2 = replace_all("||", "|", processed_summary);
+    
+    processed_summary2 = replace_all("+", "", processed_summary2);
+    processed_summary2 = replace_all("-", "", processed_summary2);
+    processed_summary2 = replace_all("%", "", processed_summary2);
+    processed_summary2 = processed_summary2.replace(/[0-9]/g, "");
+    processed_summary2 = strip_html(processed_summary2);
+    
+    var summary_dupes = processed_summary2.split("|");
+    summary_dupes = find_duplicates(summary_dupes);
+    
+    if (summary_dupes.length > 0) {
+        total_summary = "";
+        var i = 0;
+        var x = 0;
         
-        processed_summary2 = replace_all("+", "", processed_summary2);
-        processed_summary2 = replace_all("-", "", processed_summary2);
-        processed_summary2 = replace_all("%", "", processed_summary2);
-        processed_summary2 = processed_summary2.replace(/[0-9]/g, "");
-        processed_summary2 = strip_html(processed_summary2);
+        processed_summary = processed_summary.split("|");
         
-        var summary_dupes = processed_summary2.split("|");
-        summary_dupes = find_duplicates(summary_dupes);
-        
-        if (summary_dupes.length > 0) {
-            total_summary = "";
-            var i = 0;
-            var x = 0;
+        for (i = 0; i < summary_dupes.length; i++) {
+            var total_bonus = 0;
+            var plus_good = 0;
+            var neg_good = 0;
             
-            processed_summary = processed_summary.split("|");
-            
-            for (i = 0; i < summary_dupes.length; i++) {
-                var total_bonus = 0;
-                var plus_good = 0;
-                var neg_good = 0;
-                
-                for (x = 0; x < processed_summary.length; x++) {
-                    if (processed_summary[x].includes(summary_dupes[i])) {
-                        var temp = strip_html(processed_summary[x]);
+            for (x = 0; x < processed_summary.length; x++) {
+                if (processed_summary[x].includes(summary_dupes[i])) {
+                    var temp = strip_html(processed_summary[x]);
+                    
+                    var percent = 0;
+                    if (temp.includes("%")) {
+                        percent = 1;
+                    };
+                    
+                    if (processed_summary[x].includes("green") && processed_summary[x].includes("+")) {
+                    plus_good = 1;
+                    };
+                    
+                    if (processed_summary[x].includes("green") && processed_summary[x].includes("-")) {
+                        neg_good = 1;
+                    };
+                    
+                    temp = replace_all("%", "", temp);
+                    temp = replace_all(" ", "", temp);
+                    temp = replace_all("+", "", temp);
+                    temp = temp.replace(/[a-z]/g, "");
+                    temp = temp.replace(/[A-Z]/g, "");
+                    total_bonus = total_bonus + Number(temp);
+                }
+                else if (i == 0) {
+                    if (x == 1) {
+                        total_summary = total_summary + processed_summary[x] + "<br>"
                         
-                        var percent = 0;
-                        if (temp.includes("%")) {
-                            percent = 1;
-                        };
-                        
-                        if (processed_summary[x].includes("green") && processed_summary[x].includes("+")) {
-                        plus_good = 1;
-                        };
-                        
-                        if (processed_summary[x].includes("green") && processed_summary[x].includes("-")) {
-                            neg_good = 1;
-                        };
-                        
-                        temp = replace_all("%", "", temp);
-                        temp = replace_all(" ", "", temp);
-                        temp = replace_all("+", "", temp);
-                        temp = temp.replace(/[a-z]/g, "");
-                        temp = temp.replace(/[A-Z]/g, "");
-                        total_bonus = total_bonus + Number(temp);
                     }
-                    else {
-                        if (x == 1) {
-                            total_summary = total_summary + processed_summary[x] + "<br>"
-                            
-                        }
-                        else if (processed_summary[x] != "") {
-                            total_summary = total_summary + processed_summary[x] + "<br>"
-                        };
+                    else if (processed_summary[x] != "") {
+                        total_summary = total_summary + processed_summary[x] + "<br>"
                     };
                 };
-                if (plus_good == 1) {
-                    if (total_bonus > 0) {
-                        total_bonus = "<span class='green_txt'>+" + total_bonus;
-                    }
-                    else {
-                        total_bonus = "<span class='red_txt'>" + total_bonus;
-                    };
-                };
-                if (neg_good == 1) {
-                    if (total_bonus < 0) {
-                        total_bonus = "<span class='green_txt'>" + total_bonus;
-                    }
-                    else {
-                        total_bonus = "<span class='red_txt'>+" + total_bonus;
-                    };
-                };
-                if (percent == 1) {
-                    total_bonus = total_bonus + "%";
-                };
-                total_bonus = total_bonus + "<\/span>";
-                total_summary = total_summary + total_bonus + " " + summary_dupes[i] + "<br>"
             };
-            document.getElementById("bonus_summary").innerHTML = total_summary;
-        }
-        else {
-            document.getElementById("bonus_summary").innerHTML = total_summary;
+            if (plus_good == 1) {
+                if (total_bonus > 0) {
+                    total_bonus = "<span class='green_txt'>+" + total_bonus;
+                }
+                else {
+                    total_bonus = "<span class='red_txt'>" + total_bonus;
+                };
+            };
+            if (neg_good == 1) {
+                if (total_bonus < 0) {
+                    total_bonus = "<span class='green_txt'>" + total_bonus;
+                }
+                else {
+                    total_bonus = "<span class='red_txt'>+" + total_bonus;
+                };
+            };
+            if (percent == 1) {
+                total_bonus = total_bonus + "%";
+            };
+            total_bonus = total_bonus + "<\/span>";
+            total_summary = total_summary + total_bonus + " " + summary_dupes[i] + "<br>"
         };
+        var new_summary = total_summary.split("<br>");;
+        var new_summary_dupes = find_duplicates(new_summary);
+        
+        var y = 0;
+        var z = 0;
+        for (y = 0; y < new_summary.length; y++) {
+            for (z = 0; z < new_summary_dupes.length; z++) {
+                if (new_summary[y] == new_summary_dupes[z]) {
+                    new_summary[y] = "x";
+                };
+            };
+        };
+        total_summary = "";
+        for (y = 0; y < new_summary.length; y++) {
+            if (new_summary[y] != "x") {
+                
+                if (y == 0) {
+                    total_summary = total_summary + new_summary[y] + "<br><br>";
+                    
+                }
+                else {
+                      total_summary = total_summary + new_summary[y] + "<br>";
+                };
+            };
+        };
+        document.getElementById("bonus_summary").innerHTML = total_summary;
+    }
+    else {
+        document.getElementById("bonus_summary").innerHTML = total_summary;
     };
 };
 
@@ -1447,7 +1492,7 @@ function display_traits() {
         traits_picks.push("<span class='green_txt'>+40%<\/span> Army Damage<br><span class='green_txt'>+10%<\/span> Minerals<br>");
     };
     if (traits_picks.length == 0) {
-        traits_summary = "";
+        traits_summary = "Nothing selected.";
         document.getElementById("traits_summary").innerHTML = "Nothing selected.";
     }
     else {
@@ -1458,7 +1503,7 @@ function display_traits() {
             document.getElementById("traits_summary").innerHTML = traits_summary;
         };
     };
-    //display_bonus_summary(); // Add back in once display_bonus_summary() has been updated to include trait bounses.
+    display_bonus_summary(); // Add back in once display_bonus_summary() has been updated to include trait bounses.
 };
 
 function select_traits(trait) {
@@ -1563,6 +1608,69 @@ function select_traits(trait) {
             };
         };
     };
+    if (trait == "very-strong") {
+        for (i = 0; i < strong_traits.length; i++) {
+            var target = document.getElementById(strong_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (strong_traits[i].includes("strong") && trait_points >= 3) {
+                    clear_traits("strong");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(4)) {
+                            for (i = 0; i < strong_traits.length; i++) {
+                                var target = document.getElementById(strong_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        strong_pick = 2;
+                        display_traits();
+                        return true;
+                    };
+                }
+                else if (strong_traits[i].includes("weak") && trait_points >= 5) {
+                    clear_traits("strong");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(4)) {
+                            for (i = 0; i < strong_traits.length; i++) {
+                                var target = document.getElementById(strong_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        strong_pick = 2;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(4)) {
+                for (i = 0; i < strong_traits.length; i++) {
+                    var target = document.getElementById(strong_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                strong_pick = 2;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    
+    
+
+    
+    
 };
 
 function refund_trait_points(trait) {
