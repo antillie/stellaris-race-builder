@@ -1498,7 +1498,7 @@ function display_traits() {
     var traits_picks = [];
 
     if (strong_pick == -1) {
-        traits_picks.push("<span class='red_txt'>-20%<\/span> Army Damage<br>");
+        traits_picks.push("<span class='red_txt'>-20%<\/span> Army Damage<br><span class='red_txt'>-5%<\/span> Minerals<br>");
     };
     if (strong_pick == 1) {
         traits_picks.push("<span class='green_txt'>+20%<\/span> Army Damage<br><span class='green_txt'>+5%<\/span> Minerals<br>");
@@ -1513,7 +1513,7 @@ function display_traits() {
         traits_picks.push("<span class='green_txt'>+30<\/span> Years Leader Lifespan<br>");
     };
     if (enduring_pick == 2) {
-        traits_picks.push("<span class='green_txt'>+120<\/span> Years Leader Lifespan<br>");
+        traits_picks.push("<span class='green_txt'>+90<\/span> Years Leader Lifespan<br>");
     };
     if (decadent_pick == -1) {
         traits_picks.push("<span class='red_txt'>-10%<\/span> Resource Output without Slaves<br>");
@@ -1721,7 +1721,7 @@ function select_traits(trait) {
             };
         };
         if (spend_traits_picks()) {
-             if ((spend_traits_points(4) && enduring_pick != -1) || spend_traits_points(3)) {
+             if ((enduring_pick != -1 && spend_traits_points(4)) || spend_traits_points(3)) {
                 for (i = 0; i < strong_traits.length; i++) {
                     var target = document.getElementById(strong_traits[i]);
                     target.style.backgroundColor = "#040904";
@@ -1858,10 +1858,10 @@ function select_traits(trait) {
         for (i = 0; i < enduring_traits.length; i++) {
             var target = document.getElementById(enduring_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-                if (enduring_traits[i].includes("enduring") && trait_points >= 2) {
+                if (enduring_traits[i].includes("enduring") && trait_points >= 3) {
                     clear_traits("enduring");
                     if (spend_traits_picks()) {
-                        if (spend_traits_points(3)) {
+                        if (spend_traits_points(4)) {
                             for (i = 0; i < enduring_traits.length; i++) {
                                 var target = document.getElementById(enduring_traits[i]);
                                 target.style.backgroundColor = "#040904";
@@ -1878,10 +1878,10 @@ function select_traits(trait) {
                         max_traits = max_traits + 1;
                     };
                 }
-                else if (enduring_traits[i].includes("fleeting") && trait_points >= 4) {
+                else if (enduring_traits[i].includes("fleeting") && trait_points >= 5) {
                     clear_traits("enduring");
                     if (spend_traits_picks()) {
-                        if (spend_traits_points(3)) {
+                        if (spend_traits_points(4)) {
                             for (i = 0; i < enduring_traits.length; i++) {
                                 var target = document.getElementById(enduring_traits[i]);
                                 target.style.backgroundColor = "#040904";
@@ -1901,7 +1901,7 @@ function select_traits(trait) {
             };
         };
         if (spend_traits_picks()) { 
-            if ((spend_traits_points(4) && enduring_pick != -1) || spend_traits_points(3)) {
+            if ((enduring_pick != -1 && spend_traits_points(4)) || spend_traits_points(5)) {
                 for (i = 0; i < enduring_traits.length; i++) {
                     var target = document.getElementById(enduring_traits[i]);
                     target.style.backgroundColor = "#040904";
