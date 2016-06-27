@@ -1886,10 +1886,10 @@ function select_traits(trait) {
         for (i = 0; i < enduring_traits.length; i++) {
             var target = document.getElementById(enduring_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-                if (enduring_traits[i].includes("enduring") && trait_points >= 3) {
+                if (enduring_traits[i].includes("enduring") && trait_points >= 4) {
                     clear_traits("enduring");
                     if (spend_traits_picks()) {
-                        if (spend_traits_points(4)) {
+                        if (spend_traits_points(5)) {
                             for (i = 0; i < enduring_traits.length; i++) {
                                 var target = document.getElementById(enduring_traits[i]);
                                 target.style.backgroundColor = "#040904";
@@ -1906,7 +1906,7 @@ function select_traits(trait) {
                         max_traits = max_traits + 1;
                     };
                 }
-                else if (enduring_traits[i].includes("fleeting") && trait_points >= 5) {
+                else if (enduring_traits[i].includes("fleeting") && trait_points >= 6) {
                     clear_traits("enduring");
                     if (spend_traits_picks()) {
                         if (spend_traits_points(4)) {
@@ -1929,7 +1929,7 @@ function select_traits(trait) {
             };
         };
         if (spend_traits_picks()) { 
-            if ((enduring_pick != -1 && spend_traits_points(4)) || spend_traits_points(5)) {
+            if ((enduring_pick != -1 && spend_traits_points(5)) || spend_traits_points(5)) {
                 for (i = 0; i < enduring_traits.length; i++) {
                     var target = document.getElementById(enduring_traits[i]);
                     target.style.backgroundColor = "#040904";
