@@ -85,82 +85,82 @@ var governments = [
 ];
 
 // List of trait groups for clearing them all at once.
-var all_traits = [ // Probably don't need this array.
+var all_traits = [
     "adaptive",
     "agrarian",
     "charismatic",
     "communal",
     "conformists",
-    "decadent",
-    "deviants",
     "enduring",
     "extremely-adaptive",
-    "fleeting",
     "industrious",
     "intelligent",
     "natural-engineers",
     "natural-physicists",
     "natural-sociologists",
     "nomadic",
-    "nonadaptive",
     "quick-learners",
     "rapid-breeders",
-    "repugnant",
     "resilient",
-    "sedentary",
-    "slow-breeders",
-    "slow-learners",
-    "solitary",
     "strong",
     "talented",
     "thrifty",
     "venerable",
     "very-strong",
+    "decadent",
+    "deviants",
+    "fleeting",
+    "nonadaptive",
+    "repugnant",
+    "sedentary",
+    "slow-breeders",
+    "slow-learners",
+    "solitary",
     "weak"
 ];
 
 // Traits sub-arrays for lateral selection checking.
 var strong_traits = [
-    "weak",
+    "very-strong",
     "strong",
-    "very-strong"
+    "weak"
 ];
 
 var learner_traits = [
-    "slow-learners",
-    "quick-learners"
+    "quick-learners",
+    "slow-learners"
 ];
 
 var adaptive_traits = [
-    "nonadaptive",
+    "extremely-adaptive",
     "adaptive",
-    "extremely-adaptive"
+    "nonadaptive"
 ];
 
 var charismatic_traits = [
-    "repugnant",
-    "charismatic"
+    "charismatic",
+    "repugnant"
 ];
 
 var communal_traits = [
-    "solitary",
-    "communal"
+    "communal",
+    "solitary"
 ];
 
 var nomadic_traits = [
-    "sedentary",
-    "nomadic"
+    "nomadic",
+    "sedentary"
 ];
 
 var breeder_traits = [
-    "slow-breeders",
-    "rapid-breeders"
+    "rapid-breeders",
+    "slow-breeders"
 ];
 
 var enduring_traits = [
-    "fleeting",
+    "venerable",
     "enduring",
-    "venerable"
+    "fleeting"
 ];
 
 var science_traits = [
@@ -171,8 +171,8 @@ var science_traits = [
 ];
 
 var conformist_traits = [
-    "deviants",
-    "conformists"
+    "conformists",
+    "deviants"
 ];
 
 // Global variables for readout and function coordination purposes.
@@ -1995,9 +1995,119 @@ function select_traits(trait) {
                 max_traits = max_traits + 1;
         };
     };
+    
+    
+    
+    
+    
+    if (trait == "slow-learners") {
+        for (i = 0; i < learner_traits.length; i++) {
+            var target = document.getElementById(learner_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (learner_traits[i].includes("quick")) {
+                    clear_traits("learner");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(-1)) {
+                            for (i = 0; i < learner_traits.length; i++) {
+                                var target = document.getElementById(learner_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        learner_pick = -1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(-1)) {
+                for (i = 0; i < learner_traits.length; i++) {
+                    var target = document.getElementById(learner_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                learner_pick = -1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "quick-learners") {
+        for (i = 0; i < learner_traits.length; i++) {
+            var target = document.getElementById(learner_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (strong_traits[i].includes("very")) {
+                    clear_traits("learner");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < learner_traits.length; i++) {
+                                var target = document.getElementById(learner_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        learner_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                }
+                else if (learner_traits[i].includes("slow") && trait_points >= 2) {
+                    clear_traits("learner");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < learner_traits.length; i++) {
+                                var target = document.getElementById(learner_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        learner_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(1)) {
+                for (i = 0; i < learner_traits.length; i++) {
+                    var target = document.getElementById(learner_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                learner_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    
+    
+    
+    
+    
 };
 
 function refund_trait_points(trait) {
+
     if (trait == "weak" && trait_points >= 1) {
         trait_points = trait_points - 1;
         max_traits = max_traits + 1;
@@ -2040,43 +2150,95 @@ function refund_trait_points(trait) {
         display_traits_points();
         return true;
     };
+    if (trait == "slow-learners" && trait_points >= 1) {
+        trait_points = trait_points - 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "quick-learners") {
+        trait_points = trait_points + 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
     return false;
 };
 
 function clear_traits(trait) {
-    var i = 0;
+    var i = 0;    
     
-    if (trait == "strong" || trait == "all") {
+    if (trait == "strong") {
         for (i = 0; i < strong_traits.length; i++) {
             var target = document.getElementById(strong_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-                if (refund_trait_points(strong_traits[i]) || trait == "all") {
+                if (refund_trait_points(strong_traits[i])) {
                     strong_pick = 0;
                     target.style.backgroundColor = "#040904";
                 };
             };
         };
     };
-    if (trait == "enduring" || trait == "all") {
+    if (trait == "enduring") {
         for (i = 0; i < enduring_traits.length; i++) {
             var target = document.getElementById(enduring_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-                if (refund_trait_points(enduring_traits[i]) || trait == "all") {
+                if (refund_trait_points(enduring_traits[i])) {
                     enduring_pick = 0;
                     target.style.backgroundColor = "#040904";
                 };
             };
         };
     };
-    if (trait == "decadent" || trait == "all") {
+    if (trait == "decadent") {
         var target = document.getElementById("decadent");
         if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-            if (refund_trait_points("decadent") || trait == "all") {
+            if (refund_trait_points("decadent")) {
                 decadent_pick = 0;
                 target.style.backgroundColor = "#040904";
             };
         };
     };
+    if (trait == "learner") {
+        for (i = 0; i < learner_traits.length; i++) {
+            var target = document.getElementById(learner_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (refund_trait_points(learner_traits[i])) {
+                    learner_pick = 0;
+                    target.style.backgroundColor = "#040904";
+                };
+            };
+        };
+    };
+    display_traits();
+};
+
+function clear_all_traits() {
+    var i = 0;
+    for (i = 0; i < all_traits.length; i++) {
+        var target = document.getElementById(all_traits[i]);
+        target.style.backgroundColor = "#040904";
+    };
+    strong_pick = 0;
+    enduring_pick = 0;
+    decadent_pick = 0;
+    learner_pick = 0;
+    adaptive_pick = 0;
+    agrarian_pick = 0;
+    charismatic_pick = 0;
+    communal_pick = 0;
+    conformist_pick = 0;
+    industrious_pick = 0;
+    science_pick = 0;
+    nomadic_pick = 0;
+    breeder_pick = 0;
+    resilient_pick = 0;
+    talented_pick = 0;
+    thrifty_pick = 0;
+    trait_points = 2;
+    max_traits = 4;
+    
+    display_traits_points();
     display_traits();
 };
 
@@ -2210,7 +2372,7 @@ function clear_traits(trait) {
         <td colspan="4" height="25" align="center"><div id="trait_picks" class="sub_title">Traits picks remaining: 4</div></td>
     </tr>
     <tr>
-    <td colspan="4" height="30" align="center"><button class="button" type="button"onclick="clear_traits('all');">Clear Traits Selections</button></td>
+    <td colspan="4" height="30" align="center"><button class="button" type="button"onclick="clear_all_traits();">Clear Traits Selections</button></td>
     </tr>
     </table>
 </td>
