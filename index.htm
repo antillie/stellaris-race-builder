@@ -187,6 +187,7 @@ var government_summary = "Nothing selected.";
 var traits_summary = "Nothing selected.";
 
 var strong_pick = 0;
+var enduring_pick = 0;
 
 // Max allowed point/pick values.
 var ethics_points = 3;
@@ -1491,6 +1492,15 @@ function display_traits() {
     if (strong_pick == 2) {
         traits_picks.push("<span class='green_txt'>+40%<\/span> Army Damage<br><span class='green_txt'>+10%<\/span> Minerals<br>");
     };
+    if (enduring_pick == -1) {
+        traits_picks.push("<span class='red_txt'>-15<\/span> Years Leader Lifespan<br>");
+    };
+    if (enduring_pick == 1) {
+        traits_picks.push("<span class='green_txt'>+30<\/span> Years Leader Lifespan<br>");
+    };
+    if (enduring_pick == 2) {
+        traits_picks.push("<span class='green_txt'>+120<\/span> Years Leader Lifespan<br>");
+    };
     if (traits_picks.length == 0) {
         traits_summary = "Nothing selected.";
         document.getElementById("traits_summary").innerHTML = "Nothing selected.";
@@ -1649,7 +1659,7 @@ function select_traits(trait) {
             };
         };
         if (spend_traits_picks()) {
-            if (spend_traits_points(4)) {
+             if ((trait_points >= 4 && enduring_pick != -1) || spend_traits_points(5)) {
                 for (i = 0; i < strong_traits.length; i++) {
                     var target = document.getElementById(strong_traits[i]);
                     target.style.backgroundColor = "#040904";
@@ -1666,11 +1676,163 @@ function select_traits(trait) {
             };
         };
     };
-    
-    
-
-    
-    
+    if (trait == "fleeting") {
+        for (i = 0; i < enduring_traits.length; i++) {
+            var target = document.getElementById(enduring_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (enduring_traits[i].includes("enduring")) {
+                    clear_traits("enduring");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(-1)) {
+                            for (i = 0; i < enduring_traits.length; i++) {
+                                var target = document.getElementById(enduring_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        enduring_pick = -1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(-1)) {
+                for (i = 0; i < enduring_traits.length; i++) {
+                    var target = document.getElementById(enduring_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                enduring_pick = -1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "enduring") {
+        for (i = 0; i < enduring_traits.length; i++) {
+            var target = document.getElementById(enduring_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (enduring_traits[i].includes("venerable")) {
+                    clear_traits("enduring");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < enduring_traits.length; i++) {
+                                var target = document.getElementById(enduring_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        enduring_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                }
+                else if (enduring_traits[i].includes("fleeting") && trait_points >= 2) {
+                    clear_traits("enduring");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < enduring_traits.length; i++) {
+                                var target = document.getElementById(enduring_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        enduring_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(1)) {
+                for (i = 0; i < enduring_traits.length; i++) {
+                    var target = document.getElementById(enduring_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                enduring_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "venerable") {
+        for (i = 0; i < enduring_traits.length; i++) {
+            var target = document.getElementById(enduring_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (enduring_traits[i].includes("enduring") && trait_points >= 3) {
+                    clear_traits("enduring");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(4)) {
+                            for (i = 0; i < enduring_traits.length; i++) {
+                                var target = document.getElementById(enduring_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        enduring_pick = 2;
+                        display_traits();
+                        return true;
+                    };
+                }
+                else if (enduring_traits[i].includes("fleeting") && trait_points >= 5) {
+                    clear_traits("enduring");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(4)) {
+                            for (i = 0; i < enduring_traits.length; i++) {
+                                var target = document.getElementById(enduring_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        enduring_pick = 2;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) { 
+            if ((trait_points >= 4 && enduring_pick != -1) || spend_traits_points(5)) {
+                for (i = 0; i < enduring_traits.length; i++) {
+                    var target = document.getElementById(enduring_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                enduring_pick = 2;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
 };
 
 function refund_trait_points(trait) {
@@ -1681,6 +1843,15 @@ function refund_trait_points(trait) {
         trait_points = trait_points + 1;
     };
     if (trait == "very-strong") {
+        trait_points = trait_points + 4;
+    };
+    if (trait == "fleeting") {
+        trait_points = trait_points - 1;
+    };
+    if (trait == "enduring") {
+        trait_points = trait_points + 1;
+    };
+    if (trait == "venerable") {
         trait_points = trait_points + 4;
     };
     max_traits = max_traits + 1;
@@ -1696,6 +1867,16 @@ function clear_traits(trait) {
             var target = document.getElementById(strong_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
                 refund_trait_points(strong_traits[i]);
+            };
+            target.style.backgroundColor = "#040904";
+        };
+    };
+    if (trait == "enduring" || trait == "all") {
+        enduring_pick = 0;
+        for (i = 0; i < enduring_traits.length; i++) {
+            var target = document.getElementById(enduring_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                refund_trait_points(enduring_traits[i]);
             };
             target.style.backgroundColor = "#040904";
         };
