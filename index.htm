@@ -1995,11 +1995,6 @@ function select_traits(trait) {
                 max_traits = max_traits + 1;
         };
     };
-    
-    
-    
-    
-    
     if (trait == "slow-learners") {
         for (i = 0; i < learner_traits.length; i++) {
             var target = document.getElementById(learner_traits[i]);
@@ -2099,8 +2094,169 @@ function select_traits(trait) {
             };
         };
     };
-    
-    
+    if (trait == "nonadaptive") {
+        for (i = 0; i < adaptive_traits.length; i++) {
+            var target = document.getElementById(adaptive_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (adaptive_traits[i] == "adaptive" || adaptive_traits[i] == "extremely-adaptive") {
+                    clear_traits("adaptive");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(-2)) {
+                            for (i = 0; i < adaptive_traits.length; i++) {
+                                var target = document.getElementById(adaptive_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        adaptive_pick = -1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(-2)) {
+                for (i = 0; i < adaptive_traits.length; i++) {
+                    var target = document.getElementById(adaptive_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                adaptive_pick = -1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "adaptive") {
+        for (i = 0; i < adaptive_traits.length; i++) {
+            var target = document.getElementById(adaptive_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (adaptive_traits[i].includes("extremely")) {
+                    clear_traits("adaptive");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(2)) {
+                            for (i = 0; i < adaptive_traits.length; i++) {
+                                var target = document.getElementById(adaptive_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        adaptive_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                }
+                else if (adaptive_traits[i].includes("nonadaptive") && trait_points >= 3) {
+                    clear_traits("adaptive");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(2)) {
+                            for (i = 0; i < adaptive_traits.length; i++) {
+                                var target = document.getElementById(adaptive_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        adaptive_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(2)) {
+                for (i = 0; i < adaptive_traits.length; i++) {
+                    var target = document.getElementById(adaptive_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                adaptive_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "extremely-adaptive") {
+        for (i = 0; i < adaptive_traits.length; i++) {
+            var target = document.getElementById(adaptive_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if ((adaptive_traits[i] == "adaptive") && trait_points >= 2) {
+                    clear_traits("adaptive");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(4)) {
+                            for (i = 0; i < adaptive_traits.length; i++) {
+                                var target = document.getElementById(adaptive_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        adaptive_pick = 2;
+                        display_traits();
+                        return true;
+                    }
+                    else {
+                        max_traits = max_traits + 1;
+                    };
+                }
+                else if (adaptive_traits[i].includes("nonadaptive") && trait_points >= 4) {
+                    clear_traits("adaptive");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(4)) {
+                            for (i = 0; i < adaptive_traits.length; i++) {
+                                var target = document.getElementById(adaptive_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        adaptive_pick = 2;
+                        display_traits();
+                        return true;
+                    }
+                    else {
+                        max_traits = max_traits + 1;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+             if ((adaptive_pick != -1 && spend_traits_points(4)) || spend_traits_points(5)) {
+                for (i = 0; i < adaptive_traits.length; i++) {
+                    var target = document.getElementById(adaptive_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                adaptive_pick = 2;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
     
     
     
@@ -2162,6 +2318,26 @@ function refund_trait_points(trait) {
         display_traits_points();
         return true;
     };
+    if (trait == "nonadaptive" && trait_points >= 2) {
+        trait_points = trait_points - 2;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "adaptive") {
+        trait_points = trait_points + 2;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "extremely-adaptive") {
+        trait_points = trait_points + 4;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    
+    
     return false;
 };
 
@@ -2210,6 +2386,19 @@ function clear_traits(trait) {
             };
         };
     };
+    if (trait == "adaptive") {
+        for (i = 0; i < adaptive_traits.length; i++) {
+            var target = document.getElementById(adaptive_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (refund_trait_points(adaptive_traits[i])) {
+                    adaptive_pick = 0;
+                    target.style.backgroundColor = "#040904";
+                };
+            };
+        };
+    };
+    
+    
     display_traits();
 };
 
