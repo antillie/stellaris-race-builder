@@ -2609,9 +2609,97 @@ function clear_traits(trait) {
             };
         };
     };
-    
-    
-    
+    if (trait == "communal") {
+        for (i = 0; i < communal_traits.length; i++) {
+            var target = document.getElementById(communal_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (refund_trait_points(communal_traits[i])) {
+                    communal_pick = 0;
+                    target.style.backgroundColor = "#040904";
+                };
+            };
+        };
+    };
+    if (trait == "conformist") {
+        for (i = 0; i < conformist_traits.length; i++) {
+            var target = document.getElementById(conformist_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (refund_trait_points(conformist_traits[i])) {
+                    conformist_pick = 0;
+                    target.style.backgroundColor = "#040904";
+                };
+            };
+        };
+    };
+    if (trait == "industrious") {
+        var target = document.getElementById("industrious");
+        if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+            if (refund_trait_points("industrious")) {
+                industrious_pick = 0;
+                target.style.backgroundColor = "#040904";
+            };
+        };
+    };
+    if (trait == "science") {
+        for (i = 0; i < science_traits.length; i++) {
+            var target = document.getElementById(science_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (refund_trait_points(science_traits[i])) {
+                    science_pick = 0;
+                    target.style.backgroundColor = "#040904";
+                };
+            };
+        };
+    };
+    if (trait == "nomadic") {
+        for (i = 0; i < nomadic_traits.length; i++) {
+            var target = document.getElementById(nomadic_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (refund_trait_points(nomadic_traits[i])) {
+                    nomadic_pick = 0;
+                    target.style.backgroundColor = "#040904";
+                };
+            };
+        };
+    };
+    if (trait == "breeder") {
+        for (i = 0; i < breeder_traits.length; i++) {
+            var target = document.getElementById(breeder_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (refund_trait_points(breeder_traits[i])) {
+                    breeder_pick = 0;
+                    target.style.backgroundColor = "#040904";
+                };
+            };
+        };
+    };
+    if (trait == "resilient") {
+        var target = document.getElementById("resilient");
+        if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+            if (refund_trait_points("resilient")) {
+                resilient_pick = 0;
+                target.style.backgroundColor = "#040904";
+            };
+        };
+    };
+    if (trait == "talented") {
+        var target = document.getElementById("talented");
+        if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+            if (refund_trait_points("talented")) {
+                talented_pick = 0;
+                target.style.backgroundColor = "#040904";
+            };
+        };
+    };
+    if (trait == "thrifty") {
+        var target = document.getElementById("thrifty");
+        if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+            if (refund_trait_points("thrifty")) {
+                thrifty_pick = 0;
+                target.style.backgroundColor = "#040904";
+            };
+        };
+    };
     display_traits();
 };
 
@@ -2703,7 +2791,7 @@ function clear_all_traits() {
     </tr>
     <tr>
         <td align="center" id="deviants" onclick="select_traits('deviants');"><img src="images/traits/deviants.png" alt="Deviants"></td>
-        <td align="center" onclick="clear_traits('conformists');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" onclick="clear_traits('conformist');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
         <td align="center" id="conformists" onclick="select_traits('conformists');"><img src="images/traits/conformists.png" alt="Conformists"></td>
         <td align="center"> </td>
     </tr>
@@ -2715,25 +2803,25 @@ function clear_all_traits() {
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
-        <td align="center" class="top_line" onclick="clear_traits('intelligent');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" class="top_line" onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
         <td align="center" class="top_line" id="intelligent" onclick="select_traits('intelligent');"><img src="images/traits/intelligent.png" alt="Intelligent"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
-        <td align="center" onclick="clear_traits('natural-engineers');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
         <td align="center" id="natural-engineers" onclick="select_traits('natural-engineers');"><img src="images/traits/natural-engineers.png" alt="Natural Engineers"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
-        <td align="center" onclick="clear_traits('natural-physicists');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
         <td align="center" id="natural-physicists" onclick="select_traits('natural-physicists');"><img src="images/traits/natural-physicists.png" alt="Natural Physicists"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
-        <td align="center" class="bottom_line" onclick="clear_traits('natural-sociologists');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" class="bottom_line" onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
         <td align="center" class="bottom_line" id="natural-sociologists" onclick="select_traits('natural-sociologists');"><img src="images/traits/natural-sociologists.png" alt="Natural Sociologists"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
