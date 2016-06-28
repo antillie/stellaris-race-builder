@@ -1515,6 +1515,63 @@ function calculate_bonus_summary(total_summary) {
                 };
             };
         };
+        // You're off the edge of the map mate.
+        var raw_summary = replace_all("<br>", "|", total_summary);
+        var processed_summary_mk2 = strip_html(raw_summary);
+        
+        processed_summary_mk2 = replace_all("%", "", processed_summary_mk2);
+        processed_summary_mk2 = replace_all("+", "", processed_summary_mk2);
+        processed_summary_mk2 = replace_all("-", "", processed_summary_mk2);
+        processed_summary_mk2 = replace_all(" ", "", processed_summary_mk2);
+        processed_summary_mk2 = processed_summary_mk2.replace(/[0-9]/g, "");
+        processed_summary_mk2 = processed_summary_mk2.split("|")
+        
+        var final_dupes = find_duplicates(processed_summary_mk2);
+        
+        var dupe_array = [];
+        var q = 0;
+        var r = 0;
+        
+        for (q = 0; q < final_dupes.length; q++) {
+            var count = 0;
+            for (r = 0; r < processed_summary_mk2.length; r++) {
+                
+                if (processed_summary_mk2[r].includes(final_dupes[q])) {
+                    count = count + 1;
+                };
+            };
+            dupe_array.push(final_dupes[q] + "|" + count);
+        };
+        dupe_array.shift();
+        
+        // Here there be monsters.
+        var foo = 0;
+        var glork = 0;
+        
+        for (foo = 0; foo < dupe_array.length; foo++) {
+            var dupe_data = dupe_array[foo].split("|")
+            var counter = 1;
+            
+            
+            for (glork = 0; glork < new_summary.length; glork++) {
+                if (counter < dupe_data[1] && new_summary[glork].includes(dupe_data[0])) {
+                    counter = counter + 1;
+                    new_summary[glork] = "x";
+                };
+            };
+        };
+        total_summary = "";
+        for (y = 0; y < new_summary.length; y++) {
+            if (new_summary[y] != "x") {
+                
+                if (y == 0) {
+                    total_summary = total_summary + new_summary[y] + "<br><br>";
+                }
+                else {
+                      total_summary = total_summary + new_summary[y] + "<br>";
+                };
+            };
+        };
         document.getElementById("bonus_summary").innerHTML = total_summary;
     }
     else {
@@ -2321,8 +2378,8 @@ function select_traits(trait) {
         };
         if (spend_traits_picks()) {
             if (spend_traits_points(1)) {
-                for (i = 0; i < learner_traits.length; i++) {
-                    var target = document.getElementById(learner_traits[i]);
+                for (i = 0; i < charismatic_traits.length; i++) {
+                    var target = document.getElementById(charismatic_traits[i]);
                     target.style.backgroundColor = "#040904";
                 };
                 var target = document.getElementById(trait);
@@ -2337,8 +2394,186 @@ function select_traits(trait) {
             };
         };
     };
+    if (trait == "solitary") {
+        for (i = 0; i < communal_traits.length; i++) {
+            var target = document.getElementById(communal_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (communal_traits[i].includes("communal")) {
+                    clear_traits("communal");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(-1)) {
+                            for (i = 0; i < communal_traits.length; i++) {
+                                var target = document.getElementById(communal_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        communal_pick = -1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(-1)) {
+                for (i = 0; i < communal_traits.length; i++) {
+                    var target = document.getElementById(communal_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                communal_pick = -1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "communal") {
+        for (i = 0; i < communal_traits.length; i++) {
+            var target = document.getElementById(communal_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (communal_traits[i].includes("solitary") && trait_points >= 2) {
+                    clear_traits("communal");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < communal_traits.length; i++) {
+                                var target = document.getElementById(communal_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        communal_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(1)) {
+                for (i = 0; i < communal_traits.length; i++) {
+                    var target = document.getElementById(communal_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                communal_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "deviants") {
+        for (i = 0; i < conformist_traits.length; i++) {
+            var target = document.getElementById(conformist_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (conformist_traits[i].includes("conformist")) {
+                    clear_traits("conformist");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(-1)) {
+                            for (i = 0; i < conformist_traits.length; i++) {
+                                var target = document.getElementById(conformist_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        conformist_pick = -1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(-1)) {
+                for (i = 0; i < conformist_traits.length; i++) {
+                    var target = document.getElementById(conformist_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                conformist_pick = -1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "conformists") {
+        for (i = 0; i < conformist_traits.length; i++) {
+            var target = document.getElementById(conformist_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (conformist_traits[i].includes("deviants") && trait_points >= 3) {
+                    clear_traits("conformist");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(2)) {
+                            for (i = 0; i < conformist_traits.length; i++) {
+                                var target = document.getElementById(conformist_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        conformist_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(2)) {
+                for (i = 0; i < conformist_traits.length; i++) {
+                    var target = document.getElementById(conformist_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                conformist_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
     
-    
+    if (trait == "industrious") {
+        if (spend_traits_picks()) {
+            if (spend_traits_points(2)) {
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                industrious_pick = 1;
+                display_traits();
+                return true;
+            };
+        }
+        else {
+                max_traits = max_traits + 1;
+        };
+    };
     
 };
 
