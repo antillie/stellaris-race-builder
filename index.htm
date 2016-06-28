@@ -2040,24 +2040,7 @@ function select_traits(trait) {
         for (i = 0; i < learner_traits.length; i++) {
             var target = document.getElementById(learner_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
-                if (strong_traits[i].includes("very")) {
-                    clear_traits("learner");
-                    if (spend_traits_picks()) {
-                        if (spend_traits_points(1)) {
-                            for (i = 0; i < learner_traits.length; i++) {
-                                var target = document.getElementById(learner_traits[i]);
-                                target.style.backgroundColor = "#040904";
-                            };
-                        };
-                        var target = document.getElementById(trait);
-                        target.style.backgroundColor = "#30bbbb";
-                        display_traits_points();
-                        learner_pick = 1;
-                        display_traits();
-                        return true;
-                    };
-                }
-                else if (learner_traits[i].includes("slow") && trait_points >= 2) {
+                if (learner_traits[i].includes("slow") && trait_points >= 2) {
                     clear_traits("learner");
                     if (spend_traits_picks()) {
                         if (spend_traits_points(1)) {
@@ -2272,7 +2255,6 @@ function select_traits(trait) {
                 max_traits = max_traits + 1;
         };
     };
-    
     if (trait == "repugnant") {
         for (i = 0; i < charismatic_traits.length; i++) {
             var target = document.getElementById(charismatic_traits[i]);
@@ -2314,7 +2296,47 @@ function select_traits(trait) {
             };
         };
     };
-    
+    if (trait == "charismatic") {
+        for (i = 0; i < charismatic_traits.length; i++) {
+            var target = document.getElementById(charismatic_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (charismatic_traits[i].includes("repugnant") && trait_points >= 2) {
+                    clear_traits("charismatic");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < charismatic_traits.length; i++) {
+                                var target = document.getElementById(charismatic_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        charismatic_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(1)) {
+                for (i = 0; i < learner_traits.length; i++) {
+                    var target = document.getElementById(learner_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                charismatic_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
     
     
     
@@ -2406,9 +2428,108 @@ function refund_trait_points(trait) {
         display_traits_points();
         return true;
     };
-    
-    
-    
+    if (trait == "charismatic") {
+        trait_points = trait_points + 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "solitary" && trait_points >= 1) {
+        trait_points = trait_points - 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "communal") {
+        trait_points = trait_points + 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "deviants" && trait_points >= 1) {
+        trait_points = trait_points - 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "conformists") {
+        trait_points = trait_points + 2;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "industrious") {
+        trait_points = trait_points + 2;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "intelligent") {
+        trait_points = trait_points + 2;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "natural-engineers") {
+        trait_points = trait_points + 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "natural-physicists") {
+        trait_points = trait_points + 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "natural-sociologists") {
+        trait_points = trait_points + 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "sedentary" && trait_points >= 1) {
+        trait_points = trait_points - 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "nomadic") {
+        trait_points = trait_points + 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "slow-breeders" && trait_points >= 1) {
+        trait_points = trait_points - 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "rapid-breeders") {
+        trait_points = trait_points + 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "resilient") {
+        trait_points = trait_points + 1;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "talented") {
+        trait_points = trait_points + 2;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
+    if (trait == "thrifty") {
+        trait_points = trait_points + 2;
+        max_traits = max_traits + 1;
+        display_traits_points();
+        return true;
+    };
     return false;
 };
 
@@ -2529,7 +2650,7 @@ function clear_all_traits() {
 
 <table border="0" cellspacing="0">
 <tr>
-<td valign="top" width="245" align="center">
+<td valign="top" width="250" align="center">
     <table border="0"> <!-- traits table -->
     <tr><td colspan="3" align="center" valign="top" height="30"><span class="section_title">Traits</span></td><td></td></tr>
     <tr>
