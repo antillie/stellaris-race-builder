@@ -1303,10 +1303,10 @@ function display_ethics() {
         ethics_picks.push("<span class='green_txt'>-10%<\/span> Ethics Divergence<br><span class='green_txt'>-5%<\/span> Growth Requirement<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Symbol of Unity<\/a><\/span><br>");
     };
     if (spirituality_pick == 1) {
-        ethics_picks.push("<span class='green_txt'>+5%<\/span> Physics, Society and Engineering Output<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Research Institute<\/a><\/span><br>");
+        ethics_picks.push("<span class='green_txt'>+5%<\/span> Physics, Society, and Engineering Output<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Research Institute<\/a><\/span><br>");
     };
     if (spirituality_pick == 2) {
-        ethics_picks.push("<span class='green_txt'>+15%<\/span> Physics, Society and Engineering Output<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Research Institute<\/a><\/span><br>");
+        ethics_picks.push("<span class='green_txt'>+15%<\/span> Physics, Society, and Engineering Output<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Research Institute<\/a><\/span><br>");
     };
     if (militarisim_pick == -2) {
         ethics_picks.push("<span class='red_txt'>-15%<\/span> War Happiness<br><span class='green_txt'>+15%<\/span> Peace Happiness<br><span class='red_txt'>-3<\/span> Max Rivalries (cannot have rivals)<br><span class='green_txt'>+75%<\/span> Trust Growth<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Paradise Dome<\/a><br>");
@@ -1444,16 +1444,16 @@ function calculate_bonus_summary(total_summary) {
                     };
                     
                     if (processed_summary[x].includes("green") && processed_summary[x].includes("+")) {
-                    plus_good = 1;
+                        plus_good = 1;
                     };
                     
                     if (processed_summary[x].includes("green") && processed_summary[x].includes("-")) {
                         neg_good = 1;
                     };
-                    
                     temp = replace_all("%", "", temp);
                     temp = replace_all(" ", "", temp);
                     temp = replace_all("+", "", temp);
+                    temp = replace_all(",", "", temp);
                     temp = temp.replace(/[a-z]/g, "");
                     temp = temp.replace(/[A-Z]/g, "");
                     total_bonus = total_bonus + Number(temp);
@@ -1643,7 +1643,7 @@ function display_traits() {
         traits_picks.push("<span class='green_txt'>+15%<\/span> Minerals<br>");
     };
     if (science_pick == -1) {
-        traits_picks.push("<span class='green_txt'>+10%<\/span> Physics, Society and Engineering Output<br>");
+        traits_picks.push("<span class='green_txt'>+10%<\/span> Physics, Society, and Engineering Output<br>");
     };
     if (science_pick == 1) {
         traits_picks.push("<span class='green_txt'>+15%<\/span> Engineering Output<br>");
@@ -1658,22 +1658,22 @@ function display_traits() {
         traits_picks.push("<span class='red_txt'>+50%<\/span> Migration Time<br><span class='red_txt'>+33%<\/span> Resettlement Cost<br>");
     };
     if (nomadic_pick == 1) {
-        traits_picks.push("<span class='greed_txt'>-50%<\/span> Migration Time<br><span class='green_txt'>-33%<\/span> Resettlement Cost<br>");
+        traits_picks.push("<span class='green_txt'>-50%<\/span> Migration Time<br><span class='green_txt'>-33%<\/span> Resettlement Cost<br>");
     };
     if (breeder_pick == -1) {
         traits_picks.push("<span class='red_txt'>+15%<\/span> Growth Time<br>");
     };
     if (breeder_pick == 1) {
-        traits_picks.push("<span class='greed_txt'>-10%<\/span> Growth Time<br>");
+        traits_picks.push("<span class='green_txt'>-10%<\/span> Growth Time<br>");
     };
     if (resilient_pick == 1) {
-        traits_picks.push("<span class='greed_txt'>+100%<\/span> Garrison Health<br><span class='greed_txt'>+50%<\/span> Fortification Defensive Bonus<br>");
+        traits_picks.push("<span class='green_txt'>+100%<\/span> Garrison Health<br><span class='green_txt'>+50%<\/span> Fortification Defensive Bonus<br>");
     };
     if (talented_pick == 1) {
-        traits_picks.push("<span class='greed_txt'>+1<\/span> Leader Starting Levels<br>");
+        traits_picks.push("<span class='green_txt'>+1<\/span> Leader Starting Levels<br>");
     };
     if (thrifty_pick == 1) {
-        traits_picks.push("<span class='greed_txt'>+15%<\/span> Energy Credits<br>");
+        traits_picks.push("<span class='green_txt'>+15%<\/span> Energy Credits<br>");
     };
     // End of bonus listings.
     if (traits_picks.length == 0) {
@@ -2633,9 +2633,215 @@ function select_traits(trait) {
             };
         };
     };
-    
-    
-    
+    if (trait == "sedentary") {
+        for (i = 0; i < nomadic_traits.length; i++) {
+            var target = document.getElementById(nomadic_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (nomadic_traits[i].includes("nomadic")) {
+                    clear_traits("nomadic");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(-1)) {
+                            for (i = 0; i < nomadic_traits.length; i++) {
+                                var target = document.getElementById(nomadic_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        nomadic_pick = -1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(-1)) {
+                for (i = 0; i < nomadic_traits.length; i++) {
+                    var target = document.getElementById(nomadic_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                nomadic_pick = -1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "nomadic") {
+        for (i = 0; i < nomadic_traits.length; i++) {
+            var target = document.getElementById(nomadic_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (nomadic_traits[i].includes("sedentary") && trait_points >= 2) {
+                    clear_traits("nomadic");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < nomadic_traits.length; i++) {
+                                var target = document.getElementById(nomadic_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        nomadic_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(1)) {
+                for (i = 0; i < nomadic_traits.length; i++) {
+                    var target = document.getElementById(nomadic_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                nomadic_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "slow-breeders") {
+        for (i = 0; i < breeder_traits.length; i++) {
+            var target = document.getElementById(breeder_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (breeder_traits[i].includes("rapid")) {
+                    clear_traits("breeder");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(-1)) {
+                            for (i = 0; i < breeder_traits.length; i++) {
+                                var target = document.getElementById(breeder_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        breeder_pick = -1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(-1)) {
+                for (i = 0; i < breeder_traits.length; i++) {
+                    var target = document.getElementById(breeder_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                breeder_pick = -1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "rapid-breeders") {
+        for (i = 0; i < breeder_traits.length; i++) {
+            var target = document.getElementById(breeder_traits[i]);
+            if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+                if (breeder_traits[i].includes("slow") && trait_points >= 2) {
+                    clear_traits("breeder");
+                    if (spend_traits_picks()) {
+                        if (spend_traits_points(1)) {
+                            for (i = 0; i < breeder_traits.length; i++) {
+                                var target = document.getElementById(breeder_traits[i]);
+                                target.style.backgroundColor = "#040904";
+                            };
+                        };
+                        var target = document.getElementById(trait);
+                        target.style.backgroundColor = "#30bbbb";
+                        display_traits_points();
+                        breeder_pick = 1;
+                        display_traits();
+                        return true;
+                    };
+                };
+            };
+        };
+        if (spend_traits_picks()) {
+            if (spend_traits_points(1)) {
+                for (i = 0; i < breeder_traits.length; i++) {
+                    var target = document.getElementById(breeder_traits[i]);
+                    target.style.backgroundColor = "#040904";
+                };
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                breeder_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "resilient") {
+        if (spend_traits_picks()) {
+            if (spend_traits_points(1)) {
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                resilient_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "talented") {
+        if (spend_traits_picks()) {
+            if (spend_traits_points(2)) {
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                talented_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
+    if (trait == "thrifty") {
+        if (spend_traits_picks()) {
+            if (spend_traits_points(2)) {
+                var target = document.getElementById(trait);
+                target.style.backgroundColor = "#30bbbb";
+                display_traits_points();
+                thrifty_pick = 1;
+                display_traits();
+                return true;
+            }
+            else {
+                max_traits = max_traits + 1;
+            };
+        };
+    };
 };
 
 function refund_trait_points(trait) {
