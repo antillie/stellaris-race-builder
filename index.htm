@@ -1288,7 +1288,7 @@ function display_ethics() {
         ethics_picks.push("<span class='green_txt'>+100%<\/span> Slavery Tolerance<br><span class='green_txt'>-15%<\/span> Food Consumption<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Ministry of Benevolence<\/a><\/span><br>");
     };
     if (individuality_pick == -1) {
-        ethics_picks.push("<span class='green_txt'>+33%<\/span> Slavery Tolerance<br><span class='green_txt'>-5%<\/span> Food Consumption<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Ministry of Benevolence<\/a><\/span><br>");
+        ethics_picks.push("<span class='green_txt'>+100%<\/span> Slavery Tolerance<br><span class='green_txt'>-5%<\/span> Food Consumption<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Ministry of Benevolence<\/a><\/span><br>");
     };
     if (individuality_pick == 1) {
         ethics_picks.push("<span class='green_txt'>+5%<\/span> Energy Credits<br><span class='red_txt'>-33%<\/span> Slavery Tolerance<br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Hyper-Entertainment Forum<\/a><\/span><br>Unlocks building: <span class='green_txt'><a href='http://www.stellariswiki.com/Buildings#Ethos_.26_Government' target='_blank'>Galactic Stock Exchange<\/a><\/span><br>");
@@ -1694,7 +1694,7 @@ function display_traits() {
 function select_traits(trait) {
     var i = 0;
     
-    if (trait == "weak") {
+    if (trait == "weak" && strong_pick != -1) {
         for (i = 0; i < strong_traits.length; i++) {
             var target = document.getElementById(strong_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -1735,7 +1735,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "strong") {
+    if (trait == "strong" && strong_pick != 1) {
         for (i = 0; i < strong_traits.length; i++) {
             var target = document.getElementById(strong_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -1793,7 +1793,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "very-strong") {
+    if (trait == "very-strong" && strong_pick != 2) {
         for (i = 0; i < strong_traits.length; i++) {
             var target = document.getElementById(strong_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -1857,7 +1857,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "fleeting") {
+    if (trait == "fleeting" && enduring_pick != -1) {
         for (i = 0; i < enduring_traits.length; i++) {
             var target = document.getElementById(enduring_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -1915,7 +1915,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "enduring") {
+    if (trait == "enduring" && enduring_pick != 1) {
         for (i = 0; i < enduring_traits.length; i++) {
             var target = document.getElementById(enduring_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -1973,7 +1973,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "venerable") {
+    if (trait == "venerable" && enduring_pick != 2) {
         for (i = 0; i < enduring_traits.length; i++) {
             var target = document.getElementById(enduring_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2037,7 +2037,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "decadent") {
+    if (trait == "decadent" && decadent_pick != -1) {
         if (spend_traits_picks()) {
             if (spend_traits_points(-1)) {
                 var target = document.getElementById(trait);
@@ -2052,7 +2052,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "slow-learners") {
+    if (trait == "slow-learners" && learner_pick != -1) {
         for (i = 0; i < learner_traits.length; i++) {
             var target = document.getElementById(learner_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2093,7 +2093,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "quick-learners") {
+    if (trait == "quick-learners" && learner_pick != 1) {
         for (i = 0; i < learner_traits.length; i++) {
             var target = document.getElementById(learner_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2134,7 +2134,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "nonadaptive") {
+    if (trait == "nonadaptive" && adaptive_pick != -1) {
         for (i = 0; i < adaptive_traits.length; i++) {
             var target = document.getElementById(adaptive_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2175,7 +2175,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "adaptive") {
+    if (trait == "adaptive" && adaptive_pick != 1) {
         for (i = 0; i < adaptive_traits.length; i++) {
             var target = document.getElementById(adaptive_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2233,7 +2233,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "extremely-adaptive") {
+    if (trait == "extremely-adaptive" && adaptive_pick != 2) {
         for (i = 0; i < adaptive_traits.length; i++) {
             var target = document.getElementById(adaptive_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2297,7 +2297,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "agrarian") {
+    if (trait == "agrarian" && agrarian_pick != 1) {
         if (spend_traits_picks()) {
             if (spend_traits_points(2)) {
                 var target = document.getElementById(trait);
@@ -2312,7 +2312,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "repugnant") {
+    if (trait == "repugnant" && charismatic_pick != -1) {
         for (i = 0; i < charismatic_traits.length; i++) {
             var target = document.getElementById(charismatic_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2353,7 +2353,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "charismatic") {
+    if (trait == "charismatic" && charismatic_pick != 1) {
         for (i = 0; i < charismatic_traits.length; i++) {
             var target = document.getElementById(charismatic_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2394,7 +2394,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "solitary") {
+    if (trait == "solitary" && communal_pick != -1) {
         for (i = 0; i < communal_traits.length; i++) {
             var target = document.getElementById(communal_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2435,7 +2435,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "communal") {
+    if (trait == "communal" && communal_pick != 1) {
         for (i = 0; i < communal_traits.length; i++) {
             var target = document.getElementById(communal_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2476,7 +2476,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "deviants") {
+    if (trait == "deviants" && conformist_pick != -1) {
         for (i = 0; i < conformist_traits.length; i++) {
             var target = document.getElementById(conformist_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2517,7 +2517,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "conformists") {
+    if (trait == "conformists" && conformist_pick != 1) {
         for (i = 0; i < conformist_traits.length; i++) {
             var target = document.getElementById(conformist_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2558,7 +2558,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "industrious") {
+    if (trait == "industrious" && industrious_pick != 1) {
         if (spend_traits_picks()) {
             if (spend_traits_points(2)) {
                 var target = document.getElementById(trait);
@@ -2573,7 +2573,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "intelligent") {
+    if (trait == "intelligent" && science_pick != -1) {
         if (spend_traits_picks() && science_pick == 0) {
             if (spend_traits_points(2)) {
                 var target = document.getElementById(trait);
@@ -2588,7 +2588,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "natural-engineers") {
+    if (trait == "natural-engineers" && science_pick != 1) {
         if (spend_traits_picks() && science_pick == 0) {
             if (spend_traits_points(1)) {
                 var target = document.getElementById(trait);
@@ -2603,7 +2603,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "natural-physicists") {
+    if (trait == "natural-physicists" && science_pick != 2) {
         if (spend_traits_picks() && science_pick == 0) {
             if (spend_traits_points(1)) {
                 var target = document.getElementById(trait);
@@ -2618,7 +2618,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "natural-sociologists") {
+    if (trait == "natural-sociologists" && science_pick != 3) {
         if (spend_traits_picks() && science_pick == 0) {
             if (spend_traits_points(1)) {
                 var target = document.getElementById(trait);
@@ -2633,7 +2633,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "sedentary") {
+    if (trait == "sedentary" && nomadic_pick != -1) {
         for (i = 0; i < nomadic_traits.length; i++) {
             var target = document.getElementById(nomadic_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2674,7 +2674,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "nomadic") {
+    if (trait == "nomadic" && nomadic_pick != 1) {
         for (i = 0; i < nomadic_traits.length; i++) {
             var target = document.getElementById(nomadic_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2715,7 +2715,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "slow-breeders") {
+    if (trait == "slow-breeders" && breeder_pick != -1) {
         for (i = 0; i < breeder_traits.length; i++) {
             var target = document.getElementById(breeder_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2756,7 +2756,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "rapid-breeders") {
+    if (trait == "rapid-breeders" && breeder_pick != 1) {
         for (i = 0; i < breeder_traits.length; i++) {
             var target = document.getElementById(breeder_traits[i]);
             if (target.style.backgroundColor == "rgb(48, 187, 187)") {
@@ -2797,7 +2797,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "resilient") {
+    if (trait == "resilient" && resilient_pick != 1) {
         if (spend_traits_picks()) {
             if (spend_traits_points(1)) {
                 var target = document.getElementById(trait);
@@ -2812,7 +2812,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "talented") {
+    if (trait == "talented" && talented_pick != 1) {
         if (spend_traits_picks()) {
             if (spend_traits_points(2)) {
                 var target = document.getElementById(trait);
@@ -2827,7 +2827,7 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "thrifty") {
+    if (trait == "thrifty" && thrifty_pick != 1) {
         if (spend_traits_picks()) {
             if (spend_traits_points(2)) {
                 var target = document.getElementById(trait);
