@@ -164,7 +164,7 @@ var enduring_traits = [
 ];
 
 var science_traits = [
-    "intelligent",
+    //"intelligent",
     "natural-engineers",
     "natural-physicists",
     "natural-sociologists"
@@ -196,6 +196,7 @@ var charismatic_pick = 0;
 var communal_pick = 0;
 var conformist_pick = 0;
 var industrious_pick = 0;
+var intelligent_pick = 0;
 var science_pick = 0;
 var nomadic_pick = 0;
 var breeder_pick = 0;
@@ -1642,7 +1643,7 @@ function display_traits() {
     if (industrious_pick == 1) {
         traits_picks.push("<span class='green_txt'>+15%<\/span> Minerals<br>");
     };
-    if (science_pick == -1) {
+    if (intelligent_pick == 1) {
         traits_picks.push("<span class='green_txt'>+10%<\/span> Physics, Society, and Engineering Output<br>");
     };
     if (science_pick == 1) {
@@ -2573,13 +2574,13 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "intelligent" && science_pick != -1) {
-        if (spend_traits_picks() && science_pick == 0) {
+    if (trait == "intelligent" && intelligent_pick != 1) {
+        if (spend_traits_picks()) {
             if (spend_traits_points(2)) {
                 var target = document.getElementById(trait);
                 target.style.backgroundColor = "#30bbbb";
                 display_traits_points();
-                science_pick = -1;
+                intelligent_pick = 1;
                 display_traits();
                 return true;
             }
@@ -2588,8 +2589,8 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "natural-engineers" && science_pick != 1) {
-        if (spend_traits_picks() && science_pick == 0) {
+    if (trait == "natural-engineers" && science_pick == 0) {
+        if (spend_traits_picks()) {
             if (spend_traits_points(1)) {
                 var target = document.getElementById(trait);
                 target.style.backgroundColor = "#30bbbb";
@@ -2603,8 +2604,8 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "natural-physicists" && science_pick != 2) {
-        if (spend_traits_picks() && science_pick == 0) {
+    if (trait == "natural-physicists" && science_pick == 0) {
+        if (spend_traits_picks()) {
             if (spend_traits_points(1)) {
                 var target = document.getElementById(trait);
                 target.style.backgroundColor = "#30bbbb";
@@ -2618,8 +2619,8 @@ function select_traits(trait) {
             };
         };
     };
-    if (trait == "natural-sociologists" && science_pick != 3) {
-        if (spend_traits_picks() && science_pick == 0) {
+    if (trait == "natural-sociologists" && science_pick == 0) {
+        if (spend_traits_picks()) {
             if (spend_traits_points(1)) {
                 var target = document.getElementById(trait);
                 target.style.backgroundColor = "#30bbbb";
@@ -3142,6 +3143,15 @@ function clear_traits(trait) {
             };
         };
     };
+    if (trait == "intelligent") {
+        var target = document.getElementById("intelligent");
+        if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+            if (refund_trait_points("intelligent")) {
+                intelligent_pick = 0;
+                target.style.backgroundColor = "#040904";
+            };
+        };
+    };
     if (trait == "science") {
         for (i = 0; i < science_traits.length; i++) {
             var target = document.getElementById(science_traits[i]);
@@ -3304,15 +3314,15 @@ function clear_all_traits() {
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center" class="vertical_line"> </td>
-        <td align="center" class="top_line" onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" class="top_line" id="intelligent" onclick="select_traits('intelligent');"><img src="images/traits/intelligent.png" alt="Intelligent"></td>
-        <td align="center" class="vertical_line_left"> </td>
+        <td align="center"> </td>
+        <td align="center"onclick="clear_traits('intelligent');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center"id="intelligent" onclick="select_traits('intelligent');"><img src="images/traits/intelligent.png" alt="Intelligent"></td>
+        <td align="center"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
-        <td align="center" onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="natural-engineers" onclick="select_traits('natural-engineers');"><img src="images/traits/natural-engineers.png" alt="Natural Engineers"></td>
+        <td align="center" class="top_line"  onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
+        <td align="center" class="top_line"  id="natural-engineers" onclick="select_traits('natural-engineers');"><img src="images/traits/natural-engineers.png" alt="Natural Engineers"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
