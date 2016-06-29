@@ -3500,7 +3500,7 @@ function random_build(traits_only) {
     if (traits_only == 0) {
         
         // Generate a random set of ethics.
-        var skipped_row = random_number(1, 4);
+        var skipped_row = random_number(1, 5);
         
         // The order we go through our three randomly selected ethics families here matters. Each one should be first once, second once, and third once. Otherwise it will bias the generator toward certain ethics over others.
         if (skipped_row == 1) {
@@ -3553,10 +3553,10 @@ function clear_government() {
 function random_ethic(ethic) {
     if (ethic == "individuality") {
         if (ethics_points > 1) {
-            var pick = random_number(1, 4);
+            var pick = random_number(1, 5);
         }
         else {
-            var pick = random_number(2, 3);
+            var pick = random_number(2, 4);
         };
         if (pick == 1) {
                 select_ethics("fanatic-collectivist");
@@ -3573,10 +3573,10 @@ function random_ethic(ethic) {
     };
     if (ethic == "spirituality") {
         if (ethics_points > 1) {
-            var pick = random_number(1, 4);
+            var pick = random_number(1, 5);
         }
         else {
-            var pick = random_number(2, 3);
+            var pick = random_number(2, 4);
         };
         if (pick == 1) {
                 select_ethics("fanatic-spiritualist");
@@ -3593,10 +3593,10 @@ function random_ethic(ethic) {
     };
     if (ethic == "militarisim") {
         if (ethics_points > 1) {
-            var pick = random_number(1, 4);
+            var pick = random_number(1, 5);
         }
         else {
-            var pick = random_number(2, 3);
+            var pick = random_number(2, 4);
         };
         if (pick == 1) {
                 select_ethics("fanatic-pacifist");
@@ -3613,10 +3613,10 @@ function random_ethic(ethic) {
     };
     if (ethic == "xenophobia") {
         if (ethics_points > 1) {
-            var pick = random_number(1, 4);
+            var pick = random_number(1, 5);
         }
         else {
-            var pick = random_number(2, 3);
+            var pick = random_number(2, 4);
         };
         if (pick == 1) {
                 select_ethics("fanatic-xenophile");
