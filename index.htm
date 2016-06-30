@@ -3483,6 +3483,7 @@ function random_build(traits_only) {
     // Clear the current build.
     clear_all_ethics();
     clear_all_traits();
+    clear_government();
     
     // Generate a random set of traits.
     while (trait_points != 0) {
@@ -3527,7 +3528,6 @@ function random_build(traits_only) {
         
         // Pick a random govenment that is allowed by our ethics.
         var government_choices = [];
-        clear_government();
         var i = 0;
         for (i = 0; i < governments.length; i++) {
             var target = document.getElementById(governments[i]);
