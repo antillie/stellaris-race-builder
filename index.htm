@@ -35,10 +35,19 @@ a.red:hover { color:#ee5050; text-decoration:underline; }
 .button {background-color: #040904; color: #40cb90; border-radius: 6px; font-family:arial; font-size:14px;}
 .green_txt {color: #50ee50; font-family:arial; font-size:14px;}
 .red_txt {color: #ee5050; font-family:arial; font-size:14px;}
+.ui-tooltip {white-space: pre-line;}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/external/jquery/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js"></script>
 <script type="text/javascript">
 // Friends don't let friends write bad javascript.
 "use strict";
+
+// jquery stuff to make tool tips look nicer.
+$(document).ready(function(){
+$(document).tooltip({show: {delay:0}});
+});
 
 // Arrays of the various racial traits/ethics/governments.
 var individuality = [
@@ -3763,117 +3772,117 @@ function update_url() {
     <table border="0"> <!-- traits table -->
     <tr><td colspan="3" align="center" valign="top" height="30"><span class="section_title">Traits</span></td><td></td></tr>
     <tr>
-        <td align="center" id="weak" onclick="select_traits('weak');"><img src="images/traits/weak.png" alt="Weak" title="Weak:&#10;----------&#10;-20% Army Damage&#10;-5% Minerals&#10;-1 Point"></td>
+        <td align="center" id="weak" onclick="select_traits('weak');"><img src="images/traits/weak.png" alt="Weak" title="Weak:&#10;-20% Army Damage&#10;-5% Minerals&#10;-1 Point"></td>
         <td align="center" onclick="clear_traits('strong');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="strong" onclick="select_traits('strong');"><img src="images/traits/strong.png" alt="Strong" title="Strong:&#10;----------&#10;+20% Army Damage&#10;+5% Minerals&#10;1 Point"></td>
-        <td align="center" id="very-strong" onclick="select_traits('very-strong');"><img src="images/traits/very-strong.png" alt="Very Strong" title="Very Strong:&#10;----------&#10;+40% Army Damage&#10;+10% Minerals&#10;3 Points"></td>
+        <td align="center" id="strong" onclick="select_traits('strong');"><img src="images/traits/strong.png" alt="Strong" title="Strong:&#10;+20% Army Damage&#10;+5% Minerals&#10;1 Point"></td>
+        <td align="center" id="very-strong" onclick="select_traits('very-strong');"><img src="images/traits/very-strong.png" alt="Very Strong" title="Very Strong:&#10;+40% Army Damage&#10;+10% Minerals&#10;3 Points"></td>
     </tr>
     <tr>
-        <td align="center" id="fleeting" onclick="select_traits('fleeting');"><img src="images/traits/fleeting.png" alt="Fleeting" title="Fleeting:&#10;----------&#10;-15 Years Leader Lifespan&#10;-1 Point"></td>
+        <td align="center" id="fleeting" onclick="select_traits('fleeting');"><img src="images/traits/fleeting.png" alt="Fleeting" title="Fleeting:&#10;-15 Years Leader Lifespan&#10;-1 Point"></td>
         <td align="center" onclick="clear_traits('enduring');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="enduring" onclick="select_traits('enduring');"><img src="images/traits/enduring.png" alt="Enduring" title="Enduring:&#10;----------&#10;+30 Years Leader Lifespan&#10;1 Point"></td>
-        <td align="center" id="venerable" onclick="select_traits('venerable');"><img src="images/traits/venerable.png" alt="Venerable" title="Venerable:&#10;----------&#10;+90 Years Leader Lifespan&#10;5 Points"></td>
+        <td align="center" id="enduring" onclick="select_traits('enduring');"><img src="images/traits/enduring.png" alt="Enduring" title="Enduring:&#10;+30 Years Leader Lifespan&#10;1 Point"></td>
+        <td align="center" id="venerable" onclick="select_traits('venerable');"><img src="images/traits/venerable.png" alt="Venerable" title="Venerable:&#10;+90 Years Leader Lifespan&#10;5 Points"></td>
     </tr>
     <tr>
-        <td align="center" id="decadent" onclick="select_traits('decadent');"><img src="images/traits/decadent.png" alt="Decadent" title="Decadent:&#10;----------&#10;-10% Resource Output without Slaves&#10;-1 Point"></td>
+        <td align="center" id="decadent" onclick="select_traits('decadent');"><img src="images/traits/decadent.png" alt="Decadent" title="Decadent:&#10;-10% Resource Output without Slaves&#10;-1 Point"></td>
         <td align="center" onclick="clear_traits('decadent');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
         <td align="center"> </td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center" id="slow-learners" onclick="select_traits('slow-learners');"><img src="images/traits/slow-learners.png" alt="Slow Learners" title="Slow Learners:&#10;----------&#10;-25% Leader Experience Gain&#10;-1 Point"></td>
+        <td align="center" id="slow-learners" onclick="select_traits('slow-learners');"><img src="images/traits/slow-learners.png" alt="Slow Learners" title="Slow Learners:&#10;-25% Leader Experience Gain&#10;-1 Point"></td>
         <td align="center" onclick="clear_traits('learner');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="quick-learners" onclick="select_traits('quick-learners');"><img src="images/traits/quick-learners.png" alt="Quick Learners" title="Quick Learners:&#10;----------&#10;+25% Leader Experience Gain&#10;1 Point"></td>
+        <td align="center" id="quick-learners" onclick="select_traits('quick-learners');"><img src="images/traits/quick-learners.png" alt="Quick Learners" title="Quick Learners:&#10;+25% Leader Experience Gain&#10;1 Point"></td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center" id="nonadaptive" onclick="select_traits('nonadaptive');"><img src="images/traits/nonadaptive.png" alt="Nonadaptive" title="Nonadaptive:&#10;----------&#10;-10% Habitability&#10;-2 Points"></td>
+        <td align="center" id="nonadaptive" onclick="select_traits('nonadaptive');"><img src="images/traits/nonadaptive.png" alt="Nonadaptive" title="Nonadaptive:&#10;-10% Habitability&#10;-2 Points"></td>
         <td align="center" onclick="clear_traits('adaptive');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="adaptive" onclick="select_traits('adaptive');"><img src="images/traits/adaptive.png" alt="Adaptive" title="Adaptive:&#10;----------&#10;+10% Habitability&#10;2 Points"></td>
-        <td align="center" id="extremely-adaptive" onclick="select_traits('extremely-adaptive');"><img src="images/traits/extremely-adaptive.png" alt="Extremely Adaptive" title="Extremely Adaptive:&#10;----------&#10;+20% Habitability&#10;4 Points"></td>
+        <td align="center" id="adaptive" onclick="select_traits('adaptive');"><img src="images/traits/adaptive.png" alt="Adaptive" title="Adaptive:&#10;+10% Habitability&#10;2 Points"></td>
+        <td align="center" id="extremely-adaptive" onclick="select_traits('extremely-adaptive');"><img src="images/traits/extremely-adaptive.png" alt="Extremely Adaptive" title="Extremely Adaptive:&#10;+20% Habitability&#10;4 Points"></td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center" onclick="clear_traits('agrarian');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="agrarian" onclick="select_traits('agrarian');"><img src="images/traits/agrarian.png" alt="Agrarian" title="Agrarian:&#10;----------&#10;+15% Food Output&#10;2 Points"></td>
+        <td align="center" id="agrarian" onclick="select_traits('agrarian');"><img src="images/traits/agrarian.png" alt="Agrarian" title="Agrarian:&#10;+15% Food Output&#10;2 Points"></td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center" id="repugnant" onclick="select_traits('repugnant');"><img src="images/traits/repugnant.png" alt="Repugnant" title="Repugnant:&#10;----------&#10;-1% Other Species Happiness per Pop&#10;-10 Diplomatic Standing&#10-1 Point"></td>
+        <td align="center" id="repugnant" onclick="select_traits('repugnant');"><img src="images/traits/repugnant.png" alt="Repugnant" title="Repugnant:&#10;-1% Other Species Happiness per Pop&#10;-10 Diplomatic Standing&#10-1 Point"></td>
         <td align="center" onclick="clear_traits('charismatic');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="charismatic" onclick="select_traits('charismatic');"><img src="images/traits/charismatic.png" alt="Charismatic" title="Charismatic:&#10;----------&#10;+1% Other Species Happiness per Pop&#10;+10 Diplomatic Standing&#10;1 Point"></td>
+        <td align="center" id="charismatic" onclick="select_traits('charismatic');"><img src="images/traits/charismatic.png" alt="Charismatic" title="Charismatic:&#10;+1% Other Species Happiness per Pop&#10;+10 Diplomatic Standing&#10;1 Point"></td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center" id="solitary" onclick="select_traits('solitary');"><img src="images/traits/solitary.png" alt="Solitary" title="Solitary:&#10;----------&#10;-5% Happiness&#10;-1 Point"></td>
+        <td align="center" id="solitary" onclick="select_traits('solitary');"><img src="images/traits/solitary.png" alt="Solitary" title="Solitary:&#10;-5% Happiness&#10;-1 Point"></td>
         <td align="center" onclick="clear_traits('communal');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="communal" onclick="select_traits('communal');"><img src="images/traits/communal.png" alt="Communal" title="Communal:&#10;----------&#10;+5% Happiness&#10;1 Point"></td>
+        <td align="center" id="communal" onclick="select_traits('communal');"><img src="images/traits/communal.png" alt="Communal" title="Communal:&#10;+5% Happiness&#10;1 Point"></td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center" id="deviants" onclick="select_traits('deviants');"><img src="images/traits/deviants.png" alt="Deviants" title="Deviants:&#10;----------&#10;+15% Ethics Divergence&#10;-1 Point"></td>
+        <td align="center" id="deviants" onclick="select_traits('deviants');"><img src="images/traits/deviants.png" alt="Deviants" title="Deviants:&#10;+15% Ethics Divergence&#10;-1 Point"></td>
         <td align="center" onclick="clear_traits('conformist');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="conformists" onclick="select_traits('conformists');"><img src="images/traits/conformists.png" alt="Conformists" title="Conformists:&#10;----------&#10;-20% Ethics Divergence&#10;2 Points"></td>
+        <td align="center" id="conformists" onclick="select_traits('conformists');"><img src="images/traits/conformists.png" alt="Conformists" title="Conformists:&#10;-20% Ethics Divergence&#10;2 Points"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center" onclick="clear_traits('industrious');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="industrious" onclick="select_traits('industrious');"><img src="images/traits/industrious.png" alt="Industrious" title="Industrious:&#10;----------&#10;+15% Minerals&#10;2 Points"></td>
+        <td align="center" id="industrious" onclick="select_traits('industrious');"><img src="images/traits/industrious.png" alt="Industrious" title="Industrious:&#10;+15% Minerals&#10;2 Points"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center"onclick="clear_traits('intelligent');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center"id="intelligent" onclick="select_traits('intelligent');"><img src="images/traits/intelligent.png" alt="Intelligent" title="Intelligent:&#10;----------&#10;+10% Physics, Society, and Engineering Output&#10;2 Points"></td>
+        <td align="center"id="intelligent" onclick="select_traits('intelligent');"><img src="images/traits/intelligent.png" alt="Intelligent" title="Intelligent:&#10;+10% Physics, Society, and Engineering Output&#10;2 Points"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
         <td align="center" class="top_line"  onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" class="top_line"  id="natural-engineers" onclick="select_traits('natural-engineers');"><img src="images/traits/natural-engineers.png" alt="Natural Engineers" title="Natural Engineers:&#10;----------&#10;+15% Engineering Output&#10;1 Point"></td>
+        <td align="center" class="top_line"  id="natural-engineers" onclick="select_traits('natural-engineers');"><img src="images/traits/natural-engineers.png" alt="Natural Engineers" title="Natural Engineers:&#10;+15% Engineering Output&#10;1 Point"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
         <td align="center" onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="natural-physicists" onclick="select_traits('natural-physicists');"><img src="images/traits/natural-physicists.png" alt="Natural Physicists" title="Natural Physicists:&#10;----------&#10;+15% Physics Output&#10;1 Point"></td>
+        <td align="center" id="natural-physicists" onclick="select_traits('natural-physicists');"><img src="images/traits/natural-physicists.png" alt="Natural Physicists" title="Natural Physicists:&#10;+15% Physics Output&#10;1 Point"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
         <td align="center" class="vertical_line"> </td>
         <td align="center" class="bottom_line" onclick="clear_traits('science');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" class="bottom_line" id="natural-sociologists" onclick="select_traits('natural-sociologists');"><img src="images/traits/natural-sociologists.png" alt="Natural Sociologists" title="Natural Sociologists:&#10;----------&#10;+15% Society Output&#10;1 Point"></td>
+        <td align="center" class="bottom_line" id="natural-sociologists" onclick="select_traits('natural-sociologists');"><img src="images/traits/natural-sociologists.png" alt="Natural Sociologists" title="Natural Sociologists:&#10;+15% Society Output&#10;1 Point"></td>
         <td align="center" class="vertical_line_left"> </td>
     </tr>
     <tr>
-        <td align="center" id="sedentary" onclick="select_traits('sedentary');"><img src="images/traits/sedentary.png" alt="Sedentary" title="Sedentary:&#10;----------&#10;+50% Migration Time&#10;+33% Resettlement Cost&#10;-1 Point"></td>
+        <td align="center" id="sedentary" onclick="select_traits('sedentary');"><img src="images/traits/sedentary.png" alt="Sedentary" title="Sedentary:&#10;+50% Migration Time&#10;+33% Resettlement Cost&#10;-1 Point"></td>
         <td align="center" onclick="clear_traits('nomadic');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="nomadic" onclick="select_traits('nomadic');"><img src="images/traits/nomadic.png" alt="Nomadic" title="Nomadic:&#10;----------&#10;-50% Migration Time&#10;-33% Resettlement Cost&#10;1 Point"></td>
+        <td align="center" id="nomadic" onclick="select_traits('nomadic');"><img src="images/traits/nomadic.png" alt="Nomadic" title="Nomadic:&#10;-50% Migration Time&#10;-33% Resettlement Cost&#10;1 Point"></td>
         <td align="center"> </td>
     </tr>
     <tr>
-        <td align="center" id="slow-breeders" onclick="select_traits('slow-breeders');"><img src="images/traits/slow-breeders.png" alt="Slow Breeders" title="Slow Breeders:&#10;----------&#10;+15% Growth Time&#10;-1 Point"></td>
+        <td align="center" id="slow-breeders" onclick="select_traits('slow-breeders');"><img src="images/traits/slow-breeders.png" alt="Slow Breeders" title="Slow Breeders:&#10;+15% Growth Time&#10;-1 Point"></td>
         <td align="center" onclick="clear_traits('breeder');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="rapid-breeders" onclick="select_traits('rapid-breeders');"><img src="images/traits/rapid-breeders.png" alt="Rapid Breeders" title="Rapid Breeders:&#10;----------&#10;-10% Growth Time&#10;1 Point"></td>
+        <td align="center" id="rapid-breeders" onclick="select_traits('rapid-breeders');"><img src="images/traits/rapid-breeders.png" alt="Rapid Breeders" title="Rapid Breeders:&#10;-10% Growth Time&#10;1 Point"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center" onclick="clear_traits('resilient');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="resilient" onclick="select_traits('resilient');"><img src="images/traits/resilient.png" alt="Resilient" title="Resilient:&#10;----------&#10;+100% Garrison Health&#10;+50% Fortification Defensive Bonus&#10;1 Point"></td>
+        <td align="center" id="resilient" onclick="select_traits('resilient');"><img src="images/traits/resilient.png" alt="Resilient" title="Resilient:&#10;+100% Garrison Health&#10;+50% Fortification Defensive Bonus&#10;1 Point"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center" onclick="clear_traits('talented');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="talented" onclick="select_traits('talented');"><img src="images/traits/talented.png" alt="Talented" title="Talented:&#10;----------&#10;+1 Leader Starting Levels&#10;2 Points"></td>
+        <td align="center" id="talented" onclick="select_traits('talented');"><img src="images/traits/talented.png" alt="Talented" title="Talented:&#10;+1 Leader Starting Levels&#10;2 Points"></td>
         <td align="center"> </td>
     </tr>
     <tr>
         <td align="center"> </td>
         <td align="center" onclick="clear_traits('thrifty');"><img src="images/grey-circle-small.png" alt="Neutral"></td>
-        <td align="center" id="thrifty" onclick="select_traits('thrifty');"><img src="images/traits/thrifty.png" alt="Thrifty" title="Thrifty:&#10;----------&#10;+15% Energy Credits&#10;2 Points"></td>
+        <td align="center" id="thrifty" onclick="select_traits('thrifty');"><img src="images/traits/thrifty.png" alt="Thrifty" title="Thrifty:&#10;+15% Energy Credits&#10;2 Points"></td>
         <td align="center"> </td>
     </tr>
     <tr>
