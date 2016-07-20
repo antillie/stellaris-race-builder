@@ -1505,6 +1505,7 @@ function display_bonus_summary() {
         var total_summary = government_summary + ethics_summary + traits_summary;
         calculate_bonus_summary(total_summary);
     };
+    update_url();
 };
 
 function calculate_bonus_summary(total_summary) {
@@ -3633,9 +3634,128 @@ function random_ethic(ethic) {
     };
 };
 
+function read_url() {
+    
+    var url = window.location.href;
+    
+    if (url.includes("#")) {
+        
+        var params = url.split("#");
+        var build = params[1].split("&");
+        var ethics = [];
+        var traits = [];
+        var gov = "";
+        var i = 0;
+        
+        for (i = 0; i < build.length; i++) {
+            if (build[i].includes("ethic")) {
+                var ethic_data = build[i].split("=");
+                ethics.push(ethic_data[1]);
+            };
+            if (build[i].includes("trait")) {
+                var trait_data = build[i].split("=");
+                traits.push(trait_data[1]);
+            };
+            if (build[i].includes("gov")) {
+                var gov_data = build[i].split("=");
+                gov = gov_data[1];
+            };
+        };
+        
+        for (i = 0; i < ethics.length; i++) {
+            select_ethics(ethics[i]);
+        };
+        
+        if (gov != "") {
+            select_government(gov);
+        };
+        
+        var neg_traits = [
+            "decadent",
+            "deviants",
+            "fleeting",
+            "nonadaptive",
+            "repugnant",
+            "sedentary",
+            "slow-breeders",
+            "slow-learners",
+            "solitary",
+            "weak"
+        ];
+        
+        for (i = 0; i < neg_traits.length; i++) {
+            var x = 0;
+            for (x = 0; x < traits.length; x++) {
+                if (neg_traits[i] == traits[x]) {
+                    select_traits(traits[x]);
+                    traits[x] = "none";
+                };
+            };
+        };
+        for (i = 0; i < traits.length; i++) {
+            select_traits(traits[i]);
+        };
+    };
+};
+
+function update_url() {
+    
+    var hash = "";
+    var ethics = [];
+    var traits = [];
+    
+    var all_ethics = [
+        "fanatic-collectivist",
+        "collectivist",
+        "individualist",
+        "fanatic-individualist",
+        "fanatic-spiritualist",
+        "spiritualist",
+        "materialist",
+        "fanatic-materialist",
+        "fanatic-pacifist",
+        "pacifist",
+        "militarist",
+        "fanatic-militarist",
+        "fanatic-xenophile",
+        "xenophile",
+        "xenophobe",
+        "fanatic-xenophobe"
+    ];
+    
+    var i = 0;
+    
+    for (i = 0; i < all_traits.length; i++) {
+        var target = document.getElementById(all_traits[i]);
+        if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+            traits.push(all_traits[i]);
+        };
+    };
+    
+    for (i = 0; i < traits.length; i++) {
+        hash = hash + "trait=" + traits[i] + "&";
+    };
+    
+    for (i = 0; i < all_ethics.length; i++) {
+        var target = document.getElementById(all_ethics[i]);
+        if (target.style.backgroundColor == "rgb(48, 187, 187)") {
+            ethics.push(all_ethics[i]);
+        };
+    };
+    
+    for (i = 0; i < ethics.length; i++) {
+        hash = hash + "ethic=" + ethics[i] + "&";
+    };
+    
+    if (government_pick != "none") {
+        hash = hash + "gov=" + government_pick;
+    };
+    
+    document.location.hash = hash;
+};
 </script>
 </head>
-<body>
+<body onload="read_url();">
 
 <table border="0" cellspacing="0">
 <tr>
