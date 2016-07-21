@@ -21,6 +21,7 @@ a.red { color:#ee5050; text-decoration:none; }
 a.red:hover { color:#ee5050; text-decoration:underline; }
 
 .txt{color:#40cb90; font-family:arial; font-size:14px;}
+.policy_txt{color:#40cb90; font-family:arial; font-size:12px; opacity: 0.4;}
 .section_title{color:#40cb90; font-family:arial; font-size:16px; font-weight: bold;}
 .sub_title{color:#40cb90; font-family:arial; font-size:16px;}
 .selected-option {background-color:#30bbbb;}
@@ -46,9 +47,7 @@ a.red:hover { color:#ee5050; text-decoration:underline; }
 "use strict";
 
 // jquery stuff to make tool tips look nicer.
-$(document).ready(function(){
-$(document).tooltip({show: {delay:0}});
-});
+$(document).ready(function(){$(document).tooltip({show: {delay:0}});});
 
 // Arrays of the various racial traits/ethics/governments.
 var individuality = [
@@ -1456,6 +1455,7 @@ function display_ethics() {
         };
     };
     display_bonus_summary();
+    check_policies();
 };
 
 function find_duplicates(array) {
@@ -3763,13 +3763,158 @@ function update_url() {
     
     document.location.hash = hash;
 };
+
+function check_policies() {
+    slavery();
+    slave_procreation();
+    purge();
+    bombardment();
+};
+
+function slavery() {
+    // individualisim
+    if (individuality_pick > 0) {
+        document.getElementById("slave_none").style.opacity = "1.0";
+        document.getElementById("slave_none").style.fontWeight = "bold";
+        document.getElementById("slave_none").style.color = "#30bbbb";
+        document.getElementById("slave_xeno").style.opacity = "0.4";
+        document.getElementById("slave_xeno_reg").style.opacity = "0.4";
+        document.getElementById("slave_allow").style.opacity = "0.4";
+        document.getElementById("slave_allow").style.fontWeight = "normal";
+        document.getElementById("slave_allow").style.color = "#40cb90";
+        document.getElementById("slave_allow_reg").style.opacity = "1.0";
+    };
+    if (individuality_pick < 0) {
+        document.getElementById("slave_none").style.opacity = "1.0";
+        document.getElementById("slave_none").style.fontWeight = "normal";
+        document.getElementById("slave_none").style.color = "#40cb90";
+        document.getElementById("slave_xeno").style.opacity = "1.0";
+        document.getElementById("slave_xeno_reg").style.opacity = "1.0";
+        document.getElementById("slave_allow").style.opacity = "1.0";
+        document.getElementById("slave_allow").style.fontWeight = "bold";
+        document.getElementById("slave_allow").style.color = "#30bbbb";
+        document.getElementById("slave_allow_reg").style.opacity = "1.0";
+        
+        document.getElementById("slave_procreate").style.fontWeight = "bold";
+        document.getElementById("slave_procreate").style.color = "#30bbbb";
+        document.getElementById("slave_procreate").style.opacity = "1.0";
+        document.getElementById("slave_no_procreate").style.opacity = "1.0";
+    };
+    if (individuality_pick == 0) {
+        document.getElementById("slave_none").style.opacity = "1.0";
+        document.getElementById("slave_none").style.fontWeight = "bold";
+        document.getElementById("slave_none").style.color = "#30bbbb";
+        document.getElementById("slave_xeno").style.opacity = "1.0";
+        document.getElementById("slave_xeno_reg").style.opacity = "1.0";
+        document.getElementById("slave_allow").style.opacity = "1.0";
+        document.getElementById("slave_allow").style.fontWeight = "normal";
+        document.getElementById("slave_allow").style.color = "#40cb90";
+        document.getElementById("slave_allow_reg").style.opacity = "1.0";
+        
+        document.getElementById("slave_procreate").style.fontWeight = "bold";
+        document.getElementById("slave_procreate").style.color = "#30bbbb";
+        document.getElementById("slave_procreate").style.opacity = "1.0";
+        document.getElementById("slave_no_procreate").style.opacity = "1.0";
+    };
+    
+};
+
+function slave_procreation() {
+    if (individuality_pick >= 0) {
+        document.getElementById("slave_procreate").style.fontWeight = "bold";
+        document.getElementById("slave_procreate").style.color = "#30bbbb";
+        document.getElementById("slave_procreate").style.opacity = "1.0";
+        document.getElementById("slave_no_procreate").style.opacity = "1.0";
+    };
+    if (individuality_pick < 0) {
+        document.getElementById("slave_procreate").style.fontWeight = "bold";
+        document.getElementById("slave_procreate").style.color = "#30bbbb";
+        document.getElementById("slave_procreate").style.opacity = "1.0";
+        document.getElementById("slave_no_procreate").style.opacity = "1.0";
+    };
+    
+};
+
+function purge() {
+     // individualisim
+     if (individuality_pick >= 0) {
+        document.getElementById("purge_none").style.fontWeight = "bold";
+        document.getElementById("purge_none").style.color = "#30bbbb";
+        document.getElementById("purge_none").style.opacity = "1.0";
+        
+        document.getElementById("purge_xeno").style.opacity = "0.4";
+        document.getElementById("purge_xeno").style.color = "#40cb90";
+        document.getElementById("purge_xeno").style.fontWeight = "normal";
+        
+        document.getElementById("purge_allow").style.opacity = "0.4";
+        document.getElementById("purge_allow").style.color = "#40cb90";
+        document.getElementById("purge_allow").style.fontWeight = "normal";
+    };
+    if (individuality_pick < 0) {
+        document.getElementById("purge_none").style.fontWeight = "normal";
+        document.getElementById("purge_none").style.color = "#40cb90";
+        document.getElementById("purge_none").style.opacity = "1.0";
+        
+        document.getElementById("purge_xeno").style.fontWeight = "normal";
+        document.getElementById("purge_xeno").style.color = "#40cb90";
+        document.getElementById("purge_xeno").style.opacity = "1.0";
+        
+        document.getElementById("purge_allow").style.opacity = "1.0";
+        document.getElementById("purge_allow").style.fontWeight = "bold";
+        document.getElementById("purge_allow").style.color = "#30bbbb";
+    };
+};
+
+function bombardment() {
+    if (militarisim_pick < 0) {
+        document.getElementById("bombard_light").style.fontWeight = "bold";
+        document.getElementById("bombard_light").style.color = "#30bbbb";
+        document.getElementById("bombard_light").style.opacity = "1.0";
+        
+        document.getElementById("bombard_limit").style.opacity = "1.0";
+        document.getElementById("bombard_limit").style.color = "#40cb90";
+        document.getElementById("bombard_limit").style.fontWeight = "normal";
+        
+        document.getElementById("bombard_full").style.opacity = "0.4";
+        document.getElementById("bombard_full").style.color = "#40cb90";
+        document.getElementById("bombard_full").style.fontWeight = "normal";
+    };
+    if (militarisim_pick > 0) {
+        document.getElementById("bombard_light").style.fontWeight = "normal";
+        document.getElementById("bombard_light").style.color = "#40cb90";
+        document.getElementById("bombard_light").style.opacity = "1.0";
+        
+        document.getElementById("bombard_limit").style.opacity = "1.0";
+        document.getElementById("bombard_limit").style.color = "#40cb90";
+        document.getElementById("bombard_limit").style.fontWeight = "normal";
+        
+        document.getElementById("bombard_full").style.opacity = "1.0";
+        document.getElementById("bombard_full").style.color = "#30bbbb";
+        document.getElementById("bombard_full").style.fontWeight = "bold";
+    };
+    if (militarisim_pick == 0) {
+        document.getElementById("bombard_light").style.fontWeight = "normal";
+        document.getElementById("bombard_light").style.color = "#40cb90";
+        document.getElementById("bombard_light").style.opacity = "1.0";
+        
+        document.getElementById("bombard_limit").style.opacity = "1.0";
+        document.getElementById("bombard_limit").style.color = "#30bbbb";
+        document.getElementById("bombard_limit").style.fontWeight = "bold";
+        
+        document.getElementById("bombard_full").style.opacity = "0.4";
+        document.getElementById("bombard_full").style.color = "#40cb90";
+        document.getElementById("bombard_full").style.fontWeight = "bold";
+    };
+    
+};
+
 </script>
 </head>
 <body onload="read_url();">
 
 <table border="0" cellspacing="0">
 <tr>
-<td valign="top" width="305" align="center">
+<td valign="top" width="305" align="center" height="670">
     <table border="0"> <!-- traits table -->
     <tr><td colspan="3" align="center" valign="top" height="30"><span class="section_title">Traits</span></td><td></td></tr>
     <tr>
@@ -3900,7 +4045,7 @@ function update_url() {
 <td width="4"></td>
 <td width="0" class="divider"></td>
 <td width="4"></td>
-<td width="300" valign="top" align="center">
+<td width="300" valign="top" align="center" height="670">
     <table border="0"> <!-- ethics table -->
         <tr><td colspan="5" align="center" valign="top" height="30"><span class="section_title">Ethics</span></td></tr>
         <tr><td colspan="2" align="center"><span class="sub_title">Collectivisim</span></td><td align="center"><span class="section_title">&lt; &gt;</span></td><td colspan="2" align="center"><span class="sub_title">Individuality</span></td></tr>
@@ -3951,7 +4096,7 @@ function update_url() {
 <td width="4"></td>
 <td width="0" class="divider"></td>
 <td width="4"></td>
-<td valign="top">
+<td valign="top" height="670">
     <table border="0"> <!-- government table -->
     <tr><td height="30"> </td><td colspan="3" align="center" valign="top"><span class="section_title">Government</span></td></tr>
     <tr>
@@ -3996,13 +4141,13 @@ function update_url() {
 <td width="0" class="divider"></td>
 <td width="4"></td>
 <td rowspan="4" valign="top">
-    <table border="0" width="315"> <!-- adv. government and overall bonus section container table-->
+    <table border="0" width="315" cellpadding="0" cellspacing="0"> <!-- adv. government and overall bonus section container table-->
     <tr><td>
-        <table border="0" cellpadding="0" cellspacing="0"> <!-- adv. government section -->
-            <tr><td valign="top" height="25"><span class="sub_title">Selected government leads to:</span></td></tr>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%"> <!-- adv. government section -->
+            <tr><td valign="top" height="25" align="center"><span class="sub_title">Selected government leads to:</span></td></tr>
             <tr><td valign="top" height="165">
                 <table border="0" width="100%">
-                    <tr><td align="center"><div id="adv_gov_image"><img src="images/grey-circle.png" alt="None"></div></td></tr>
+                    <tr><td align="center" valign="top" height="50"><div id="adv_gov_image"><img src="images/grey-circle.png" alt="None"></div></td></tr>
                     <tr><td><div id="adv_gov" class="txt">Nothing selected.</div></td></tr>
                 </table>
         </table>
@@ -4010,13 +4155,14 @@ function update_url() {
     <tr><td height="8"> </td></tr>
     <tr><td height="1" class="top_line"> </td></tr>
     <tr><td height="8"> </td></tr>
-    <tr><td height="438" valign="top">
+    <tr><td height="462" valign="top">
         <table border="0" width="100%"> <!-- overall bonus section -->
             <tr><td align="center"><span class="sub_title">Overall Bonus Summary:</span></td></tr>
+            <tr><td height="5"></td></tr>
             <tr><td><div id="bonus_summary" class="txt">Nothing selected.</div></td></tr>
         </table>
     </td></tr>
-    <tr><td align="right">
+    <tr><td align="center">
         <table border="0"> <!-- HTML/CSS validator images and Stellaris version info -->
             <tr><td colspan="2" height="30" valign="top"><span class="txt">Updated for Stellaris v1.2</span></td></tr>
             <tr>
@@ -4025,6 +4171,82 @@ function update_url() {
             </tr>
         </table>
     </td></tr>
+    </table>
+</td>
+<td width="4" rowspan="5"></td>
+<td width="0" class="divider" rowspan="5"></td>
+<td width="4"rowspan="5"></td>
+<td width="250" valign="top" rowspan="5">
+    <table border="0" width="100%" height="300" cellpadding="0" cellspacing="0"> <!-- policy selection list -->
+        <tr><td align="center" height="25" valign="top"><span class="sub_title">Valid Policy Selections:<br>(work in progress)</span></td></tr>
+        <tr><td valign="top">
+            <table border="0">
+            <tr><td colspan="2"><span class="txt">Slavery:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="slave_none">Prohibited</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="slave_xeno">Xeno's Only</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="slave_xeno_reg">Xeno's Only Regulated</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="slave_allow">Allowed</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="slave_allow_reg">Allowed Regulated</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Slave Procreation:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="slave_procreate">Allowed</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="slave_no_procreate">Not Allowed</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Purge:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="purge_allow">Allowed</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="purge_xeno">Xeno's Only</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="purge_none">Prohibited</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Orbital Bombardment:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="bombard_light">Light</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="bombard_limit">Limited</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="bombard_full">Full</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Native Interference:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="native_passive">Passive Studies</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="native_active">Active Studies</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="native_full">Unrestricted Studies</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Native Enlightenment:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="enlightenment_allow">Allowed</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="enlightenment_not_allow">Prohibited</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Migration:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="no_migrate">Prohibited</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="primary_migrate">Primary Species Only</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="free_migrate">Free Migration</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Resettlement:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="no_resettle">Prohibited</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="resettle">Allowed</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Voting Rights:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="voting_none">No Voting</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="voting_elite">Elitism</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="voting_primary">Primary Species Only</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="voting_free">Free Vote</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Leadership:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="leaders_primary">Primary Species Only</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="leaders_xenos">Xenos Allowed</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="leaders_robots">Androids Allowed</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="leaders_all">Allow All</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Leader Enhancement:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="leaders_natural">Natural Selection</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="leaders_selected">Selected Lineages</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="leaders_capacity">Capacity Boosters</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">First Contact Protocol:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="contact_peaceful">Peaceful</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="contact_aggressive">Aggressive</span></td></tr>
+            <tr><td height="8"></td></tr>
+            <tr><td colspan="2"><span class="txt">Artificial Intelligence:</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="ai_outlawed">Outlawed</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="ai_servitude">Servitude</span></td></tr>
+            <tr><td width="8"></td><td><span class="policy_txt" id="ai_citizen">Citizen Rights</span></td></tr> 
+        </table>
+        </td></tr>
     </table>
 </td>
 </tr>
@@ -4057,6 +4279,7 @@ function update_url() {
     <td height="210" width="0" class="divider"></td>
     <td height="210" width="4"></td>
 </tr>
+<tr><td colspan="13" rowspan="1"></td></tr>
 </table>
 </body>
 </html>
