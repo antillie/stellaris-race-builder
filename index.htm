@@ -3863,6 +3863,17 @@ function purge() {
         document.getElementById("purge_allow").style.fontWeight = "bold";
         document.getElementById("purge_allow").style.color = "#30bbbb";
     };
+    // xenophobia
+    if (xenophobia_pick > 0) {
+        document.getElementById("purge_xeno").style.fontWeight = "normal";
+        document.getElementById("purge_xeno").style.color = "#40cb90";
+        document.getElementById("purge_xeno").style.opacity = "1.0";
+    };
+    if (xenophobia_pick <= 0 && individuality_pick >= 0) {
+        document.getElementById("purge_xeno").style.fontWeight = "normal";
+        document.getElementById("purge_xeno").style.color = "#40cb90";
+        document.getElementById("purge_xeno").style.opacity = "0.4";
+    };
 };
 
 function bombardment() {
