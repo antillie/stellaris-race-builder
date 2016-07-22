@@ -1455,7 +1455,6 @@ function display_ethics() {
         };
     };
     display_bonus_summary();
-    check_policies();
 };
 
 function find_duplicates(array) {
@@ -1516,6 +1515,7 @@ function display_bonus_summary() {
         calculate_bonus_summary(total_summary);
     };
     update_url();
+    check_policies();
 };
 
 function calculate_bonus_summary(total_summary) {
@@ -3769,6 +3769,12 @@ function check_policies() {
     slave_procreation();
     purge();
     bombardment();
+    interference();
+    enlightenment();
+    migration();
+    resettle();
+    voting();
+    leadership();
 };
 
 function slavery() {
@@ -3782,7 +3788,7 @@ function slavery() {
         document.getElementById("slave_allow").style.opacity = "0.4";
         document.getElementById("slave_allow").style.fontWeight = "normal";
         document.getElementById("slave_allow").style.color = "#40cb90";
-        document.getElementById("slave_allow_reg").style.opacity = "1.0";
+        document.getElementById("slave_allow_reg").style.opacity = "0.4";
     };
     if (individuality_pick < 0) {
         document.getElementById("slave_none").style.opacity = "1.0";
@@ -3794,7 +3800,6 @@ function slavery() {
         document.getElementById("slave_allow").style.fontWeight = "bold";
         document.getElementById("slave_allow").style.color = "#30bbbb";
         document.getElementById("slave_allow_reg").style.opacity = "1.0";
-        
         document.getElementById("slave_procreate").style.fontWeight = "bold";
         document.getElementById("slave_procreate").style.color = "#30bbbb";
         document.getElementById("slave_procreate").style.opacity = "1.0";
@@ -3804,35 +3809,38 @@ function slavery() {
         document.getElementById("slave_none").style.opacity = "1.0";
         document.getElementById("slave_none").style.fontWeight = "bold";
         document.getElementById("slave_none").style.color = "#30bbbb";
-        document.getElementById("slave_xeno").style.opacity = "1.0";
-        document.getElementById("slave_xeno_reg").style.opacity = "1.0";
-        document.getElementById("slave_allow").style.opacity = "1.0";
+        document.getElementById("slave_xeno").style.opacity = "0.4";
+        document.getElementById("slave_xeno_reg").style.opacity = "0.4";
+        document.getElementById("slave_allow").style.opacity = "0.4";
         document.getElementById("slave_allow").style.fontWeight = "normal";
         document.getElementById("slave_allow").style.color = "#40cb90";
-        document.getElementById("slave_allow_reg").style.opacity = "1.0";
-        
+        document.getElementById("slave_allow_reg").style.opacity = "0.4";
         document.getElementById("slave_procreate").style.fontWeight = "bold";
         document.getElementById("slave_procreate").style.color = "#30bbbb";
         document.getElementById("slave_procreate").style.opacity = "1.0";
         document.getElementById("slave_no_procreate").style.opacity = "1.0";
     };
-    
+    // xenophobia
+    if (xenophobia_pick > 0) {
+        document.getElementById("slave_xeno").style.fontWeight = "normal";
+        document.getElementById("slave_xeno").style.color = "#40cb90";
+        document.getElementById("slave_xeno").style.opacity = "1.0";
+    };
 };
 
 function slave_procreation() {
     if (individuality_pick >= 0) {
+        document.getElementById("slave_procreate").style.fontWeight = "normal";
+        document.getElementById("slave_procreate").style.color = "#40cb90";
+        document.getElementById("slave_procreate").style.opacity = "0.4";
+        document.getElementById("slave_no_procreate").style.opacity = "0.4";
+    };
+    if (individuality_pick < 0 || xenophobia_pick > 0) {
         document.getElementById("slave_procreate").style.fontWeight = "bold";
         document.getElementById("slave_procreate").style.color = "#30bbbb";
         document.getElementById("slave_procreate").style.opacity = "1.0";
         document.getElementById("slave_no_procreate").style.opacity = "1.0";
     };
-    if (individuality_pick < 0) {
-        document.getElementById("slave_procreate").style.fontWeight = "bold";
-        document.getElementById("slave_procreate").style.color = "#30bbbb";
-        document.getElementById("slave_procreate").style.opacity = "1.0";
-        document.getElementById("slave_no_procreate").style.opacity = "1.0";
-    };
-    
 };
 
 function purge() {
@@ -3841,11 +3849,9 @@ function purge() {
         document.getElementById("purge_none").style.fontWeight = "bold";
         document.getElementById("purge_none").style.color = "#30bbbb";
         document.getElementById("purge_none").style.opacity = "1.0";
-        
         document.getElementById("purge_xeno").style.opacity = "0.4";
         document.getElementById("purge_xeno").style.color = "#40cb90";
         document.getElementById("purge_xeno").style.fontWeight = "normal";
-        
         document.getElementById("purge_allow").style.opacity = "0.4";
         document.getElementById("purge_allow").style.color = "#40cb90";
         document.getElementById("purge_allow").style.fontWeight = "normal";
@@ -3854,11 +3860,9 @@ function purge() {
         document.getElementById("purge_none").style.fontWeight = "normal";
         document.getElementById("purge_none").style.color = "#40cb90";
         document.getElementById("purge_none").style.opacity = "1.0";
-        
         document.getElementById("purge_xeno").style.fontWeight = "normal";
         document.getElementById("purge_xeno").style.color = "#40cb90";
         document.getElementById("purge_xeno").style.opacity = "1.0";
-        
         document.getElementById("purge_allow").style.opacity = "1.0";
         document.getElementById("purge_allow").style.fontWeight = "bold";
         document.getElementById("purge_allow").style.color = "#30bbbb";
@@ -3881,11 +3885,9 @@ function bombardment() {
         document.getElementById("bombard_light").style.fontWeight = "bold";
         document.getElementById("bombard_light").style.color = "#30bbbb";
         document.getElementById("bombard_light").style.opacity = "1.0";
-        
         document.getElementById("bombard_limit").style.opacity = "1.0";
         document.getElementById("bombard_limit").style.color = "#40cb90";
         document.getElementById("bombard_limit").style.fontWeight = "normal";
-        
         document.getElementById("bombard_full").style.opacity = "0.4";
         document.getElementById("bombard_full").style.color = "#40cb90";
         document.getElementById("bombard_full").style.fontWeight = "normal";
@@ -3894,11 +3896,9 @@ function bombardment() {
         document.getElementById("bombard_light").style.fontWeight = "normal";
         document.getElementById("bombard_light").style.color = "#40cb90";
         document.getElementById("bombard_light").style.opacity = "1.0";
-        
         document.getElementById("bombard_limit").style.opacity = "1.0";
         document.getElementById("bombard_limit").style.color = "#40cb90";
         document.getElementById("bombard_limit").style.fontWeight = "normal";
-        
         document.getElementById("bombard_full").style.opacity = "1.0";
         document.getElementById("bombard_full").style.color = "#30bbbb";
         document.getElementById("bombard_full").style.fontWeight = "bold";
@@ -3907,16 +3907,244 @@ function bombardment() {
         document.getElementById("bombard_light").style.fontWeight = "normal";
         document.getElementById("bombard_light").style.color = "#40cb90";
         document.getElementById("bombard_light").style.opacity = "1.0";
-        
         document.getElementById("bombard_limit").style.opacity = "1.0";
         document.getElementById("bombard_limit").style.color = "#30bbbb";
         document.getElementById("bombard_limit").style.fontWeight = "bold";
-        
         document.getElementById("bombard_full").style.opacity = "0.4";
         document.getElementById("bombard_full").style.color = "#40cb90";
         document.getElementById("bombard_full").style.fontWeight = "bold";
     };
+};
+
+function interference() {
+    document.getElementById("native_passive").style.opacity = "1.0";
+    document.getElementById("native_active").style.opacity = "1.0";
+    document.getElementById("native_full").style.opacity = "1.0";
+    document.getElementById("native_passive").style.fontWeight = "normal";
+    document.getElementById("native_active").style.fontWeight = "normal";
+    document.getElementById("native_full").style.fontWeight = "normal";
+    document.getElementById("native_passive").style.color = "#40cb90";
+    document.getElementById("native_active").style.color = "#40cb90";
+    document.getElementById("native_full").style.color = "#40cb90";
     
+    if (xenophobia_pick > 1) {
+        document.getElementById("native_passive").style.opacity = "0.4";
+        document.getElementById("native_active").style.opacity = "0.4";
+        document.getElementById("native_full").style.fontWeight = "bold";
+        document.getElementById("native_full").style.color = "#30bbbb";
+    };
+    if (xenophobia_pick == 1) {
+        document.getElementById("native_passive").style.opacity = "1.0";
+        document.getElementById("native_active").style.opacity = "1.0";
+        document.getElementById("native_full").style.fontWeight = "normal";
+        document.getElementById("native_full").style.color = "#40cb90";
+    };
+    if (xenophobia_pick < 0 || militarisim_pick < 0) {
+        document.getElementById("native_full").style.fontWeight = "normal";
+        document.getElementById("native_full").style.color = "#40cb90";
+        document.getElementById("native_full").style.opacity = "0.4";
+        document.getElementById("native_passive").style.fontWeight = "bold";
+        document.getElementById("native_passive").style.color = "#30bbbb";
+    };
+};
+
+function enlightenment() {
+    document.getElementById("enlightenment_allow").style.opacity = "1.0";
+    document.getElementById("enlightenment_not_allow").style.opacity = "1.0";
+    document.getElementById("enlightenment_not_allow").style.fontWeight = "bold";
+    document.getElementById("enlightenment_not_allow").style.color = "#30bbbb";
+    
+    if (xenophobia_pick > 1) {
+        document.getElementById("enlightenment_allow").style.opacity = "0.4";
+        document.getElementById("enlightenment_allow").style.fontWeight = "normal";
+        document.getElementById("enlightenment_allow").style.color = "#40cb90";
+    };
+};
+
+function migration() {
+    document.getElementById("no_migrate").style.opacity = "1.0";
+    document.getElementById("no_migrate").style.fontWeight = "bold";
+    document.getElementById("no_migrate").style.color = "#30bbbb";
+    document.getElementById("primary_migrate").style.opacity = "1.0";
+    document.getElementById("primary_migrate").style.fontWeight = "normal";
+    document.getElementById("primary_migrate").style.color = "#40cb90";
+    document.getElementById("free_migrate").style.opacity = "1.0";
+    document.getElementById("free_migrate").style.fontWeight = "normal";
+    document.getElementById("free_migrate").style.color = "#40cb90";
+    
+    // individualisim and xenophilia
+    if (individuality_pick > 0 || xenophobia_pick < 0) {
+        document.getElementById("no_migrate").style.fontWeight = "normal";
+        document.getElementById("no_migrate").style.color = "#40cb90";
+        document.getElementById("free_migrate").style.fontWeight = "bold";
+        document.getElementById("free_migrate").style.color = "#30bbbb";
+    };
+    if (individuality_pick > 1) {
+        document.getElementById("no_migrate").style.fontWeight = "normal";
+        document.getElementById("no_migrate").style.color = "#40cb90";
+        document.getElementById("no_migrate").style.opacity = "0.4";
+    };
+    // xenophobia
+    if (xenophobia_pick > 0) {
+        document.getElementById("no_migrate").style.fontWeight = "normal";
+        document.getElementById("no_migrate").style.color = "#40cb90";
+        document.getElementById("primary_migrate").style.fontWeight = "bold";
+        document.getElementById("primary_migrate").style.color = "#30bbbb";
+        document.getElementById("free_migrate").style.fontWeight = "normal";
+        document.getElementById("free_migrate").style.color = "#40cb90";
+    };
+    if (xenophobia_pick > 1) {
+        document.getElementById("free_migrate").style.opacity = "0.4";
+        document.getElementById("free_migrate").style.fontWeight = "normal";
+        document.getElementById("free_migrate").style.color = "#40cb90";
+    };
+    // collectivisim
+    if (individuality_pick < 0) {
+        document.getElementById("no_migrate").style.opacity = "1.0";
+        document.getElementById("no_migrate").style.fontWeight = "bold";
+        document.getElementById("no_migrate").style.color = "#30bbbb";
+        document.getElementById("primary_migrate").style.opacity = "1.0";
+        document.getElementById("primary_migrate").style.fontWeight = "normal";
+        document.getElementById("primary_migrate").style.color = "#40cb90";
+        
+        // collectivisim interacting with xenophobia and xenophilia
+        if (xenophobia_pick > 1) {
+            document.getElementById("free_migrate").style.opacity = "0.4";
+            document.getElementById("free_migrate").style.fontWeight = "normal";
+            document.getElementById("free_migrate").style.color = "#40cb90";
+        };
+        if (xenophobia_pick < 0) {
+            document.getElementById("free_migrate").style.opacity = "1.0";
+            document.getElementById("free_migrate").style.fontWeight = "normal";
+            document.getElementById("free_migrate").style.color = "#40cb90";
+        };
+    };
+};
+
+function resettle() {
+    document.getElementById("no_resettle").style.opacity = "1.0";
+    document.getElementById("no_resettle").style.fontWeight = "bold";
+    document.getElementById("no_resettle").style.color = "#30bbbb";
+    document.getElementById("resettle").style.opacity = "1.0";
+    document.getElementById("resettle").style.fontWeight = "normal";
+    document.getElementById("resettle").style.color = "#40cb90";
+    
+    if (individuality_pick < 0 || xenophobia_pick > 0) {
+        document.getElementById("resettle").style.opacity = "1.0";
+        document.getElementById("resettle").style.fontWeight = "bold";
+        document.getElementById("resettle").style.color = "#30bbbb";
+        document.getElementById("no_resettle").style.opacity = "1.0";
+        document.getElementById("no_resettle").style.fontWeight = "normal";
+        document.getElementById("no_resettle").style.color = "#40cb90";
+    };
+    if (individuality_pick > 0) {
+        document.getElementById("resettle").style.opacity = "0.4";
+        document.getElementById("resettle").style.fontWeight = "normal";
+        document.getElementById("resettle").style.color = "#40cb90";
+        document.getElementById("no_resettle").style.opacity = "1.0";
+        document.getElementById("no_resettle").style.fontWeight = "bold";
+        document.getElementById("no_resettle").style.color = "#30bbbb";
+    };
+};
+
+function voting() {
+    document.getElementById("voting_none").style.opacity = "0.4";
+    document.getElementById("voting_none").style.fontWeight = "normal";
+    document.getElementById("voting_none").style.color = "#40cb90";
+    
+    document.getElementById("voting_elite").style.opacity = "0.4";
+    document.getElementById("voting_elite").style.fontWeight = "normal";
+    document.getElementById("voting_elite").style.color = "#40cb90";
+    
+    document.getElementById("voting_primary").style.opacity = "0.4";
+    document.getElementById("voting_primary").style.fontWeight = "normal";
+    document.getElementById("voting_primary").style.color = "#40cb90";
+    
+    document.getElementById("voting_free").style.opacity = "0.4";
+    document.getElementById("voting_free").style.fontWeight = "normal";
+    document.getElementById("voting_free").style.color = "#40cb90";
+    
+    var autocracies = [
+        "despotic-empire",
+        "despotic-hegemony",
+        "divine-mandate",
+        "enlightened-monarchy"
+    ];
+    var oligarchies  = [
+        "plutocratic-oligarchy",
+        "military-dictatorship", // The game counts this as an oligarchy for voting policy purposes even though it is really an autocracy.
+        "theocratic-oligarchy",
+        "science-directorate",
+        "military-junta",
+        "peaceful-bureaucracy"
+    ];
+    var democracies = [
+        "indirect-democracy",
+        "direct-democracy",
+        "military-republic",
+        "theocratic-republic",
+        "moral-democracy",
+    ];
+    
+    var i = 0;
+    
+    for (i = 0; i < autocracies.length; i++) {
+        if (government_pick == autocracies[i]) {
+            document.getElementById("voting_none").style.opacity = "1.0";
+            document.getElementById("voting_none").style.fontWeight = "bold";
+            document.getElementById("voting_none").style.color = "#30bbbb";
+            break;
+        };
+    };
+    for (i = 0; i < oligarchies.length; i++) {
+        if (government_pick == oligarchies[i]) {
+            document.getElementById("voting_elite").style.opacity = "1.0";
+            document.getElementById("voting_elite").style.fontWeight = "bold";
+            document.getElementById("voting_elite").style.color = "#30bbbb";
+            break;
+        };
+    };
+    for (i = 0; i < democracies.length; i++) {
+        if (government_pick == democracies[i]) {
+            document.getElementById("voting_free").style.opacity = "1.0";
+            document.getElementById("voting_free").style.fontWeight = "bold";
+            document.getElementById("voting_free").style.color = "#30bbbb";
+            document.getElementById("voting_primary").style.opacity = "1.0";
+            // xenophobia interacting with a democratic government
+            if (xenophobia_pick > 0) {
+                document.getElementById("voting_free").style.opacity = "1.0";
+                document.getElementById("voting_free").style.fontWeight = "normal";
+                document.getElementById("voting_free").style.color = "#40cb90";
+                document.getElementById("voting_primary").style.opacity = "1.0";
+                document.getElementById("voting_primary").style.fontWeight = "bold";
+                document.getElementById("voting_primary").style.color = "#30bbbb";
+            };
+            if (xenophobia_pick > 1) {
+                document.getElementById("voting_free").style.opacity = "0.4";
+            };
+            break;
+        };
+    };
+};
+
+function leadership() {
+    document.getElementById("leaders_primary").style.opacity = "1.0";
+    document.getElementById("leaders_primary").style.fontWeight = "bold";
+    document.getElementById("leaders_primary").style.color = "#30bbbb";
+    document.getElementById("leaders_xenos").style.opacity = "1.0";
+    document.getElementById("leaders_xenos").style.fontWeight = "normal";
+    document.getElementById("leaders_xenos").style.color = "#40cb90";
+    document.getElementById("leaders_robots").style.opacity = "1.0";
+    document.getElementById("leaders_robots").style.fontWeight = "normal";
+    document.getElementById("leaders_robots").style.color = "#40cb90";
+    document.getElementById("leaders_all").style.opacity = "1.0";
+    document.getElementById("leaders_all").style.fontWeight = "normal";
+    document.getElementById("leaders_all").style.color = "#40cb90";
+    
+    if (xenophobia_pick > 1) {
+        document.getElementById("leaders_xenos").style.opacity = "0.4";
+        document.getElementById("leaders_all").style.opacity = "0.4";
+    };
 };
 
 </script>
@@ -4175,10 +4403,10 @@ function bombardment() {
     </td></tr>
     <tr><td align="center">
         <table border="0"> <!-- HTML/CSS validator images and Stellaris version info -->
-            <tr><td colspan="2" height="30" valign="top"><span class="txt">Updated for Stellaris v1.2</span></td></tr>
+            <tr><td height="30" valign="top"><span class="txt">Updated for Stellaris v1.2</span></td></tr>
             <tr>
-                <td><a href="http://validator.w3.org/check?uri=https://antillie.github.io/stellaris-race-builder/"><img src="images/valid-html401.png" alt="Valid HTML 4.01"></a></td>
-                <td><a href="https://jigsaw.w3.org/css-validator/check/referer"><img src="images/valid-css.gif" alt="Valid CSS 3"></a></td>
+                <td align="center"><a href="http://validator.w3.org/check?uri=https://antillie.github.io/stellaris-race-builder/"><img src="images/valid-html401.png" alt="Valid HTML 4.01"></a></td>
+                
             </tr>
         </table>
     </td></tr>
