@@ -3512,29 +3512,31 @@ function random_build(traits_only) {
     // Don't bother with ethics and governments if we are just redoing the traits.
     if (traits_only == 0) {
         
-        // Generate a random set of ethics.
-        var skipped_row = random_number(1, 5);
-        
-        // The order we go through our three randomly selected ethics families here matters. Each one should be first once, second once, and third once. Otherwise it will bias the generator toward certain ethics over others.
-        if (skipped_row == 1) {
-            random_ethic("spirituality");
-            random_ethic("militarisim");
-            random_ethic("xenophobia");
-        };
-        if (skipped_row == 2) {
-            random_ethic("militarisim");
-            random_ethic("xenophobia");
-            random_ethic("individuality");
-        };
-        if (skipped_row == 3) {
-            random_ethic("xenophobia");
-            random_ethic("individuality");
-            random_ethic("spirituality");
-        };
-        if (skipped_row == 4) {
-            random_ethic("individuality");
-            random_ethic("spirituality");
-            random_ethic("militarisim");
+        while (ethics_points != 0) {
+           // Pick a random ethics family to skip.
+            var skipped_row = random_number(1, 5);
+            
+            // The order we go through our three randomly selected ethics families here matters. Each one should be first once, second once, and third once. Otherwise it will bias the generator toward certain ethics over others.
+            if (skipped_row == 1) {
+                random_ethic("spirituality");
+                random_ethic("militarisim");
+                random_ethic("xenophobia");
+            };
+            if (skipped_row == 2) {
+                random_ethic("militarisim");
+                random_ethic("xenophobia");
+                random_ethic("individuality");
+            };
+            if (skipped_row == 3) {
+                random_ethic("xenophobia");
+                random_ethic("individuality");
+                random_ethic("spirituality");
+            };
+            if (skipped_row == 4) {
+                random_ethic("individuality");
+                random_ethic("spirituality");
+                random_ethic("militarisim");
+            }; 
         };
         
         // Pick a random govenment that is allowed by our ethics.
@@ -3564,81 +3566,81 @@ function clear_government() {
 function random_ethic(ethic) {
     if (ethic == "individuality") {
         if (ethics_points > 1) {
-            var pick = random_number(1, 5);
+            var pick = random_number(-2, 3);
         }
         else {
-            var pick = random_number(2, 4);
+            var pick = random_number(-1, 2);
         };
-        if (pick == 1) {
+        if (pick == -2) {
                 select_ethics("fanatic-collectivist");
             };
-        if (pick == 2) {
+        if (pick == -1) {
             select_ethics("collectivist");
         };
-        if (pick == 3) {
+        if (pick == 1) {
             select_ethics("individualist");
         };
-        if (pick == 4) {
+        if (pick == 2) {
             select_ethics("fanatic-individualist");
         };
     };
     if (ethic == "spirituality") {
         if (ethics_points > 1) {
-            var pick = random_number(1, 5);
+            var pick = random_number(-2, 3);
         }
         else {
-            var pick = random_number(2, 4);
+            var pick = random_number(-1, 2);
         };
-        if (pick == 1) {
+        if (pick == -2) {
                 select_ethics("fanatic-spiritualist");
             };
-        if (pick == 2) {
+        if (pick == -1) {
             select_ethics("spiritualist");
         };
-        if (pick == 3) {
+        if (pick == 1) {
             select_ethics("materialist");
         };
-        if (pick == 4) {
+        if (pick == 2) {
             select_ethics("fanatic-materialist");
         };
     };
     if (ethic == "militarisim") {
         if (ethics_points > 1) {
-            var pick = random_number(1, 5);
+            var pick = random_number(-2, 3);
         }
         else {
-            var pick = random_number(2, 4);
+            var pick = random_number(-1, 2);
         };
-        if (pick == 1) {
+        if (pick == -2) {
                 select_ethics("fanatic-pacifist");
             };
-        if (pick == 2) {
+        if (pick == -1) {
             select_ethics("pacifist");
         };
-        if (pick == 3) {
+        if (pick == 1) {
             select_ethics("militarist");
         };
-        if (pick == 4) {
+        if (pick == 2) {
             select_ethics("fanatic-militarist");
         };
     };
     if (ethic == "xenophobia") {
         if (ethics_points > 1) {
-            var pick = random_number(1, 5);
+            var pick = random_number(-2, 3);
         }
         else {
-            var pick = random_number(2, 4);
+            var pick = random_number(-1, 2);
         };
-        if (pick == 1) {
+        if (pick == -2) {
                 select_ethics("fanatic-xenophile");
             };
-        if (pick == 2) {
+        if (pick == -1) {
             select_ethics("xenophile");
         };
-        if (pick == 3) {
+        if (pick == 1) {
             select_ethics("xenophobe");
         };
-        if (pick == 4) {
+        if (pick == 2) {
             select_ethics("fanatic-xenophobe");
         };
     };
