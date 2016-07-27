@@ -2297,7 +2297,7 @@ function select_traits(trait) {
             clear_traits("adaptive");
             return true;
         };
-        if (adaptive_pick == -1 && trait_points == 0) {
+        if (adaptive_pick == -1 && trait_points <= 1) {
             return true;
         };
         for (i = 0; i < adaptive_traits.length; i++) {
